@@ -5,10 +5,68 @@
  */
 package gestioneStudenti;
 
+import gestionePrestiti.Prestito;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author danaiannaccone
  */
 public class Studente {
+    private String nome;
+    private String cognome;
+    private String matricola;
+    private String email;
+    private List<Prestito> prestitiAttivi; //FORSE DA RIMUOVERE PERCHE GESTITA IN PRESTITI
+
+    public Studente(String nome, String cognome, String matricola, String email, List<Prestito> prestitiAttivi) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.matricola = matricola;
+        this.email = email;
+        this.prestitiAttivi = new ArrayList<>();//anche qui
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public String getMatricola() {
+        return matricola;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public List<Prestito> getPrestitiAttivi() {
+        return prestitiAttivi;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public void setMatricola(String matricola) {
+        this.matricola = matricola;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPrestitiAttivi(List<Prestito> prestitiAttivi) {
+        this.prestitiAttivi = prestitiAttivi;
+    }
+    
     
 }
