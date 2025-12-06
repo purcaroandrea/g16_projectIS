@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.prestiti;
+package gestioneLibri.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,12 +18,16 @@ import javafx.scene.control.Label;
  *
  * @author laura
  */
-public class Ricercaprestito1Controller implements Initializable {
+public class Gestionelibri1Controller implements Initializable {
 
     @FXML
-    private Label ricercaprestito;
+    private Label labelgestionelibri;
     @FXML
-    private Button bottoneRicercaPrestito;
+    private Button NuovoLibro;
+    @FXML
+    private Button RegistroLibri;
+    @FXML
+    private Button RicercaLibro;
 
     /**
      * Initializes the controller class.
@@ -31,5 +36,17 @@ public class Ricercaprestito1Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void aggiungenuovolibro(ActionEvent event) {
+    }
+
+    @FXML
+    private void visualizzaregistrolibri(ActionEvent event) {
+    }
+
+    @FXML
+    private void ricercalibro(ActionEvent event) {
+    }
     
 }

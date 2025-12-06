@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.studenti;
+package biblioteca.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,20 +18,16 @@ import javafx.scene.control.Label;
  *
  * @author laura
  */
-public class AggiungistudenteController implements Initializable {
+public class Bibliotecainterfaccia1Controller implements Initializable {
 
     @FXML
-    private Button bottoneConfermaStudente;
+    private Label labelbiblioteca;
     @FXML
-    private Label labelaggiuntastudente;
+    private Button Libri;
     @FXML
-    private Label labelnome;
+    private Button Studenti;
     @FXML
-    private Label labelcognome;
-    @FXML
-    private Label labelmatricola;
-    @FXML
-    private Label labelemail;
+    private Button Prestiti;
 
     /**
      * Initializes the controller class.
@@ -42,7 +38,15 @@ public class AggiungistudenteController implements Initializable {
     }    
 
     @FXML
-    private void confermastudenti(ActionEvent event) {
+    private void visualizzalibri(ActionEvent event) {
+    }
+
+    @FXML
+    private void visualizzastudenti(ActionEvent event) {
+    }
+
+    @FXML
+    private void visualizzaprestiti(ActionEvent event) {
     }
     
 }

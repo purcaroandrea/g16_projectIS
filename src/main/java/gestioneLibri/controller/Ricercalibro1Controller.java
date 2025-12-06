@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.studenti;
+package gestioneLibri.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,18 +17,12 @@ import javafx.scene.control.Label;
  *
  * @author laura
  */
-public class Ricercastudente3Controller implements Initializable {
+public class Ricercalibro1Controller implements Initializable {
 
     @FXML
-    private Button bottoneConfermaRicercaStudente;
+    private Label ricercalibro;
     @FXML
-    private Button bottoneModificaStudente;
-    @FXML
-    private Button bottoneRimuoviStudente;
-    @FXML
-    private Label ricercastudente2;
-    @FXML
-    private Label StudenteSelezionato;
+    private Button bottoneRicercaLibro;
 
     /**
      * Initializes the controller class.

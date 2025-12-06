@@ -9,7 +9,7 @@ package gestioneLibri;
  *
  * @author danaiannaccone
  */
-public class Libro {
+public class Libro implements Comparable<Libro> {
     private String titolo;
     private String autore;
     private int annoPubblicazione;
@@ -79,6 +79,24 @@ public class Libro {
     @Override
     public String toString() {
         return titolo + " - " + autore + " - "  + isbn;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Libro)) return false;
+        Libro libro = (Libro) o;
+        return isbn != null && isbn.equalsIgnoreCase(libro.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return isbn != null ? isbn.toLowerCase().hashCode() : 0;
+    }
+
+    @Override
+    public int compareTo(Libro altro) {
+        return this.titolo.compareToIgnoreCase(altro.titolo);
     }
     
 }

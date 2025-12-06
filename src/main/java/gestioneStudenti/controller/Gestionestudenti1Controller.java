@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.prestiti;
+package gestioneStudenti.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,16 +18,16 @@ import javafx.scene.control.Label;
  *
  * @author laura
  */
-public class Gestioneprestiti1Controller implements Initializable {
+public class Gestionestudenti1Controller implements Initializable {
 
     @FXML
-    private Label labelgestioneprestito;
+    private Button NuovoStudente;
     @FXML
-    private Button NuovoPrestito;
+    private Button RegistroStudenti;
     @FXML
-    private Button RegistroPrestiti;
+    private Button RicercaStudente;
     @FXML
-    private Button RicercaPrestito;
+    private Label labelgestionestudenti;
 
     /**
      * Initializes the controller class.
@@ -38,15 +38,15 @@ public class Gestioneprestiti1Controller implements Initializable {
     }    
 
     @FXML
-    private void aggiungenuovoprestito(ActionEvent event) {
+    private void aggiungestudente(ActionEvent event) {
     }
 
     @FXML
-    private void visualizzaregistroprestiti(ActionEvent event) {
+    private void visualizzaregistrostudenti(ActionEvent event) {
     }
 
     @FXML
-    private void ricercaprestito(ActionEvent event) {
+    private void ricercastudente(ActionEvent event) {
     }
     
 }

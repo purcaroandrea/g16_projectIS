@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.studenti;
+package gestioneStudenti.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,12 +18,20 @@ import javafx.scene.control.Label;
  *
  * @author laura
  */
-public class Ricercastudente1Controller implements Initializable {
+public class AggiungistudenteController implements Initializable {
 
     @FXML
-    private Label ricercastudente;
+    private Button bottoneConfermaStudente;
     @FXML
-    private Button bottoneRicercaStudente;
+    private Label labelaggiuntastudente;
+    @FXML
+    private Label labelnome;
+    @FXML
+    private Label labelcognome;
+    @FXML
+    private Label labelmatricola;
+    @FXML
+    private Label labelemail;
 
     /**
      * Initializes the controller class.
@@ -31,5 +40,9 @@ public class Ricercastudente1Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void confermastudenti(ActionEvent event) {
+    }
     
 }

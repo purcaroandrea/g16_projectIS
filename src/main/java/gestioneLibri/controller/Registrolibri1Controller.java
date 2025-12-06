@@ -3,31 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.libri;
+package gestioneLibri.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
  *
  * @author laura
  */
-public class Gestionelibri1Controller implements Initializable {
+public class Registrolibri1Controller implements Initializable {
 
     @FXML
-    private Label labelgestionelibri;
+    private TableView<?> tviem;
     @FXML
-    private Button NuovoLibro;
+    private TableColumn<?, ?> colonnaTitolo;
     @FXML
-    private Button RegistroLibri;
+    private TableColumn<?, ?> colonnaAutore;
     @FXML
-    private Button RicercaLibro;
+    private TableColumn<?, ?> colonnaISBN;
+    @FXML
+    private TableColumn<?, ?> colonnaAnnoPub;
+    @FXML
+    private TableColumn<?, ?> colonnaNumCopie;
+    @FXML
+    private Label registrolibri;
 
     /**
      * Initializes the controller class.
@@ -36,17 +42,5 @@ public class Gestionelibri1Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void aggiungenuovolibro(ActionEvent event) {
-    }
-
-    @FXML
-    private void visualizzaregistrolibri(ActionEvent event) {
-    }
-
-    @FXML
-    private void ricercalibro(ActionEvent event) {
-    }
     
 }

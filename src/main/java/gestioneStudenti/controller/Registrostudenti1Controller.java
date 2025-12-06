@@ -3,31 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package gestioneStudenti.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 
 /**
  * FXML Controller class
  *
  * @author laura
  */
-public class Bibliotecainterfaccia1Controller implements Initializable {
+public class Registrostudenti1Controller implements Initializable {
 
     @FXML
-    private Label labelbiblioteca;
+    private TableColumn<?, ?> colonnaNome;
     @FXML
-    private Button Libri;
+    private TableColumn<?, ?> colonnaCognome;
     @FXML
-    private Button Studenti;
+    private TableColumn<?, ?> colonnaMatricola;
     @FXML
-    private Button Prestiti;
+    private TableColumn<?, ?> colonnaEmail;
+    @FXML
+    private TableColumn<?, ?> colonnaLibriPrestito;
+    @FXML
+    private Label registrostudenti;
 
     /**
      * Initializes the controller class.
@@ -36,17 +39,5 @@ public class Bibliotecainterfaccia1Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-    @FXML
-    private void visualizzalibri(ActionEvent event) {
-    }
-
-    @FXML
-    private void visualizzastudenti(ActionEvent event) {
-    }
-
-    @FXML
-    private void visualizzaprestiti(ActionEvent event) {
-    }
     
 }

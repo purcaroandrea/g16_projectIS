@@ -3,34 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.studenti;
+package gestioneStudenti.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 
 /**
  * FXML Controller class
  *
  * @author laura
  */
-public class Registrostudenti1Controller implements Initializable {
+public class Ricercastudente1Controller implements Initializable {
 
     @FXML
-    private TableColumn<?, ?> colonnaNome;
+    private Label ricercastudente;
     @FXML
-    private TableColumn<?, ?> colonnaCognome;
-    @FXML
-    private TableColumn<?, ?> colonnaMatricola;
-    @FXML
-    private TableColumn<?, ?> colonnaEmail;
-    @FXML
-    private TableColumn<?, ?> colonnaLibriPrestito;
-    @FXML
-    private Label registrostudenti;
+    private Button bottoneRicercaStudente;
 
     /**
      * Initializes the controller class.

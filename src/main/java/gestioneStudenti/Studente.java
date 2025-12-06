@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author danaiannaccone
  */
-public class Studente {
+public class Studente implements Comparable<Studente>{
     private String nome;
     private String cognome;
     private String matricola;
@@ -66,6 +66,35 @@ public class Studente {
 
     public void setPrestitiAttivi(List<Prestito> prestitiAttivi) {
         this.prestitiAttivi = prestitiAttivi;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Studente)) return false;
+        Studente s = (Studente) o;
+        return matricola != null && matricola.equalsIgnoreCase(s.matricola);
+    }
+
+    @Override
+    public int hashCode() {
+        return matricola != null ? matricola.toLowerCase().hashCode() : 0;
+    }
+
+    @Override
+    public int compareTo(Studente altro) {
+        // prima confronto per cognome
+        int confrontoCognome = this.cognome.compareToIgnoreCase(altro.cognome);
+        if (confrontoCognome != 0) {
+            return confrontoCognome;
+        }
+        // se cognomi uguali → confronto nomi
+        return this.nome.compareToIgnoreCase(altro.nome);
+    }
+
+    @Override
+    public String toString() {
+        return cognome + " " + nome + "-" + matricola;
     }
     
     

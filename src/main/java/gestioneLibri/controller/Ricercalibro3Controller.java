@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.libri;
+package gestioneLibri.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,22 +17,18 @@ import javafx.scene.control.Label;
  *
  * @author laura
  */
-public class Modificalibro1Controller implements Initializable {
+public class Ricercalibro3Controller implements Initializable {
 
     @FXML
-    private Label labelmodificalibro;
+    private Button bottoneModificaLibro;
     @FXML
-    private Label titolomodifica;
+    private Button bottoneRimuoviLibro;
     @FXML
-    private Label autoremodifica;
+    private Label ricercalibro2;
     @FXML
-    private Label ISBNmodifica;
+    private Label LibroSelezionato;
     @FXML
-    private Label annodipubmodifica;
-    @FXML
-    private Label numcopiemodifica;
-    @FXML
-    private Button confermalibrimodifica;
+    private Button bottoneConfermaRicerca;
 
     /**
      * Initializes the controller class.

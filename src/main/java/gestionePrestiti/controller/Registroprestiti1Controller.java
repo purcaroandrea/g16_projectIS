@@ -3,32 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.libri;
+package gestionePrestiti.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 
 /**
  * FXML Controller class
  *
  * @author laura
  */
-public class Ricercalibro3Controller implements Initializable {
+public class Registroprestiti1Controller implements Initializable {
 
     @FXML
-    private Button bottoneModificaLibro;
+    private TableColumn<?, ?> colonnaISBN;
     @FXML
-    private Button bottoneRimuoviLibro;
+    private TableColumn<?, ?> colonnaMatricola;
     @FXML
-    private Label ricercalibro2;
+    private TableColumn<?, ?> colonnaDataPrestito;
     @FXML
-    private Label LibroSelezionato;
-    @FXML
-    private Button bottoneConfermaRicerca;
+    private Label registroprestiti;
 
     /**
      * Initializes the controller class.
