@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@registrostudenti.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="10.0" layoutY="120.0" prefHeight="265.0" prefWidth="577.0">
+        <columns>
+          <TableColumn fx:id="colonnaNome" prefWidth="101.5999755859375" text="Nome" />
+          <TableColumn fx:id="colonnaCognome" prefWidth="99.99993896484375" text="Cognome" />
+            <TableColumn fx:id="colonnaMatricola" prefWidth="108.79998779296875" text="Matricola" />
+            <TableColumn fx:id="colonnaEmail" minWidth="0.0" prefWidth="118.39996337890625" text="Email" />
+            <TableColumn fx:id="colonnaLibriPrestito" prefWidth="151.2000732421875" text="Libri presi in prestito" />
+        </columns>
+      </TableView>
+      <Label fx:id="registrostudenti" layoutX="140.0" layoutY="45.0" text="Registro Studenti" />
+   </children>
+</Pane>

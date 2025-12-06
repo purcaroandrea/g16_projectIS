@@ -1,0 +1,46 @@
+.label{
+    -fx-text-fill: #bb8c8e; 
+    -fx-font-size: 40px;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+.button{
+    -fx-text-fill: white; 
+    -fx-font-size: 15px; 
+    -fx-padding: 10px 25px; 
+    -fx-border-radius: 5px; 
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(168, 25, 25, 0.4), 8, 0, 0, 0); /* Leggera ombra */
+    -fx-width: 96;
+    -fx-width:48;
+}
+
+#NuovoLibro {
+    -fx-background-color: #d57209; 
+}
+
+
+#RegistroLibri {
+    -fx-background-color: #d57209; 
+}
+
+
+#RicercaLibro{
+    -fx-background-color: #d57209; 
+}
+
+
+
+.button:hover {
+    -fx-opacity: 0.9; 
+    -fx-scale-x: 1.05; 
+    -fx-scale-y: 1.05; 
+}
+
+
+.button-base:pressed {
+    -fx-translate-y: 1px;
+    -fx-effect: none; 
+}

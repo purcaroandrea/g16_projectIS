@@ -1,0 +1,26 @@
+#ricercaprestito{
+    -fx-text-fill: #bb8c8e; 
+    -fx-font-size: 40px;
+   -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#barraRicercaPrestito{
+     -fx-background-color: white;
+    -fx-background-radius: 20;
+  
+}
+
+#bottoneRicercaPrestito{
+    -fx-text-fill: white; 
+    -fx-font-size: 15px; 
+    -fx-padding: 10px 25px; 
+    -fx-border-radius: 5px; 
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(168, 25, 25, 0.4), 8, 0, 0, 0); 
+    -fx-width: 96;
+    -fx-width:48;
+    -fx-background-color:#2ECC71;
+}

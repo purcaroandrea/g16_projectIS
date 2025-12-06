@@ -1,0 +1,96 @@
+#labelmodificalibro {
+    -fx-text-fill: #bb8c8e; 
+    -fx-font-size: 40px;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+
+}
+
+#titolomodifica{
+    -fx-text-fill: #d57209; 
+    -fx-font-size: 20px;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#autoremodifica{
+    -fx-text-fill: #d57209; 
+    -fx-font-size: 20px;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#ISBNmodifica{
+    -fx-text-fill: #d57209; 
+    -fx-font-size: 20px;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#annodipubmodifica{
+    -fx-text-fill: #d57209; 
+    -fx-font-size: 20px;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#numcopiemodifica{
+    -fx-text-fill: #d57209; 
+    -fx-font-size: 20px;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+
+
+#TitoloModifica{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#d57209;
+}
+#AutoreModifica{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#d57209;
+}
+#ISBNModifica{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#d57209;
+}
+#AnnoPubModifica{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#d57209;
+}
+#NumCopieModifica{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#d57209;
+}
+
+#confermalibrimodifica{
+    -fx-text-fill: white; 
+    -fx-font-size: 15px; 
+    -fx-padding: 10px 25px; 
+    -fx-border-radius: 5px; 
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(168, 25, 25, 0.4), 8, 0, 0, 0); 
+    -fx-width: 96;
+    -fx-width:48;
+    -fx-background-color:#d57209;
+}
+
+
+.button:hover {
+    -fx-opacity: 0.9; 
+    -fx-scale-x: 1.05; 
+    -fx-scale-y: 1.05; 
+}
+
+
+.button-base:pressed {
+    -fx-translate-y: 1px;
+    -fx-effect: none; 
+}

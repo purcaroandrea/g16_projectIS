@@ -1,0 +1,110 @@
+#labelaggiungilibro1 {
+    /* Testo in rosso come nell'immagine */
+    -fx-text-fill: #bb8c8e; 
+    /* Dimensione del carattere grande */
+    -fx-font-size: 40px;
+   
+       
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+
+}
+
+#titolo1{-fx-text-fill: #d57209; 
+    /* Dimensione del carattere grande */
+    -fx-font-size: 20px;
+   
+       
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#autore1{-fx-text-fill: #d57209; 
+    /* Dimensione del carattere grande */
+    -fx-font-size: 20px;
+   
+       
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#ISBN1{-fx-text-fill: #d57209; 
+    /* Dimensione del carattere grande */
+    -fx-font-size: 20px;
+   
+       
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#annodipub1{-fx-text-fill: #d57209; 
+    /* Dimensione del carattere grande */
+    -fx-font-size: 20px;
+   
+       
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#numcopie1{-fx-text-fill: #d57209; 
+    /* Dimensione del carattere grande */
+    -fx-font-size: 20px;
+   
+       
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+
+
+
+#testoautore1{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#0671b9;
+}
+#testoISBN1{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#0671b9;
+}
+#testoannopub1{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#0671b9;
+}
+#testonumcopie1{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#0671b9;
+}
+
+#bottoneconfermalibri1{
+    -fx-text-fill: white; 
+    -fx-font-size: 15px; 
+    -fx-padding: 10px 25px; 
+    -fx-border-radius: 5px; 
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(168, 25, 25, 0.4), 8, 0, 0, 0); /* Leggera ombra */
+    -fx-width: 96;
+    -fx-width:48;
+    -fx-background-color:#d57209;
+}
+
+
+
+/* Effetto Hover (Passaggio del mouse) */
+.button:hover {
+    -fx-opacity: 0.9; /* Leggera trasparenza al passaggio del mouse */
+    -fx-scale-x: 1.05; 
+    -fx-scale-y: 1.05; 
+}
+
+/* Effetto Pressed (Click) */
+.button-base:pressed {
+    -fx-translate-y: 1px;
+    -fx-effect: none; /* Rimuovi l'ombra per l'effetto "premutura" */
+}

@@ -1,0 +1,88 @@
+#modificastudente {
+   -fx-text-fill: #bb8c8e; 
+    -fx-font-size: 40px;
+   -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+
+}
+
+#nomeModifica{
+    -fx-text-fill: #0671b9; 
+    -fx-font-size: 20px;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#cognomeModifica{
+    -fx-text-fill: #0671b9; 
+    -fx-font-size: 20px;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#matricolaModifica{
+    -fx-text-fill: #0671b9; 
+    -fx-font-size: 20px;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#emailModifica{ 
+    -fx-text-fill: #0671b9; 
+    -fx-font-size: 20px;
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+
+
+
+
+#ModificaNome{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#0671b9;
+}
+#ModificaCognome{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#0671b9;
+}
+#ModificaMatricola{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#0671b9;
+}
+#ModificaEmail{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#0671b9;
+}
+
+#ConfermaModificaStudente{
+    -fx-text-fill: white; 
+    -fx-font-size: 15px; 
+    -fx-padding: 10px 25px; 
+    -fx-border-radius: 5px; 
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(168, 25, 25, 0.4), 8, 0, 0, 0); 
+    -fx-width: 96;
+    -fx-width:48;
+    -fx-background-color:#0671b9;
+}
+
+
+
+#ConfermaModificaStudente:hover {
+    -fx-opacity: 0.9;
+    -fx-scale-x: 1.05; 
+    -fx-scale-y: 1.05; 
+}
+
+
+#ConfermaModificaStudente-base:pressed {
+    -fx-translate-y: 1px;
+    -fx-effect: none; 
+}

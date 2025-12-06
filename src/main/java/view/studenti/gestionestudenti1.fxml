@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" styleClass="button" stylesheets="@gestionestudenti.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox layoutX="4.0" layoutY="191.0" prefHeight="237.0" prefWidth="593.0" spacing="32.0">
+         <children>
+            <Button fx:id="NuovoStudente" lineSpacing="40.0" mnemonicParsing="false" onAction="#aggiungestudente" prefHeight="42.0" prefWidth="206.0" style="-fx-font-weight: bold;" text="Nuovo Studente" />
+            <Button fx:id="RegistroStudenti" mnemonicParsing="false" onAction="#visualizzaregistrostudenti" prefHeight="46.0" prefWidth="206.0" style="-fx-font-weight: bold;" text="Registro Studenti" wrapText="true" />
+            <Button fx:id="RicercaStudente" mnemonicParsing="false" onAction="#ricercastudente" prefHeight="42.0" prefWidth="194.0" style="-fx-font-weight: bold;" text="Ricerca Studente" />
+         </children>
+      </HBox>
+      <Label fx:id="labelgestionestudenti" layoutX="109.0" layoutY="93.0" text="Gestione Studenti" />
+   </children>
+</Pane>
