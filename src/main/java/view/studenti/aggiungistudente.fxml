@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="568.0" style="-fx-background-color: snow;" stylesheets="@aggiungistudente1.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="568.0" style="-fx-background-color: snow;" stylesheets="@aggiungistudente1.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.studenti.AggiungistudenteController">
    <children>
       <Button fx:id="bottoneConfermaStudente" layoutX="454.0" layoutY="322.0" mnemonicParsing="false" onAction="#confermastudenti" prefHeight="37.0" prefWidth="99.0" style="-fx-padding: 10 px 25 px;" text="Conferma" />
       <Label fx:id="labelaggiuntastudente" layoutX="140.0" layoutY="28.0" prefHeight="45.0" prefWidth="321.0" style="-fx-font-family: Georgia; -fx-font-family: Times New Roman; -fx-font-family: Serif; -fx-font-weight: bold; -fx-text-fill: #bb8c8e; -fx-font-size: 40px;" text="Aggiungi studente">

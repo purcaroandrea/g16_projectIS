@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-size: cover; -fx-background-image: url(&quot;https://cdn.pixabay.com/photo/2021/01/21/16/49/books-5937823_1280.jpg&quot;); -fx-background-repeat: no-repeat; -fx-background-position: center center;" styleClass="label" stylesheets="@prova.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-size: cover; -fx-background-image: url(&quot;https://cdn.pixabay.com/photo/2021/01/21/16/49/books-5937823_1280.jpg&quot;); -fx-background-repeat: no-repeat; -fx-background-position: center center;" styleClass="label" stylesheets="@prova.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Bibliotecainterfaccia1Controller">
    <children>
       <Label fx:id="labelbiblioteca" layoutX="37.0" layoutY="14.0" prefWidth="275.0" text="Biblioteca Universitaria " wrapText="true">
          <font>
