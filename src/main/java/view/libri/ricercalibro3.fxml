@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@ricercalibro2.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.libri.Ricercalibro3Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20libri/ricercalibro2.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.libri.Ricercalibro3Controller">
    <children>
       <HBox layoutX="30.0" layoutY="182.0" prefHeight="100.0" prefWidth="519.0" spacing="150.0">
          <children>
@@ -16,6 +15,6 @@
       </HBox>
       <Label fx:id="ricercalibro2" layoutX="168.0" layoutY="46.0" text="Ricerca Libro" />
       <Label fx:id="LibroSelezionato" layoutX="244.0" layoutY="111.0" text="Elemento selezionato" />
-      <Button fx:id="bottoneConfermaRicerca" layoutX="434.0" layoutY="312.0" mnemonicParsing="false" text="Conferma" />
+      <Button fx:id="bottoneConfermaRicercaLibro" layoutX="434.0" layoutY="312.0" mnemonicParsing="false" text="Conferma" />
    </children>
 </Pane>

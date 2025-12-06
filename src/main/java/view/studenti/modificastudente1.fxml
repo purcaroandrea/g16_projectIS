@@ -5,8 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@modificastudente.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.studenti.Modificastudente1Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20studenti/modificastudente.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.studenti.Modificastudente1Controller">
    <children>
       <TextField fx:id="ModificaNome" layoutX="330.0" layoutY="110.0" onDragDetected="#salvanome" />
       <TextField fx:id="ModificaCognome" layoutX="330.0" layoutY="160.0" onDragDetected="#salvacognome" />

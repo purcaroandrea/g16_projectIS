@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@ricercalibro.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.libri.Ricercalibro1Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20libri/ricercalibro.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.libri.Ricercalibro1Controller">
    <children>
       <TextField fx:id="barraRicercaLibro" layoutX="149.0" layoutY="130.0" prefHeight="27.0" prefWidth="357.0" />
       <Label fx:id="ricercalibro" layoutX="160.0" layoutY="55.0" text="Ricerca Libro" />
