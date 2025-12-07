@@ -16,7 +16,9 @@ import java.util.List;
  * la ricerca di libri all'interno della collezione interna.
  * 
  * @date Dicembre 6,2025
- * @author laura nigro
+ * @author g16_member
+ *  
+ * @see Libro
  */
 public class ArchivioLibri {
 
@@ -33,7 +35,6 @@ public class ArchivioLibri {
     * 
     * @post La lista interna 'libri' è stata inizializzata e non è null.
     */
-
     public ArchivioLibri() {
         this.libri = new ArrayList<>();
     }
@@ -61,14 +62,13 @@ public class ArchivioLibri {
     }
     
     /**
-     * @brief Rimuove un oggetto Libro dall'archivio.
-     *
-     * @pre Il parametro 'libro' non deve essere null.
-     * @param[in] libro L'oggetto Libro da rimuovere dall'archivio.
-     * @post Se l'oggetto era presente, è stato rimosso dalla lista interna e 
-     * la dimensione dell'archivio è diminuita di uno.
-     */
-
+    * @brief Rimuove un oggetto Libro dall'archivio.
+    *
+    * @pre Il parametro 'libro' non deve essere null.
+    * @param[in] libro L'oggetto Libro da rimuovere dall'archivio.
+    * @post Se l'oggetto era presente, è stato rimosso dalla lista interna e 
+    * la dimensione dell'archivio è diminuita di uno.
+    */
     public void rimuoviLibro(Libro libro) {
         // da implementare
     }
@@ -82,7 +82,6 @@ public class ArchivioLibri {
      * nessun libro corrispondente.
      * @post Lo stato dell'archivio non viene modificato.
      */
-
     public Libro cercaPerIsbn(String isbn) {
         return null; // da implementare
     }
@@ -96,7 +95,6 @@ public class ArchivioLibri {
      * o una lista vuota se non viene trovato nulla.
      * @post Lo stato dell'archivio non viene modificato.
      */
-
     public List<Libro> cerca(String parametro) {
         return null; // da implementare
     }
@@ -107,7 +105,6 @@ public class ArchivioLibri {
      * @return List<Libro> La lista completa dei libri, ordinata per titolo.
      * @post Lo stato dell'archivio non viene modificato; viene restituita una copia ordinata.
      */
-
     public List<Libro> getLibriOrdinatiPerTitolo() {
         return null; // da implementare
     }

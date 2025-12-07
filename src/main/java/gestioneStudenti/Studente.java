@@ -10,9 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @file Studente.java
+ * @brief Rappresenta uno studente registrato nel sistema.
  *
- * @author danaiannaccone
+ * Contiene i dati anagrafici dello studente, la matricola, l’email
+ * e la lista dei prestiti attivi associati (se gestita localmente).
+ *
+ * @author g16_member
+ * @date Dicembre 7, 2025
  */
+
+
 public class Studente implements Comparable<Studente>{
     private String nome;
     private String cognome;
@@ -20,6 +28,16 @@ public class Studente implements Comparable<Studente>{
     private String email;
     private List<Prestito> prestitiAttivi; //FORSE DA RIMUOVERE PERCHE GESTITA IN PRESTITI
 
+    /**
+     * @brief Costruttore completo dello studente.
+     *
+     * @param[in] nome Nome dello studente.
+     * @param[in] cognome Cognome dello studente.
+     * @param[in] matricola Matricola univoca dello studente.
+     * @param[in] email Email istituzionale.
+     * @param[in] prestitiAttivi Lista dei prestiti attivi (se gestita localmente).
+     * @post Lo studente è creato con i dati forniti e con la lista prestiti inizializzata.
+     */
     public Studente(String nome, String cognome, String matricola, String email, List<Prestito> prestitiAttivi) {
         this.nome = nome;
         this.cognome = cognome;
@@ -28,46 +46,99 @@ public class Studente implements Comparable<Studente>{
         this.prestitiAttivi = new ArrayList<>();//anche qui
     }
 
+    // ----------- Getter & Setter -----------
+
+    // @brief Restituisce il nome dello studente.
     public String getNome() {
         return nome;
     }
 
+    // @brief Restituisce il cognome dello studente.
     public String getCognome() {
         return cognome;
     }
 
+    // @brief Restituisce la matricola dello studente.
     public String getMatricola() {
         return matricola;
     }
 
+    // @brief Restituisce l’email dello studente.
     public String getEmail() {
         return email;
     }
 
+    /**
+     * @brief Restituisce la lista dei prestiti attivi.
+     * @return List<Prestito> Prestiti attivi dello studente.
+     */
     public List<Prestito> getPrestitiAttivi() {
         return prestitiAttivi;
     }
-
+    
+    /**
+    * @brief Imposta il nome dello studente.
+    *
+    * @pre Il parametro 'nome' non deve essere null o vuoto.
+    * @param[in] nome Nuovo nome da assegnare allo studente.
+    * @post L'attributo 'nome' dello studente è aggiornato.
+    */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    /**
+    * @brief Imposta il cognome dello studente.
+    *
+    * @pre Il parametro 'cognome' non deve essere null o vuoto.
+    * @param[in] cognome Nuovo cognome da assegnare allo studente.
+    * @post L'attributo 'cognome' dello studente è aggiornato.
+    */
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
 
+    /**
+    * @brief Imposta la matricola dello studente.
+    *
+    * @pre Il parametro 'matricola' non deve essere null o vuoto.
+    * @param[in] matricola Nuova matricola da assegnare.
+    * @post L'attributo 'matricola' dello studente è aggiornato.
+    */
     public void setMatricola(String matricola) {
         this.matricola = matricola;
     }
 
+    /**
+    * @brief Imposta l'email istituzionale dello studente.
+    *
+    * @pre Il parametro 'email' non deve essere null o vuoto e deve rispettare un formato valido.
+    * @param[in] email Nuova email da assegnare.
+    * @post L'attributo 'email' dello studente è aggiornato.
+    */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+    * @brief Imposta la lista dei prestiti attivi dello studente.
+    *
+    * @pre La lista non deve essere null.
+    * @param[in] prestitiAttivi Nuova lista di prestiti attivi.
+    * @post L'attributo 'prestitiAttivi' dello studente è aggiornato.
+    */
     public void setPrestitiAttivi(List<Prestito> prestitiAttivi) {
         this.prestitiAttivi = prestitiAttivi;
     }
     
+    // ----------- Metodi di confronto e utilità -----------
+
+    /**
+    * @brief Verifica l’uguaglianza tra studenti tramite la loro matricola.
+    *
+    * @param[in] o Oggetto da confrontare.
+    * @return boolean True se le matricole coincidono.
+    */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,11 +147,24 @@ public class Studente implements Comparable<Studente>{
         return matricola != null && matricola.equalsIgnoreCase(s.matricola);
     }
 
+    /**
+    * @brief Genera l'hashCode dello studente basato sulla matricola.
+    *
+    * @return int Valore hash coerente con equals(), in modo che due studenti 
+    * con la stessa matricola restituiscano lo stesso hashCode.
+    * @see equals(Object o)
+    */
     @Override
     public int hashCode() {
         return matricola != null ? matricola.toLowerCase().hashCode() : 0;
     }
 
+    /**
+    * @brief Confronta due studenti per cognome e, in caso di parità, per nome.
+    *
+    * @param[in] altro Lo studente da confrontare.
+    * @return int Risultato del confronto alfabetico.
+    */
     @Override
     public int compareTo(Studente altro) {
         // prima confronto per cognome
@@ -92,6 +176,11 @@ public class Studente implements Comparable<Studente>{
         return this.nome.compareToIgnoreCase(altro.nome);
     }
 
+    /**
+    * @brief Restituisce una rappresentazione testuale compatta dello studente.
+    *
+    * @return String Cognome Nome - Matricola.
+    */
     @Override
     public String toString() {
         return cognome + " " + nome + "-" + matricola;

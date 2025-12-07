@@ -12,7 +12,7 @@ package gestioneLibri;
  * Questa classe contiene tutti gli attributi del libro (titolo, autore, anno di pubblicazione, ISBN, copie)
  * e implementa l'interfaccia Comparable per permettere l'ordinamento.
  *
- * @author Laura Nigro
+ * @author g16_member
  * @date Dicembre 6, 2025
  * 
  */
@@ -24,8 +24,7 @@ package gestioneLibri;
     * @brief Il numero totale di copie fisiche del libro presenti in archivio.
     * @brief Il numero di copie attualmente disponibili per il prestito.
     */
-
-public class Libro implements Comparable<Libro> {
+  public class Libro implements Comparable<Libro> {
     private String titolo;
     private String autore;
     private int annoPubblicazione;
@@ -46,7 +45,6 @@ public class Libro implements Comparable<Libro> {
      * @pre I parametri stringa non devono essere null o vuoti.
      * @post L'oggetto Libro è inizializzato con i valori forniti.
      */
-  
     public Libro(String titolo,String autore, int annoPubblicazione, String isbn, int copieDisponibili){
         this.titolo=titolo;
         this.autore=autore;
@@ -58,10 +56,8 @@ public class Libro implements Comparable<Libro> {
     /**
      * @brief Restituisce il titolo del libro.
      *
-     * @return String Il titolo del libro.
      * @post Lo stato interno dell'oggetto non viene modificato.
      */
-
     public String getTitolo() {
         return titolo;
     }
@@ -69,7 +65,6 @@ public class Libro implements Comparable<Libro> {
      /**
      * @brief Restituisce l'autore del libro.
      *
-     * @return String L'autore del libro.
      * @post Lo stato interno dell'oggetto non viene modificato.
      */
     public String getAutore() {
@@ -79,7 +74,6 @@ public class Libro implements Comparable<Libro> {
      /**
      * @brief Restituisce l'anno di pubblicazione del libro.
      *
-     * @return Int L'anno di pubblicazione del libro.
      * @post Lo stato interno dell'oggetto non viene modificato.
      */
     public int getAnnoPubblicazione() {
@@ -89,7 +83,6 @@ public class Libro implements Comparable<Libro> {
      /**
      * @brief Restituisce l'ISBNdel libro.
      *
-     * @return String L'ISBN del libro.
      * @post Lo stato interno dell'oggetto non viene modificato.
      */
     public String getIsbn() {
@@ -99,7 +92,6 @@ public class Libro implements Comparable<Libro> {
       /**
      * @brief Restituisce le copie disponibili del libro.
      *
-     * @return Int Le copie disponibili del libro.
      * @post Lo stato interno dell'oggetto non viene modificato.
      */
     public int getCopieDisponibili() {
@@ -124,7 +116,6 @@ public class Libro implements Comparable<Libro> {
      * @param[in] autore Il nuovo autore da assegnare al libro.
      * @post L'attributo 'autore' dell'oggetto è stato aggiornato.
      */
-
     public void setAutore(String autore) {
         this.autore = autore;
     }
@@ -168,7 +159,6 @@ public class Libro implements Comparable<Libro> {
      * @return boolean True se 'copieDisponibili' è maggiore di 0, altrimenti False.
      * @post Lo stato interno dell'oggetto non viene modificato.
      */
-
     public boolean haCopie() {
         return copieDisponibili > 0;
     }
@@ -193,7 +183,6 @@ public class Libro implements Comparable<Libro> {
      * @pre 'copieDisponibili' deve essere minore di 'copieTotali'.
      * @post 'copieDisponibili' è aumentato di 1.
      */
-
     public void incrementaCopie() {
         copieDisponibili++;
     }
@@ -206,7 +195,6 @@ public class Libro implements Comparable<Libro> {
      * @return String Una stringa che descrive l'oggetto (es. Titolo, Autore, ISBN).
      * @post Lo stato interno dell'oggetto non viene modificato.
      */
-
     @Override
     public String toString() {
         return titolo + " - " + autore + " - "  + isbn;
@@ -220,7 +208,6 @@ public class Libro implements Comparable<Libro> {
      * @param[in] obj L'oggetto da confrontare.
      * @return boolean True se l'ISBN dell'oggetto è uguale a quello del parametro, altrimenti False.
      */
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -238,7 +225,6 @@ public class Libro implements Comparable<Libro> {
      * @return int L'hash code dell'oggetto.
      * @post Lo stato interno dell'oggetto non viene modificato.
      */
-
     @Override
     public int hashCode() {
         return isbn != null ? isbn.toLowerCase().hashCode() : 0;
@@ -254,7 +240,6 @@ public class Libro implements Comparable<Libro> {
      * dell'altro, 0 se i titoli sono uguali, un valore positivo altrimenti.
      * @post Lo stato interno dell'oggetto non viene modificato.
      */
-
     @Override
     public int compareTo(Libro altro) {
         return this.titolo.compareToIgnoreCase(altro.titolo);
