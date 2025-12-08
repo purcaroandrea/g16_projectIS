@@ -13,41 +13,40 @@ import java.time.LocalDate;
  * @file Prestito.java
  * @brief Rappresenta un singolo prestito di un libro in favore di uno studente.
  *
- * Contiene le informazioni relative allo studente, al libro,
- * alle date di prestito e restituzione e allo stato del prestito.
+ * Contiene le informazioni relative allo studente, al libro, alle date di
+ * prestito e restituzione e allo stato del prestito.
  *
  * @author g16_member
  * @date Dicembre 7, 2025
  */
-
 public class Prestito {
+
     private Studente studente;
     private Libro libro;
     private LocalDate dataPrestito;
     private LocalDate dataRestituzione;
     private boolean restituito;
-    
-     /**
+
+    /**
      * @brief Costruttore completo per inizializzare un prestito.
      *
      * @param[in] studente Lo studente che prende in prestito il libro.
      * @param[in] libro Il libro preso in prestito.
      * @param[in] dataPrestito Data in cui è stato effettuato il prestito.
      * @param[in] dataRestituzione Data prevista di restituzione.
-     * @pre studente, libro, dataPrestito e dataRestituzione non devono essere null.
+     * @pre studente, libro, dataPrestito e dataRestituzione non devono essere
+     * null.
      * @post Il prestito è inizializzato e segnato come non restituito.
      */
     public Prestito(Studente studente, Libro libro, LocalDate dataPrestito, LocalDate dataRestituzione) {
-        this.studente=studente;
-        this.libro=libro;
-        this.dataPrestito=dataPrestito;
-        this.dataRestituzione=dataRestituzione;
-        this.restituito=false;
+        this.studente = studente;
+        this.libro = libro;
+        this.dataPrestito = dataPrestito;
+        this.dataRestituzione = dataRestituzione;
+        this.restituito = false;
     }
-    
+
 // ----------- Getter & Setter -----------
-
-
     //@brief Restituisce lo studente associato al prestito.    
     public Studente getStudente() {
         return studente;
@@ -69,7 +68,7 @@ public class Prestito {
     }
 
     /**
-    * @brief Indica se il prestito è stato restituito.
+     * @brief Indica se il prestito è stato restituito.
      * @return boolean True se il libro è stato restituito.
      */
     public boolean isRestituito() {
@@ -117,7 +116,6 @@ public class Prestito {
     }
 
 // ----------- Metodi di stato -----------
-
     /**
      * @brief Controlla se il prestito è ancora attivo (non restituito).
      *
@@ -128,8 +126,7 @@ public class Prestito {
     public boolean isAttivo() {
         return false; // da implementare
     }
-    
-    
+
     /**
      * @brief Controlla se il prestito è scaduto rispetto a una data odierna.
      *
@@ -140,12 +137,13 @@ public class Prestito {
     public boolean isScaduto(LocalDate oggi) {
         return false; // da implementare
     }
-    
+
     /**
      * @brief Controlla se il prestito è in scadenza entro una soglia di giorni.
      *
      * @param[in] oggi La data di riferimento.
-     * @param[in] sogliaGiorni Numero di giorni entro cui considerare la scadenza.
+     * @param[in] sogliaGiorni Numero di giorni entro cui considerare la
+     * scadenza.
      * @return boolean True se la data di restituzione è entro la soglia.
      * @post Lo stato dell'oggetto non viene modificato.
      */
@@ -153,4 +151,3 @@ public class Prestito {
         return false; // da implementare
     }
 }
-    

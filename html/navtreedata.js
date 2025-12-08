@@ -24,12 +24,25 @@
 */
 var NAVTREE =
 [
-  [ "My Project", "index.html", ]
+  [ "GestioneBiblioteca", "index.html", [
+    [ "Data Structures", "annotated.html", [
+      [ "Data Structures", "annotated.html", "annotated_dup" ],
+      [ "Data Structure Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Data Fields", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ]
+      ] ]
+    ] ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ]
+    ] ]
+  ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"index.html"
+"_archivio_libri_8java.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

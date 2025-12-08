@@ -1,0 +1,18 @@
+var searchData=
+[
+  ['setannopubblicazione_0',['setAnnoPubblicazione',['../classgestione_libri_1_1_libro.html#a33aa37184219053da0cd765ef5a19963',1,'gestioneLibri::Libro']]],
+  ['setautore_1',['setAutore',['../classgestione_libri_1_1_libro.html#a41939c53dbdebdf1334f97599423b493',1,'gestioneLibri::Libro']]],
+  ['setcognome_2',['setCognome',['../classgestione_studenti_1_1_studente.html#aa6d793ab2f2d255738f3f841715baf9f',1,'gestioneStudenti::Studente']]],
+  ['setcopiedisponibili_3',['setCopieDisponibili',['../classgestione_libri_1_1_libro.html#a211157aa28819f86f7a5f52e35c81e43',1,'gestioneLibri::Libro']]],
+  ['setdataprestito_4',['setDataPrestito',['../classgestione_prestiti_1_1_prestito.html#a14ae625f504eae41d904bd095c8d6801',1,'gestionePrestiti::Prestito']]],
+  ['setdatarestituzione_5',['setDataRestituzione',['../classgestione_prestiti_1_1_prestito.html#a14c208292a880fe21f9c154d4c96a8f9',1,'gestionePrestiti::Prestito']]],
+  ['setemail_6',['setEmail',['../classgestione_studenti_1_1_studente.html#a0e2216cd79afd094b8c854eaa59c47e1',1,'gestioneStudenti::Studente']]],
+  ['setisbn_7',['setIsbn',['../classgestione_libri_1_1_libro.html#a8d00d90bba06cfb29140be90c0630050',1,'gestioneLibri::Libro']]],
+  ['setlibro_8',['setLibro',['../classgestione_prestiti_1_1_prestito.html#ad2b5d75fd2b2415131fe3b551e300dbb',1,'gestionePrestiti::Prestito']]],
+  ['setmatricola_9',['setMatricola',['../classgestione_studenti_1_1_studente.html#a217c61a38b4910df6fe23d450ea98a52',1,'gestioneStudenti::Studente']]],
+  ['setnome_10',['setNome',['../classgestione_studenti_1_1_studente.html#af0ed2da6fb18f8d261cf2296e5835f26',1,'gestioneStudenti::Studente']]],
+  ['setrestituito_11',['setRestituito',['../classgestione_prestiti_1_1_prestito.html#a74b14afeb1e62900e4a11cfec8b318c9',1,'gestionePrestiti::Prestito']]],
+  ['setstudente_12',['setStudente',['../classgestione_prestiti_1_1_prestito.html#a0a51bd3cd2515aee2a446073ae03b509',1,'gestionePrestiti::Prestito']]],
+  ['settitolo_13',['setTitolo',['../classgestione_libri_1_1_libro.html#a8c04a34d297d7807f9b606491521db72',1,'gestioneLibri::Libro']]],
+  ['studente_14',['Studente',['../classgestione_studenti_1_1_studente.html#ab5f88a495b8d9b05857c29f5a14efec6',1,'gestioneStudenti::Studente']]]
+];
