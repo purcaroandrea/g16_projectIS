@@ -121,7 +121,7 @@ public class ArchivioPrestiti {
     * @post L'archivio rimane invariato: nessun prestito viene modificato,
     *       aggiunto o rimosso dall'archivio a seguito della chiamata.
     */
-    public List<Prestito> getPrestitiStudente(Studente studente) { 
+    public List<Prestito> getPrestitiPerStudente(Studente studente) { 
         return null;
     }
 
