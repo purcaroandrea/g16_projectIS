@@ -81,6 +81,7 @@ public class ArchivioStudenti {
      *
      * @return List<Studente> Lista ordinata degli studenti.
      * @post Lo stato interno dell’archivio non viene modificato.
+     * @note La lista restituita è una copia ordinata della lista interna.
      * @see Studente#compareTo(Studente)
      */
     public List<Studente> getStudentiOrdinati() {
@@ -107,6 +108,17 @@ public class ArchivioStudenti {
      */
     public Studente cercaPerMatricola(String matricola) {
         return null; // da implementare
+    }
+    
+    /**
+     * @brief Restituisce l'elenco completo degli studenti registrati.
+    *
+    * È utile per operazioni di esportazione, analisi o visualizzazioni generali.
+    *
+    * @return List<Studente> La lista interna di tutti gli studenti presenti, senza applicare ordinamenti o criteri di ricerca.
+    */
+    public List<Studente> getTutti() { 
+        return studenti; 
     }
 }
 

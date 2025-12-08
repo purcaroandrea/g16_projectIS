@@ -13,8 +13,7 @@ import java.util.List;
  * @file Studente.java
  * @brief Rappresenta uno studente registrato nel sistema.
  *
- * Contiene i dati anagrafici dello studente, la matricola, l’email
- * e la lista dei prestiti attivi associati.
+ * Contiene i dati anagrafici dello studente, la matricola, l’email.
  *
  * @author g16_member
  * @date Dicembre 7, 2025
@@ -26,7 +25,6 @@ public class Studente implements Comparable<Studente>{
     private String cognome;
     private String matricola;
     private String email;
-    private List<Prestito> prestitiAttivi; //FORSE DA RIMUOVERE PERCHE GESTITA IN PRESTITI
 
     /**
      * @brief Costruttore completo dello studente.
@@ -35,15 +33,13 @@ public class Studente implements Comparable<Studente>{
      * @param[in] cognome Cognome dello studente.
      * @param[in] matricola Matricola univoca dello studente.
      * @param[in] email Email istituzionale.
-     * @param[in] prestitiAttivi Lista dei prestiti attivi.
-     * @post Lo studente è creato con i dati forniti e con la lista prestiti inizializzata.
+     * @post Lo studente è creato con i dati forniti.
      */
-    public Studente(String nome, String cognome, String matricola, String email, List<Prestito> prestitiAttivi) {
+    public Studente(String nome, String cognome, String matricola, String email) {
         this.nome = nome;
         this.cognome = cognome;
         this.matricola = matricola;
         this.email = email;
-        this.prestitiAttivi = new ArrayList<>();//anche qui
     }
 
     // ----------- Getter & Setter -----------
@@ -68,14 +64,6 @@ public class Studente implements Comparable<Studente>{
         return email;
     }
 
-    /**
-     * @brief Restituisce la lista dei prestiti attivi.
-     * @return List<Prestito> Prestiti attivi dello studente.
-     */
-    public List<Prestito> getPrestitiAttivi() {
-        return prestitiAttivi;
-    }
-    
     /**
     * @brief Imposta il nome dello studente.
     *
@@ -119,17 +107,6 @@ public class Studente implements Comparable<Studente>{
     public void setEmail(String email) {
         this.email = email;
     }
-
-    /**
-    * @brief Imposta la lista dei prestiti attivi dello studente.
-    *
-    * @pre La lista non deve essere null.
-    * @param[in] prestitiAttivi Nuova lista di prestiti attivi.
-    * @post L'attributo 'prestitiAttivi' dello studente è aggiornato.
-    */
-    public void setPrestitiAttivi(List<Prestito> prestitiAttivi) {
-        this.prestitiAttivi = prestitiAttivi;
-    }
     
     // ----------- Metodi di confronto e utilità -----------
 
@@ -164,6 +141,7 @@ public class Studente implements Comparable<Studente>{
     *
     * @param[in] altro Lo studente da confrontare.
     * @return int Risultato del confronto alfabetico.
+    * @post Lo stato interno dell’oggetto non viene modificato.
     */
     @Override
     public int compareTo(Studente altro) {

@@ -47,8 +47,10 @@ public class ArchivioPrestiti {
     /**
      * @brief Registra un nuovo prestito per uno studente.
      *
-     * @pre Lo studente e il libro devono essere correttamente configurati nel sistema, il libro deve avere copie disponibili
-     * e lo studente non deve avere più di 3 prestiti in carico.
+     * @pre studente e libro non devono essere null.
+     * @pre Il libro deve avere almeno una copia disponibile.
+     * @pre Lo studente non deve avere più di 3 prestiti attivi.
+     * @pre dataPrestito e dataPrevistaRestituzione non devono essere null.
      * @param[in] studente Lo studente che prende in prestito il libro.
      * @param[in] libro Il libro da prestare.
      * @param[in] dataPrestito La data in cui avviene il prestito.
@@ -109,4 +111,30 @@ public class ArchivioPrestiti {
         return null; // da implementare
     }
     
+    /**
+    * @brief Restituisce tutti i prestiti associati allo studente specificato.
+    *
+    * @pre studente non deve essere null.
+    * @param[in] studente  Lo studente di cui si vogliono ottenere i prestiti.
+    * @return List<Prestito>  La lista di tutti i prestiti associati allo studente. 
+    * Se lo studente non ha prestiti registrati, viene restituita una lista vuota.
+    * @post L'archivio rimane invariato: nessun prestito viene modificato,
+    *       aggiunto o rimosso dall'archivio a seguito della chiamata.
+    */
+    public List<Prestito> getPrestitiStudente(Studente studente) { 
+        return null;
+    }
+
+    /**
+     * @brief Restituisce la lista di tutti i prestiti attualmente registrati.
+     *
+     * È utilizzato per operazioni di controllo globale o salvataggio su file.
+     *
+     * @return List<Prestito> L'elenco di tutti i prestiti presenti nell'archivio.
+     * @post Lo stato interno dell’archivio non viene modificato.
+     *@note La lista restituita potrebbe essere la lista interna; modifiche esterne potrebbero influenzare l’archivio.
+    */
+    public List<Prestito> getTutti() {
+        return null; 
+    }
 }

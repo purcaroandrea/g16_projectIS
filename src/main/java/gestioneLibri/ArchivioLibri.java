@@ -42,7 +42,7 @@ public class ArchivioLibri {
     /**
     * @brief Aggiunge un libro all'archivio.
     * 
-    * @pre Il parametro 'libro' non deve essere null.
+    * @pre Il parametro 'libro' non deve essere null e l'isbn associato al libro deve essere univoco:non deve esistere nell'archivio un altro libro con lo stesso ISBN. .
     * @param[in] libro L'oggetto Libro da inserire nell'archivio.
     * @post La dimensione dell'archivio è aumentata di uno e l'oggetto libro è presente nella lista.
     */
@@ -54,7 +54,7 @@ public class ArchivioLibri {
     * @brief Modifica i dati di un libro presente nell'archivio.
     * 
     *@pre Il libro da modificare deve già esistere nell'archivio.
-    * @param[in] libro LibroModificato L'oggetto Libro con i nuovi dati.
+    * @param[in] libroModificato L'oggetto Libro con i nuovi dati.
     * @post  Il libro corrispondente nell'archivio è stato aggiornato con i nuovi dati.
     */
     public void modificaLibro(Libro libroModificato) {
@@ -76,8 +76,8 @@ public class ArchivioLibri {
     /**
      * @brief Cerca un Libro nell'archivio tramite codice ISBN.
      *
-     * @param[in] stringa_isbn La stringa contenente il codice ISBN del libro da cercare.
-     * @pre 'stringa_isbn' non deve essere una stringa vuota o null.
+     * @param[in] isbn La stringa contenente il codice ISBN del libro da cercare.
+     * @pre 'isbn' non deve essere una stringa vuota o null.
      * @return Libro L'oggetto Libro trovato, oppure null se non viene trovato 
      * nessun libro corrispondente.
      * @post Lo stato dell'archivio non viene modificato.
@@ -86,18 +86,32 @@ public class ArchivioLibri {
         return null; // da implementare
     }
     
-    /**
-     * @brief Cerca Libri nell'archivio che soddisfano un dato parametro stringa.
+     /**
+     * @brief Cerca Libri nell'archivio che abbiano il titolo specificato dalla stringa passata come parametro.
      *
-     * @param[in] parametro La stringa di ricerca (es. titolo, autore).
-     * @pre 'parametro' non deve essere una stringa vuota o null.
-     * @return List<Libro> Una lista contenente gli oggetti Libro che corrispondono al parametro, 
+     * @param[in] titolo La stringa che contiene il criterio di ricerca. 
+     * @pre 'titolo' non deve essere una stringa vuota o null.
+     * @return List<Libro> Una lista contenente gli oggetti Libro che corrispondono al titolo richiesto, 
      * o una lista vuota se non viene trovato nulla.
      * @post Lo stato dell'archivio non viene modificato.
      */
-    public List<Libro> cerca(String parametro) {
+    public List<Libro> cercaPerTitolo(String titolo) {
         return null; // da implementare
     }
+    
+    /**
+     * @brief Cerca Libri nell'archivio che abbiano l'autore specificato dalla stringa passata come parametro.
+     *
+     * @param[in] autore La stringa che contiene il criterio di ricerca.
+     * @pre 'autore' non deve essere una stringa vuota o null.
+     * @return List<Libro> Una lista contenente gli oggetti Libro che corrispondono all'autore richiesto, 
+     * o una lista vuota se non viene trovato nulla.
+     * @post Lo stato dell'archivio non viene modificato.
+     */
+    public List<Libro> cercaPerAutore(String autore) {
+        return null; // da implementare
+    }
+    
     
     /**
      * @brief Restituisce una lista di tutti i Libri presenti nell'archivio, ordinati per titolo.
@@ -107,6 +121,18 @@ public class ArchivioLibri {
      */
     public List<Libro> getLibriOrdinatiPerTitolo() {
         return null; // da implementare
+    }
+    
+    /**
+     * @brief Restituisce l'intera collezione dei libri registrati nel sistema.
+     *
+     * È utilizzato per operazioni generali come salvataggio su file. 
+     *
+     * @return List<Libro> La lista interna di tutti i libri presenti nell'archivio, senza applicare ordinamenti o filtri.
+     * @post Lo stato dell’archivio non viene modificato.
+     */
+    public List<Libro> getTutti() { 
+        return libri; //da implementrare 
     }
    
 }

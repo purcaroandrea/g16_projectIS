@@ -205,7 +205,7 @@ package gestioneLibri;
      *
      * Il confronto è basato sul codice ISBN, che è l'identificativo unico.
      *
-     * @param[in] obj L'oggetto da confrontare.
+     * @param[in] o L'oggetto da confrontare.
      * @return boolean True se l'ISBN dell'oggetto è uguale a quello del parametro, altrimenti False.
      */
     @Override

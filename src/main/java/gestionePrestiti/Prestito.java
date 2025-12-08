@@ -34,6 +34,7 @@ public class Prestito {
      * @param[in] libro Il libro preso in prestito.
      * @param[in] dataPrestito Data in cui è stato effettuato il prestito.
      * @param[in] dataRestituzione Data prevista di restituzione.
+     * @pre studente, libro, dataPrestito e dataRestituzione non devono essere null.
      * @post Il prestito è inizializzato e segnato come non restituito.
      */
     public Prestito(Studente studente, Libro libro, LocalDate dataPrestito, LocalDate dataRestituzione) {
