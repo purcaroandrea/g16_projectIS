@@ -57,7 +57,7 @@ public class Prestito {
         return libro;
     }
 
-    //@brief Restituisce la data in cui è stato preso il prestito.
+    //@brief Restituisce la data in cui è stato ottenuto il prestito.
     public LocalDate getDataPrestito() {
         return dataPrestito;
     }

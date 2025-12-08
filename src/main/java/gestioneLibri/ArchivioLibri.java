@@ -44,7 +44,7 @@ public class ArchivioLibri {
     * 
     * @pre Il parametro 'libro' non deve essere null.
     * @param[in] libro L'oggetto Libro da inserire nell'archivio.
-    * @post La dimensione dell'archivio è aumentata di uno e l'oggetto linro è presente nella lista.
+    * @post La dimensione dell'archivio è aumentata di uno e l'oggetto libro è presente nella lista.
     */
     public void aggiungiLibro(Libro libro) {
         // da implementare

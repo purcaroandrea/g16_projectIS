@@ -134,7 +134,7 @@ package gestioneLibri;
       /**
      * @brief Imposta un nuovo isbn per il libro.
      *
-     * @pre La stringa del isbn non deve essere null o vuota.
+     * @pre La stringa dell' isbn non deve essere null o vuota.
      * @param[in] isbn Il nuovo isbn da assegnare al libro.
      * @post L'attributo 'isbn' dell'oggetto è stato aggiornato.
      */

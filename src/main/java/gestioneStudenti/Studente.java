@@ -14,7 +14,7 @@ import java.util.List;
  * @brief Rappresenta uno studente registrato nel sistema.
  *
  * Contiene i dati anagrafici dello studente, la matricola, l’email
- * e la lista dei prestiti attivi associati (se gestita localmente).
+ * e la lista dei prestiti attivi associati.
  *
  * @author g16_member
  * @date Dicembre 7, 2025
@@ -35,7 +35,7 @@ public class Studente implements Comparable<Studente>{
      * @param[in] cognome Cognome dello studente.
      * @param[in] matricola Matricola univoca dello studente.
      * @param[in] email Email istituzionale.
-     * @param[in] prestitiAttivi Lista dei prestiti attivi (se gestita localmente).
+     * @param[in] prestitiAttivi Lista dei prestiti attivi.
      * @post Lo studente è creato con i dati forniti e con la lista prestiti inizializzata.
      */
     public Studente(String nome, String cognome, String matricola, String email, List<Prestito> prestitiAttivi) {
