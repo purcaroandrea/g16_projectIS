@@ -1,0 +1,46 @@
+@startuml
+
+actor Bibliotecario
+
+participant "StudentiView" as View
+participant "ControllerStudenti" as Controller
+participant "ArchivioStudenti" as Archivio
+participant Studente
+
+Bibliotecario -> View: Apre schermata "Studenti"
+activate View
+View --> Bibliotecario: 
+Bibliotecario -> View: Seleziona "Ricerca Studente"
+View --> Bibliotecario: 
+Bibliotecario -> View: Compila form\ne preme "Conferma"
+
+View -> Controller: Invia i dati
+deactivate View
+
+activate Controller
+Controller -> Controller: Valida\ni dati
+
+alt Dati non validi
+    Controller -> View: Mostra errore
+    activate View
+    View -> Bibliotecario: Messaggio di errore
+    deactivate View
+else Dati validi
+    Controller -> Archivio: cercaPerCognome()\no cercaPerMatricola()
+    activate Archivio
+    Archivio --> Controller: 
+    deactivate Archivio
+    alt Studente non trovato
+        Controller -> View: Mostra errore
+        activate View
+        View -> Bibliotecario: Messaggio di errore
+        deactivate View
+    else Studente trovato
+        Controller --> View: Mostra studente corrispondente
+        activate View
+        View -> Bibliotecario: Studente corrispondente
+        deactivate View
+    end
+end
+
+@enduml

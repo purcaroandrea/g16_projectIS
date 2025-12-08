@@ -1,0 +1,50 @@
+@startuml
+
+actor Bibliotecario
+
+participant "LibriView" as View
+participant "ControllerLibri" as Controller
+participant "ArchivioLibri" as Archivio
+participant Libro
+
+Bibliotecario -> View: Apre schermata "Libri"
+activate View
+View --> Bibliotecario: 
+Bibliotecario -> View: Seleziona "Nuovo Libro"
+View --> Bibliotecario: 
+Bibliotecario -> View: Compila form\ne preme "Conferma"
+
+View -> Controller: Invia i dati
+deactivate View
+
+activate Controller
+Controller -> Controller: Valida\ni dati
+
+alt Dati non validi
+    Controller -> View: Mostra errore
+    activate View
+    View -> Bibliotecario: Messaggio di errore
+    deactivate View
+else Dati validi
+    Controller -> Archivio: cercaPerIsbn()
+    activate Archivio
+    Archivio --> Controller: 
+    deactivate Archivio
+    alt ISBN duplicato
+    Controller -> View: Mostra  errore
+    activate View
+    View -> Bibliotecario: Messaggio di errore
+    deactivate View
+    else ISBN unico
+    Controller -> Libro: Crea nuovo oggetto
+    activate Libro
+    Libro --> Controller:
+    deactivate Libro
+    Controller -> Archivio: aggiungiLibro()
+    activate Archivio
+    Archivio --> Controller:
+    deactivate Archivio
+    end
+end 
+
+@enduml

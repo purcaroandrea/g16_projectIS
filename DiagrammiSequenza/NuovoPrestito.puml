@@ -1,0 +1,70 @@
+@startuml
+
+actor Bibliotecario
+
+participant "PrestitiView" as View
+participant "PrestitiController" as Controller
+participant "ArchivioPrestiti" as Archivio
+participant Prestito
+participant Libro
+participant Studente
+
+Bibliotecario -> View: Apre schermata "Prestiti"
+activate View
+View --> Bibliotecario: 
+Bibliotecario -> View: Seleziona "Nuovo Prestito"
+View --> Bibliotecario: 
+Bibliotecario -> View: Compila form\ne clicca "Conferma"
+
+View -> Controller: Invia i dati
+deactivate View
+
+activate Controller
+Controller -> Controller: Valida\ni dati
+alt Dati non validi
+    Controller -> View: Mostra errore
+    activate View
+    View -> Bibliotecario: Messaggio di errore
+    deactivate View
+else Dati validi
+    Controller -> Archivio: contaPrestitiAttivi()
+    activate Archivio
+    Archivio --> Controller:
+    deactivate Archivio 
+    alt Lo studente ha già 3 prestiti attivi
+        Controller -> View: Mostra errore
+        activate View
+        View -> Bibliotecario: Messaggio di errore
+        deactivate View
+    else Limite non superato
+        Controller -> Libro: haCopie()
+        activate Libro
+        Libro --> Controller:
+        deactivate Libro
+        alt Libro non disponibile
+            Controller -> View: Mostra errore
+            activate View
+            View -> Bibliotecario: Messaggio di errore
+            deactivate View
+        else Libro disponibile
+            Controller -> Prestito: Crea nuovo oggetto
+            activate Prestito
+            Prestito --> Controller:
+            deactivate Prestito
+            Controller -> Archivio: registraPrestito()
+            activate Archivio
+            Archivio --> Controller:
+            Archivio -> Libro: decrementaCopie()
+            activate Libro
+            Libro --> Archivio:
+            deactivate Libro
+            Archivio -> Studente: setPrestitiAttivi()
+            activate Studente
+            Studente --> Archivio:
+            deactivate Studente
+            deactivate Archivio
+        end
+    end
+end
+
+@enduml
