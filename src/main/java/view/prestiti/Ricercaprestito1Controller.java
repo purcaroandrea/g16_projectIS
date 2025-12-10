@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gestionePrestiti.controller;
+package view.prestiti;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,7 +19,7 @@ import javafx.scene.control.Label;
  */
 public class Ricercaprestito1Controller implements Initializable {
 
-   @FXML
+    @FXML
     private Label ricercaprestito;
     @FXML
     private Button bottoneRicercaPrestito;
@@ -27,11 +27,6 @@ public class Ricercaprestito1Controller implements Initializable {
     private Label ricercaperISBN;
     @FXML
     private Label ricercaperMatCogn;
-    @FXML
-    private TextField barraRicercaPrestitoISBN;
-    @FXML
-    private TextField barraRicercaPrestitoMatCogn;
-         
 
     /**
      * Initializes the controller class.
@@ -39,6 +34,6 @@ public class Ricercaprestito1Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }   
+    }    
     
 }

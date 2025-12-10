@@ -5,8 +5,29 @@
     -fx-font-weight: bold;
   
 }
+#ricercaperISBN{
+    -fx-text-fill: #bb8c8e; 
+    -fx-font-size: 15px;
+   -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
 
-#barraRicercaPrestito{
+#ricercaperMatCogn{
+    -fx-text-fill: #bb8c8e; 
+    -fx-font-size: 15px;
+   -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
+#barraRicercaPrestitoISBN{
+     -fx-background-color: white;
+    -fx-background-radius: 20;
+  
+}
+
+#barraRicercaPrestitoMatCogn{
      -fx-background-color: white;
     -fx-background-radius: 20;
   

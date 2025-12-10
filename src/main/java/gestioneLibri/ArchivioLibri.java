@@ -50,7 +50,15 @@ public class ArchivioLibri {
      * presente nella lista.
      */
     public void aggiungiLibro(Libro libro) {
-        // da implementare
+        if(libro== null){
+        throw new IllegalArgumentException("Il libro da aggiungere non può essere null.");
+        //return;
+        }
+        if(cercaPerIsbn(libro.getIsbn())!= null){
+        throw new IllegalArgumentException("Esiste già un libro con ISBN: " + libro.getIsbn());
+        //return;
+        }
+        this.libri.add(libro);
     }
 
     /**
@@ -62,9 +70,19 @@ public class ArchivioLibri {
      * nuovi dati.
      */
     public void modificaLibro(Libro libroModificato) {
-        // da implementare
-    }
+        if(libroModificato == null){
+         throw new IllegalArgumentException("L'oggetto Libro modificato non può essere null.");
+            //return;
+        }
+        Libro libroOriginale = cercaPerIsbn(libroModificato.getIsbn());
 
+        if (libroOriginale != null) {
+            libroOriginale.aggiornaDati(libroModificato);
+        } else {
+            throw new NoSuchElementException("Libro con ISBN " + libroModificato.getIsbn() + " non trovato per la modifica.");
+        }
+        
+    }
     /**
      * @brief Rimuove un oggetto Libro dall'archivio.
      *
@@ -74,7 +92,14 @@ public class ArchivioLibri {
      * dimensione dell'archivio è diminuita di uno.
      */
     public void rimuoviLibro(Libro libro) {
-        // da implementare
+        if (libro == null) {
+           throw new IllegalArgumentException("Il libro da rimuovere non può essere null.");
+            //return;
+        }
+        this.libri.remove(libro);
+    if (!rimosso) {
+            throw new NoSuchElementException("Rimozione fallita: Libro con ISBN " + libro.getIsbn() + " non trovato nell'archivio.");
+        }
     }
 
     /**
@@ -88,9 +113,19 @@ public class ArchivioLibri {
      * @post Lo stato dell'archivio non viene modificato.
      */
     public Libro cercaPerIsbn(String isbn) {
-        return null; // da implementare
-    }
+       if (isbn == null || isbn.trim().isEmpty()) {
+       throw new IllegalArgumentException("L'ISBN per la ricerca non può essere null o vuoto.");
+           //return null; 
+       }
+       String isbnRicerca = isbn.trim();
+       for (Libro libro : libri) {
+            if (libro.getIsbn().equals(isbn)) {
+                return libro; 
+            }
+        }
 
+        return null;
+    }
     /**
      * @brief Cerca Libri nell'archivio che abbiano il titolo specificato dalla
      * stringa passata come parametro.
@@ -103,8 +138,22 @@ public class ArchivioLibri {
      * @post Lo stato dell'archivio non viene modificato.
      */
     public List<Libro> cercaPerTitolo(String titolo) {
-        return null; // da implementare
-    }
+        List<Libro> risultati = new ArrayList<>();
+        if (titolo == null || titolo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Il titolo per la ricerca non può essere null o vuoto.");
+            //return risultati; 
+        }
+             List<Libro> risultati = new ArrayList<>();
+            String titoloRicerca = titolo.trim().toLowerCase();
+
+        for (Libro libro : libri) {
+            if (libro.getTitolo().toLowerCase().contains(titoloRicerca)) {
+                risultati.add(libro);
+            }
+        }
+        return risultati;
+        }
+    
 
     /**
      * @brief Cerca Libri nell'archivio che abbiano l'autore specificato dalla
@@ -118,7 +167,21 @@ public class ArchivioLibri {
      * @post Lo stato dell'archivio non viene modificato.
      */
     public List<Libro> cercaPerAutore(String autore) {
-        return null; // da implementare
+   
+    if (autore == null || autore.trim().isEmpty()) {
+        throw new IllegalArgumentException("L'autore per la ricerca non può essere null o vuoto.");    
+        //return risultati; 
+        }
+     List<Libro> risultati = new ArrayList<>();
+    String autoreRicerca = autore.trim().toLowerCase();
+
+        for (Libro libro : libri) {
+            if (libro.getAutore().toLowerCase().contains(autoreRicerca)) {
+                risultati.add(libro);
+            }
+        }
+
+        return risultati;
     }
 
     /**
@@ -130,7 +193,10 @@ public class ArchivioLibri {
      * copia ordinata.
      */
     public List<Libro> getLibriOrdinatiPerTitolo() {
-        return null; // da implementare
+    List<Libro> copiaLibri = new ArrayList<>(this.libri);
+    copiaLibri.sort(Comparator.comparing(Libro::getTitolo));
+        
+        return copiaLibri;
     }
 
     /**
@@ -143,7 +209,7 @@ public class ArchivioLibri {
      * @post Lo stato dell’archivio non viene modificato.
      */
     public List<Libro> getTutti() {
-        return libri; //da implementrare 
+    return new ArrayList<>(this.libri);
     }
 
 }
