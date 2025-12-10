@@ -6,6 +6,7 @@
 package gestioneStudenti;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -46,7 +47,12 @@ public class ArchivioStudenti {
      * @post Lo studente viene inserito nell’archivio.
      */
     public void aggiungiStudente(Studente studente) {
-        // da implementare
+        if (studente == null) return;
+        String mat = studente.getMatricola();
+        if (mat == null || mat.trim().isEmpty()) return;
+        if (cercaPerMatricola(mat) == null) {
+            studenti.add(studente);
+        }
     }
 
     /**
@@ -57,7 +63,16 @@ public class ArchivioStudenti {
      * @post I dati dello studente vengono aggiornati.
      */
     public void modificaStudente(Studente studenteModificato) {
-        // da implementare
+        if (studenteModificato == null) return;
+        String mat = studenteModificato.getMatricola();
+        if (mat == null || mat.trim().isEmpty()) return;
+        for (int i = 0; i < studenti.size(); i++) {
+            Studente s = studenti.get(i);
+            if (s.getMatricola() != null && s.getMatricola().equalsIgnoreCase(mat)) {
+                studenti.set(i, studenteModificato);
+                return;
+            }
+        }
     }
 
     /**
@@ -68,7 +83,10 @@ public class ArchivioStudenti {
      * @post Lo studente non è più presente nell’archivio.
      */
     public void rimuoviStudente(Studente studente) {
-        // da implementare
+        if (studente == null) return;
+        String mat = studente.getMatricola();
+        if (mat == null || mat.trim().isEmpty()) return;
+        studenti.removeIf(s -> s.getMatricola() != null && s.getMatricola().equalsIgnoreCase(mat));
     }
 
     /**
@@ -82,7 +100,9 @@ public class ArchivioStudenti {
      * @see Studente#compareTo(Studente)
      */
     public List<Studente> getStudentiOrdinati() {
-        return null; // da implementare
+       List<Studente> copia = new ArrayList<>(studenti);
+       Collections.sort(copia);
+       return copia;
     }
 
     /**
@@ -93,7 +113,15 @@ public class ArchivioStudenti {
      * @post L’archivio rimane immutato.
      */
     public List<Studente> cercaPerCognome(String cognome) {
-        return null; // da implementare
+        List<Studente> risultati = new ArrayList<>();
+        if (cognome == null || cognome.trim().isEmpty()) return risultati;
+        String target = cognome.trim().toLowerCase();
+        for (Studente s : studenti) {
+            if (s.getCognome() != null && s.getCognome().toLowerCase().contains(target)) {
+                risultati.add(s);
+            }
+        }
+        return risultati;
     }
 
     /**
@@ -104,7 +132,14 @@ public class ArchivioStudenti {
      * @post Lo stato interno dell’archivio non viene modificato.
      */
     public Studente cercaPerMatricola(String matricola) {
-        return null; // da implementare
+        if (matricola == null || matricola.trim().isEmpty()) return null;
+        String target = matricola.trim();
+        for (Studente s : studenti) {
+            if (s.getMatricola() != null && s.getMatricola().equalsIgnoreCase(target)) {
+                return s;
+            }
+        }
+        return null;
     }
 
     /**
@@ -117,6 +152,6 @@ public class ArchivioStudenti {
      * senza applicare ordinamenti o criteri di ricerca.
      */
     public List<Studente> getTutti() {
-        return studenti;
+        return new ArrayList<>(studenti);
     }
 }

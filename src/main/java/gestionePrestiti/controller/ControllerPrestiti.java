@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gestioneStudenti;
+package gestionePrestiti.controller;
 
 /**
  *
  * @author danaiannaccone
  */
-public class ControllerStudenti {
+public class ControllerPrestiti {
     
 }
