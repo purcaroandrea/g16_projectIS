@@ -115,10 +115,15 @@ public class Libro implements Comparable<Libro> {
      * @post L'attributo 'annoPubblicazione' dell'oggetto è stato aggiornato.
      */
     public void setAnnoPubblicazione(int annoPubblicazione) {
-       if (annoPubblicazione <= 0) {
-            throw new IllegalArgumentException("Anno di pubblicazione non valido.");
+        if (annoPubblicazione <= 0) {
+             throw new IllegalArgumentException("Anno di pubblicazione non valido: deve essere maggiore di 0.");
+         }
+        int annoCorrente = java.time.LocalDate.now().getYear();
+        if (annoPubblicazione > annoCorrente) {
+            throw new IllegalArgumentException("Anno di pubblicazione non valido: non può essere nel futuro.");
         }
         this.annoPubblicazione = annoPubblicazione;
+        
     }
 
     /**
@@ -199,7 +204,7 @@ public class Libro implements Comparable<Libro> {
      */
     @Override
     public String toString() {
-        return titolo + " - " + autore + " - " + isbn;
+        return titolo + " (" + autore + ") - ISBN: " + isbn;
     }
 
     /**
@@ -251,6 +256,9 @@ public class Libro implements Comparable<Libro> {
      */
     @Override
     public int compareTo(Libro altro) {
+        if (altro == null) {
+        throw new NullPointerException("Il libro da confrontare non può essere null.");
+        }
         return this.titolo.compareToIgnoreCase(altro.titolo);
     }
 

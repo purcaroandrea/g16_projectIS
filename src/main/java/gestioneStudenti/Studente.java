@@ -5,9 +5,6 @@
  */
 package gestioneStudenti;
 
-import gestionePrestiti.Prestito;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @file Studente.java
@@ -206,7 +203,7 @@ public class Studente implements Comparable<Studente> {
      */
     @Override
     public String toString() {
-        return cognome + " " + nome + "-" + matricola;
+        return cognome + " " + nome + " - " + matricola;
     }
 
 }

@@ -6,7 +6,7 @@
 package gestioneLibri;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -107,17 +107,17 @@ public class ArchivioLibri {
         if (libro == null) {
            throw new IllegalArgumentException("Il libro da rimuovere non può essere null.");
        }
-        int indiceDaRimuovere = -1;
-        for (int i = 0; i < libri.size(); i++) {
-            if (libri.get(i).equals(libro)) { 
-                indiceDaRimuovere = i;
-                break;
-            }
-        }
-        if (indiceDaRimuovere != -1) {
-            this.libri.remove(indiceDaRimuovere);
-        } else {
-            throw new NoSuchElementException("Rimozione fallita: Libro con ISBN " + libro.getIsbn() + " non trovato nell'archivio.");
+        String isbn = libro.getIsbn();
+    if (isbn == null || isbn.trim().isEmpty()) {
+        throw new IllegalArgumentException("L'ISBN del libro da rimuovere non può essere null o vuoto.");
+    }
+
+    boolean rimosso = libri.removeIf(l -> 
+        l.getIsbn() != null && l.getIsbn().equalsIgnoreCase(isbn)
+    );
+
+    if (!rimosso) {
+        throw new NoSuchElementException("Rimozione fallita: nessun libro con ISBN " + isbn + " trovato nell'archivio.");
         }
         }
     
@@ -135,11 +135,11 @@ public class ArchivioLibri {
     public Libro cercaPerIsbn(String isbn) {
        if (isbn == null || isbn.trim().isEmpty()) {
        throw new IllegalArgumentException("L'ISBN per la ricerca non può essere null o vuoto.");
-           //return null; 
        }
        String isbnRicerca = isbn.trim();
+       
        for (Libro libro : libri) {
-            if (libro.getIsbn().equals(isbn)) {
+            if (libro.getIsbn() != null && libro.getIsbn().equalsIgnoreCase(isbnRicerca)) {
                 return libro; 
             }
         }
@@ -163,12 +163,13 @@ public class ArchivioLibri {
             throw new IllegalArgumentException("Il titolo per la ricerca non può essere null o vuoto.");
             //return risultati; 
         }
-             List<Libro> risultati = new ArrayList<>();
+            List<Libro> risultati = new ArrayList<>();
             String titoloRicerca = titolo.trim().toLowerCase();
 
         for (Libro libro : libri) {
-            if (libro.getTitolo().toLowerCase().contains(titoloRicerca)) {
-                risultati.add(libro);
+            String titoloLibro = libro.getTitolo();
+            if (titoloLibro != null && titoloLibro.toLowerCase().contains(titoloRicerca)) {
+            risultati.add(libro);
             }
         }
         return risultati;
@@ -192,12 +193,13 @@ public class ArchivioLibri {
         throw new IllegalArgumentException("L'autore per la ricerca non può essere null o vuoto.");    
         //return risultati; 
         }
-     List<Libro> risultati = new ArrayList<>();
+    List<Libro> risultati = new ArrayList<>();
     String autoreRicerca = autore.trim().toLowerCase();
 
         for (Libro libro : libri) {
-            if (libro.getAutore().toLowerCase().contains(autoreRicerca)) {
-                risultati.add(libro);
+            String autoreLibro = libro.getAutore();
+            if (autoreLibro != null && autoreLibro.toLowerCase().contains(autoreRicerca)) {
+            risultati.add(libro);
             }
         }
 
@@ -214,7 +216,7 @@ public class ArchivioLibri {
      */
     public List<Libro> getLibriOrdinatiPerTitolo() {
     List<Libro> copiaLibri = new ArrayList<>(this.libri);
-    copiaLibri.sort(Comparator.comparing(Libro::getTitolo));
+    Collections.sort(copiaLibri); // usa compareTo() di Libro
         
         return copiaLibri;
     }

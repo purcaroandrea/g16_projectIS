@@ -64,13 +64,18 @@ public class ArchivioStudenti {
      */
     public void modificaStudente(Studente studenteModificato) {
         if (studenteModificato == null) return;
+        
         String mat = studenteModificato.getMatricola();
         if (mat == null || mat.trim().isEmpty()) return;
-        for (int i = 0; i < studenti.size(); i++) {
-            Studente s = studenti.get(i);
-            if (s.getMatricola() != null && s.getMatricola().equalsIgnoreCase(mat)) {
-                studenti.set(i, studenteModificato);
-                return;
+        
+        for (Studente s : studenti) {
+        if (s.getMatricola() != null && s.getMatricola().equalsIgnoreCase(mat)) {
+            // Aggiorno SOLO i campi modificabili
+            s.setNome(studenteModificato.getNome());
+            s.setCognome(studenteModificato.getCognome());
+            s.setEmail(studenteModificato.getEmail());
+            // La matricola NON va cambiata
+            return;
             }
         }
     }
