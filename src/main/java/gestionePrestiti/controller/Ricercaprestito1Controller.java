@@ -19,7 +19,7 @@ import javafx.scene.control.Label;
  */
 public class Ricercaprestito1Controller implements Initializable {
 
-   @FXML
+    @FXML
     private Label ricercaprestito;
     @FXML
     private Button bottoneRicercaPrestito;
@@ -28,10 +28,7 @@ public class Ricercaprestito1Controller implements Initializable {
     @FXML
     private Label ricercaperMatCogn;
     @FXML
-    private TextField barraRicercaPrestitoISBN;
-    @FXML
-    private TextField barraRicercaPrestitoMatCogn;
-         
+    private Button homeRicercaPrestito;
 
     /**
      * Initializes the controller class.
@@ -39,6 +36,6 @@ public class Ricercaprestito1Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }   
+    }    
     
 }

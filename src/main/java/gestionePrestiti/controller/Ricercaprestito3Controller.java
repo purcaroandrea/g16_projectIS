@@ -24,7 +24,7 @@ public class Ricercaprestito3Controller implements Initializable {
     @FXML
     private Button bottoneChiudiPrestito;
     @FXML
-    private Button bottoneConfermaRicercaPrestito;
+    private Button homeChiusuraPrestito;
     @FXML
     private Label PrestitoSelezionato;
 

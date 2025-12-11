@@ -6,7 +6,9 @@
 package gestioneLibri;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * @file ArchivioLibri.java
@@ -72,16 +74,26 @@ public class ArchivioLibri {
     public void modificaLibro(Libro libroModificato) {
         if(libroModificato == null){
          throw new IllegalArgumentException("L'oggetto Libro modificato non può essere null.");
-            //return;
+           
         }
-        Libro libroOriginale = cercaPerIsbn(libroModificato.getIsbn());
-
-        if (libroOriginale != null) {
-            libroOriginale.aggiornaDati(libroModificato);
+        int indice = -1;
+        for (int i = 0; i < libri.size(); i++) {
+            if (libri.get(i).getIsbn().equalsIgnoreCase(libroModificato.getIsbn())) {
+                indice = i;
+                break;
+            }
+        }
+        if (indice != -1) {
+            Libro libroOriginale = libri.get(indice);
+            
+            libroOriginale.setTitolo(libroModificato.getTitolo());
+            libroOriginale.setAutore(libroModificato.getAutore());
+            libroOriginale.setAnnoPubblicazione(libroModificato.getAnnoPubblicazione());
+            libroOriginale.setCopieDisponibili(libroModificato.getCopieDisponibili());
+            
         } else {
-            throw new NoSuchElementException("Libro con ISBN " + libroModificato.getIsbn() + " non trovato per la modifica.");
+            throw new NoSuchElementException("Modifica fallita: Libro con ISBN " + libroModificato.getIsbn() + " non trovato nell'archivio.");
         }
-        
     }
     /**
      * @brief Rimuove un oggetto Libro dall'archivio.
@@ -94,13 +106,21 @@ public class ArchivioLibri {
     public void rimuoviLibro(Libro libro) {
         if (libro == null) {
            throw new IllegalArgumentException("Il libro da rimuovere non può essere null.");
-            //return;
+       }
+        int indiceDaRimuovere = -1;
+        for (int i = 0; i < libri.size(); i++) {
+            if (libri.get(i).equals(libro)) { 
+                indiceDaRimuovere = i;
+                break;
+            }
         }
-        this.libri.remove(libro);
-    if (!rimosso) {
+        if (indiceDaRimuovere != -1) {
+            this.libri.remove(indiceDaRimuovere);
+        } else {
             throw new NoSuchElementException("Rimozione fallita: Libro con ISBN " + libro.getIsbn() + " non trovato nell'archivio.");
         }
-    }
+        }
+    
 
     /**
      * @brief Cerca un Libro nell'archivio tramite codice ISBN.
@@ -138,7 +158,7 @@ public class ArchivioLibri {
      * @post Lo stato dell'archivio non viene modificato.
      */
     public List<Libro> cercaPerTitolo(String titolo) {
-        List<Libro> risultati = new ArrayList<>();
+        
         if (titolo == null || titolo.trim().isEmpty()) {
             throw new IllegalArgumentException("Il titolo per la ricerca non può essere null o vuoto.");
             //return risultati; 

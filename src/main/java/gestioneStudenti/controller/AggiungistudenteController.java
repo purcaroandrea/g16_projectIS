@@ -35,6 +35,8 @@ public class AggiungistudenteController implements Initializable {
     private Label labelmatricola;
     @FXML
     private Label labelemail;
+    @FXML
+    private Button homeAggiungiStudente;
     
     // campi del form
     @FXML

@@ -15,5 +15,6 @@
       <Label fx:id="ricercaperISBN" layoutX="53.0" layoutY="134.0" text="ISBN:" />
       <Label fx:id="ricercaperMatCogn" layoutX="15.0" layoutY="182.0" text="Matricola o cognome:" />
       <Pane layoutX="522.0" layoutY="171.0" prefHeight="39.0" prefWidth="35.0" style="-fx-background-image: url(&quot;https://static.vecteezy.com/ti/vettori-gratis/p1/21722315-illustrazione-del-disegno-dell-icona-di-vettore-della-lente-di-ingrandimento-vettoriale.jpg&quot;); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 25px;" />
+      <Button fx:id="homeRicercaPrestito" layoutX="35.0" layoutY="32.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

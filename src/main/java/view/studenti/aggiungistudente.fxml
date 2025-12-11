@@ -40,5 +40,6 @@
             <Font name="Calibri" size="12.0" />
          </font>
       </Label>
+      <Button fx:id="homeAggiungiStudente" layoutX="31.0" layoutY="28.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

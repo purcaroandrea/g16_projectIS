@@ -28,7 +28,8 @@ public class Gestioneprestiti1Controller implements Initializable {
     private Button RegistroPrestiti;
     @FXML
     private Button RicercaPrestito;
-
+    @FXML
+    private Button homeGestionePrestiti;
     /**
      * Initializes the controller class.
      */

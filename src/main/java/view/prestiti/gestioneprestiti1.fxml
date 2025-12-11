@@ -15,5 +15,6 @@
             <Button fx:id="RicercaPrestito" mnemonicParsing="false" onAction="#ricercaprestito" text="Ricerca Prestito" />
          </children>
       </HBox>
+      <Button fx:id="homeGestionePrestiti" layoutX="23.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

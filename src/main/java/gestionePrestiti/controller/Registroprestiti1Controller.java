@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 
@@ -27,6 +28,8 @@ public class Registroprestiti1Controller implements Initializable {
     private TableColumn<?, ?> colonnaDataPrestito;
     @FXML
     private Label registroprestiti;
+    @FXML
+    private Button homeRegistroPrestito;
 
     /**
      * Initializes the controller class.

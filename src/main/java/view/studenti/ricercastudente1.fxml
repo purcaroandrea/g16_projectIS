@@ -11,5 +11,6 @@
       <Label fx:id="ricercastudente" layoutX="125.0" layoutY="43.0" text="Ricerca Studente" />
       <Button fx:id="bottoneRicercaStudente" layoutX="463.0" layoutY="243.0" mnemonicParsing="false" text="Conferma" />
       <TextField fx:id="barraRicercaStudente" layoutX="153.0" layoutY="141.0" prefHeight="25.0" prefWidth="321.0" />
+      <Button fx:id="homeRicercaStudente" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>
