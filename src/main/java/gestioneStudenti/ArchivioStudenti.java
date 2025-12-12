@@ -47,12 +47,18 @@ public class ArchivioStudenti {
      * @post Lo studente viene inserito nell’archivio.
      */
     public void aggiungiStudente(Studente studente) {
-        if (studente == null) return;
-        String mat = studente.getMatricola();
-        if (mat == null || mat.trim().isEmpty()) return;
-        if (cercaPerMatricola(mat) == null) {
-            studenti.add(studente);
+        if (studente == null) {
+            throw new IllegalArgumentException("Lo studente da aggiungere non può essere null.");
         }
+        String mat = studente.getMatricola();
+        if (mat == null || mat.trim().isEmpty()){
+            throw new IllegalArgumentException("La matricola dello studente non può essere vuota.");
+        }
+        if (cercaPerMatricola(mat) != null) {
+            throw new IllegalArgumentException("Esiste già uno studente con matricola: " + mat);
+        }
+
+        studenti.add(studente);
     }
 
     /**
@@ -63,10 +69,14 @@ public class ArchivioStudenti {
      * @post I dati dello studente vengono aggiornati.
      */
     public void modificaStudente(Studente studenteModificato) {
-        if (studenteModificato == null) return;
+        if (studenteModificato == null) {
+            throw new IllegalArgumentException("Lo studente modificato non può essere null.");
+        }
         
         String mat = studenteModificato.getMatricola();
-        if (mat == null || mat.trim().isEmpty()) return;
+        if (mat == null || mat.trim().isEmpty()) {
+            throw new IllegalArgumentException("La matricola dello studente modificato non può essere vuota.");
+        }
         
         for (Studente s : studenti) {
         if (s.getMatricola() != null && s.getMatricola().equalsIgnoreCase(mat)) {
@@ -78,6 +88,7 @@ public class ArchivioStudenti {
             return;
             }
         }
+        throw new IllegalStateException("Modifica fallita: nessuno studente con matricola " + mat + " trovato.");
     }
 
     /**
@@ -88,10 +99,20 @@ public class ArchivioStudenti {
      * @post Lo studente non è più presente nell’archivio.
      */
     public void rimuoviStudente(Studente studente) {
-        if (studente == null) return;
+        if (studente == null) {
+            throw new IllegalArgumentException("Lo studente da rimuovere non può essere null.");
+        }
         String mat = studente.getMatricola();
-        if (mat == null || mat.trim().isEmpty()) return;
-        studenti.removeIf(s -> s.getMatricola() != null && s.getMatricola().equalsIgnoreCase(mat));
+        if (mat == null || mat.trim().isEmpty()){
+            throw new IllegalArgumentException("La matricola dello studente da rimuovere non può essere vuota.");
+        }
+        boolean rimosso = studenti.removeIf(s ->
+                s.getMatricola() != null && s.getMatricola().equalsIgnoreCase(mat)
+        );
+
+        if (!rimosso) {
+            throw new IllegalStateException("Rimozione fallita: nessuno studente con matricola " + mat + " trovato.");
+        }
     }
 
     /**
@@ -118,14 +139,20 @@ public class ArchivioStudenti {
      * @post L’archivio rimane immutato.
      */
     public List<Studente> cercaPerCognome(String cognome) {
+       if (cognome == null || cognome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Il cognome per la ricerca non può essere vuoto.");
+        }
+
         List<Studente> risultati = new ArrayList<>();
-        if (cognome == null || cognome.trim().isEmpty()) return risultati;
         String target = cognome.trim().toLowerCase();
+
         for (Studente s : studenti) {
-            if (s.getCognome() != null && s.getCognome().toLowerCase().contains(target)) {
+            String cognomeStud = s.getCognome();
+            if (cognomeStud != null && cognomeStud.toLowerCase().contains(target)) {
                 risultati.add(s);
             }
         }
+
         return risultati;
     }
 
@@ -137,13 +164,18 @@ public class ArchivioStudenti {
      * @post Lo stato interno dell’archivio non viene modificato.
      */
     public Studente cercaPerMatricola(String matricola) {
-        if (matricola == null || matricola.trim().isEmpty()) return null;
+        if (matricola == null || matricola.trim().isEmpty()) {
+            throw new IllegalArgumentException("La matricola per la ricerca non può essere vuota.");
+        }
+
         String target = matricola.trim();
+
         for (Studente s : studenti) {
             if (s.getMatricola() != null && s.getMatricola().equalsIgnoreCase(target)) {
                 return s;
             }
         }
+
         return null;
     }
 

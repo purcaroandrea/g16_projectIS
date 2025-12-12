@@ -5,6 +5,8 @@
  */
 package gestioneStudenti;
 
+import java.io.Serializable;
+
 
 /**
  * @file Studente.java
@@ -15,7 +17,9 @@ package gestioneStudenti;
  * @author g16_member
  * @date Dicembre 7, 2025
  */
-public class Studente implements Comparable<Studente> {
+public class Studente implements Comparable<Studente>, Serializable{
+    
+    private static final long serialVersionUID = 1L;
 
     private String nome;
     private String cognome;
@@ -32,10 +36,10 @@ public class Studente implements Comparable<Studente> {
      * @post Lo studente è creato con i dati forniti.
      */
     public Studente(String nome, String cognome, String matricola, String email) {
-        this.nome = nome;
-        this.cognome = cognome;
-        this.matricola = matricola;
-        this.email = email;
+        setNome(nome);
+        setCognome(cognome);
+        setMatricola(matricola);
+        setEmail(email);
     }
 
     // ----------- Getter & Setter -----------
@@ -187,13 +191,16 @@ public class Studente implements Comparable<Studente> {
         if (altro == null) {
             throw new NullPointerException("Lo studente da confrontare non può essere null.");
         }
+        String c1 = this.cognome == null ? "" : this.cognome;
+        String c2 = altro.cognome == null ? "" : altro.cognome;
         // prima confronto per cognome
-        int confrontoCognome = this.cognome.compareToIgnoreCase(altro.cognome);
-        if (confrontoCognome != 0) {
-            return confrontoCognome;
-        }
-        // se cognomi uguali → confronto nomi
-        return this.nome.compareToIgnoreCase(altro.nome);
+        int confrontoCognome = c1.compareToIgnoreCase(c2);
+        if (confrontoCognome != 0) return confrontoCognome;
+
+        String n1 = this.nome == null ? "" : this.nome;
+        String n2 = altro.nome == null ? "" : altro.nome;
+
+        return n1.compareToIgnoreCase(n2);
     }
 
     /**
