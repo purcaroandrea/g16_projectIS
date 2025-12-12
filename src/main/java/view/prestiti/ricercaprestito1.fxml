@@ -8,8 +8,13 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20prestito/ricercaprestito.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.prestiti.Ricercaprestito1Controller">
    <children>
       <Label fx:id="ricercaprestito" layoutX="129.0" layoutY="47.0" text="Ricerca Prestito" />
-      <Pane layoutX="94.0" layoutY="122.0" prefHeight="39.0" prefWidth="35.0" style="-fx-background-image: url(&quot;https://static.vecteezy.com/ti/vettori-gratis/p1/21722315-illustrazione-del-disegno-dell-icona-di-vettore-della-lente-di-ingrandimento-vettoriale.jpg&quot;); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 25px;" />
-      <TextField fx:id="barraRicercaPrestito" layoutX="142.0" layoutY="129.0" prefHeight="25.0" prefWidth="322.0" />
-      <Button fx:id="bottoneRicercaPrestito" layoutX="401.0" layoutY="215.0" mnemonicParsing="false" text="Conferma" />
+      <Pane layoutX="522.0" layoutY="124.0" prefHeight="39.0" prefWidth="35.0" style="-fx-background-image: url(&quot;https://static.vecteezy.com/ti/vettori-gratis/p1/21722315-illustrazione-del-disegno-dell-icona-di-vettore-della-lente-di-ingrandimento-vettoriale.jpg&quot;); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 25px;" />
+      <TextField fx:id="barraRicercaPrestitoISBN" layoutX="193.0" layoutY="130.0" prefHeight="25.0" prefWidth="322.0" />
+      <Button fx:id="bottoneRicercaPrestito" layoutX="406.0" layoutY="244.0" mnemonicParsing="false" text="Conferma" />
+      <TextField fx:id="barraRicercaPrestitoMatCogn" layoutX="193.0" layoutY="177.0" prefHeight="27.0" prefWidth="322.0" />
+      <Label fx:id="ricercaperISBN" layoutX="53.0" layoutY="134.0" text="ISBN:" />
+      <Label fx:id="ricercaperMatCogn" layoutX="15.0" layoutY="182.0" text="Matricola o cognome:" />
+      <Pane layoutX="522.0" layoutY="171.0" prefHeight="39.0" prefWidth="35.0" style="-fx-background-image: url(&quot;https://static.vecteezy.com/ti/vettori-gratis/p1/21722315-illustrazione-del-disegno-dell-icona-di-vettore-della-lente-di-ingrandimento-vettoriale.jpg&quot;); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 25px;" />
+      <Button fx:id="homeRicercaPrestito" layoutX="35.0" layoutY="32.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

@@ -86,7 +86,10 @@ public class Libro implements Comparable<Libro> {
      * @post L'attributo 'titolo' dell'oggetto è stato aggiornato.
      */
     public void setTitolo(String titolo) {
-        this.titolo = titolo;
+       if (titolo == null || titolo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Il titolo non può essere null o vuoto.");
+        }
+        this.titolo = titolo.trim();
     }
 
     /**
@@ -97,7 +100,10 @@ public class Libro implements Comparable<Libro> {
      * @post L'attributo 'autore' dell'oggetto è stato aggiornato.
      */
     public void setAutore(String autore) {
-        this.autore = autore;
+       if (autore == null || autore.trim().isEmpty()) {
+            throw new IllegalArgumentException("L'autore non può essere null o vuoto.");
+        }
+        this.autore = autore.trim();
     }
 
     /**
@@ -109,7 +115,15 @@ public class Libro implements Comparable<Libro> {
      * @post L'attributo 'annoPubblicazione' dell'oggetto è stato aggiornato.
      */
     public void setAnnoPubblicazione(int annoPubblicazione) {
+        if (annoPubblicazione <= 0) {
+             throw new IllegalArgumentException("Anno di pubblicazione non valido: deve essere maggiore di 0.");
+         }
+        int annoCorrente = java.time.LocalDate.now().getYear();
+        if (annoPubblicazione > annoCorrente) {
+            throw new IllegalArgumentException("Anno di pubblicazione non valido: non può essere nel futuro.");
+        }
         this.annoPubblicazione = annoPubblicazione;
+        
     }
 
     /**
@@ -120,7 +134,10 @@ public class Libro implements Comparable<Libro> {
      * @post L'attributo 'isbn' dell'oggetto è stato aggiornato.
      */
     public void setIsbn(String isbn) {
-        this.isbn = isbn;
+       if (isbn == null || isbn.trim().isEmpty()) {
+            throw new IllegalArgumentException("L'ISBN non può essere null o vuoto.");
+        }
+        this.isbn = isbn.trim();
     }
 
     /**
@@ -133,6 +150,9 @@ public class Libro implements Comparable<Libro> {
      * @post L'attributo 'copieDisponibili' dell'oggetto è stato aggiornato.
      */
     public void setCopieDisponibili(int copieDisponibili) {
+      if (copieDisponibili < 0) {
+            throw new IllegalArgumentException("Il numero di copie disponibili non può essere negativo.");
+        }
         this.copieDisponibili = copieDisponibili;
     }
 
@@ -156,6 +176,9 @@ public class Libro implements Comparable<Libro> {
      * @post 'copieDisponibili' è diminuito di 1.
      */
     public void decrementaCopie() {
+        if (copieDisponibili <= 0) {
+            throw new IllegalStateException("Impossibile decrementare: nessuna copia disponibile per il prestito.");
+        }
         copieDisponibili--;
     }
 
@@ -164,7 +187,6 @@ public class Libro implements Comparable<Libro> {
      *
      * Usato tipicamente al momento della restituzione di un libro.
      *
-     * @pre 'copieDisponibili' deve essere minore di 'copieTotali'.
      * @post 'copieDisponibili' è aumentato di 1.
      */
     public void incrementaCopie() {
@@ -182,7 +204,7 @@ public class Libro implements Comparable<Libro> {
      */
     @Override
     public String toString() {
-        return titolo + " - " + autore + " - " + isbn;
+        return titolo + " (" + autore + ") - ISBN: " + isbn;
     }
 
     /**
@@ -234,6 +256,9 @@ public class Libro implements Comparable<Libro> {
      */
     @Override
     public int compareTo(Libro altro) {
+        if (altro == null) {
+        throw new NullPointerException("Il libro da confrontare non può essere null.");
+        }
         return this.titolo.compareToIgnoreCase(altro.titolo);
     }
 

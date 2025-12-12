@@ -15,6 +15,6 @@
       </HBox>
       <Label fx:id="ricercalibro2" layoutX="168.0" layoutY="46.0" text="Ricerca Libro" />
       <Label fx:id="LibroSelezionato" layoutX="244.0" layoutY="111.0" text="Elemento selezionato" />
-      <Button fx:id="bottoneConfermaRicercaLibro" layoutX="434.0" layoutY="312.0" mnemonicParsing="false" text="Conferma" />
+      <Button fx:id="homeRicercaLibro2" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

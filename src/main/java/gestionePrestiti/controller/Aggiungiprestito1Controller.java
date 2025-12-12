@@ -30,6 +30,8 @@ public class Aggiungiprestito1Controller implements Initializable {
     private Label labeldataprestito;
     @FXML
     private Button bottoneConfermaPrestito;
+    @FXML
+    private Button homeAggiungiPrestito;
 
     /**
      * Initializes the controller class.

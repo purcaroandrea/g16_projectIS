@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gestioneStudenti.controller;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,28 +12,31 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
  *
  * @author laura
  */
-public class Registrostudenti1Controller implements Initializable {
+public class Registrolibri1Controller implements Initializable {
 
     @FXML
-    private TableColumn<?, ?> colonnaNome;
+    private TableView<?> tviem;
     @FXML
-    private TableColumn<?, ?> colonnaCognome;
+    private TableColumn<?, ?> colonnaTitolo;
     @FXML
-    private TableColumn<?, ?> colonnaMatricola;
+    private TableColumn<?, ?> colonnaAutore;
     @FXML
-    private TableColumn<?, ?> colonnaEmail;
+    private TableColumn<?, ?> colonnaISBN;
     @FXML
-    private TableColumn<?, ?> colonnaLibriPrestito;
+    private TableColumn<?, ?> colonnaAnnoPub;
     @FXML
-    private Label registrostudenti;
+    private TableColumn<?, ?> colonnaNumCopie;
     @FXML
-    private Button homeRegistroStudenti;
+    private Label registrolibri;
+    @FXML
+    private Button homeRegistroLibri;
 
     /**
      * Initializes the controller class.

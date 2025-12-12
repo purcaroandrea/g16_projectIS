@@ -36,6 +36,8 @@ public class Aggiungilibro1Controller implements Initializable {
     @FXML
     private Button bottoneConfermaLibri;
     @FXML
+    private Button homeAggiungiLibro;
+    @FXML
     private TextField testoTitolo;
     @FXML
     private TextField testoAutore;
@@ -45,6 +47,8 @@ public class Aggiungilibro1Controller implements Initializable {
     private TextField testoAnnoPub;
     @FXML
     private TextField testoNumCopie;
+    
+    
             
             
                     

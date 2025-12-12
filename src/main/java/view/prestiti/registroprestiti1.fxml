@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,5 +16,6 @@
         </columns>
       </TableView>
       <Label fx:id="registroprestiti" layoutX="140.0" layoutY="45.0" text="Registro Prestiti" />
+      <Button fx:id="homeRegistroPrestito" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

@@ -28,6 +28,8 @@ public class Gestionelibri1Controller implements Initializable {
     private Button RegistroLibri;
     @FXML
     private Button RicercaLibro;
+    @FXML
+    private Button homeGestioneLibri;
 
     /**
      * Initializes the controller class.

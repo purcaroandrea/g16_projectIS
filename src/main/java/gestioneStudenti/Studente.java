@@ -5,9 +5,8 @@
  */
 package gestioneStudenti;
 
-import gestionePrestiti.Prestito;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+
 
 /**
  * @file Studente.java
@@ -18,7 +17,9 @@ import java.util.List;
  * @author g16_member
  * @date Dicembre 7, 2025
  */
-public class Studente implements Comparable<Studente> {
+public class Studente implements Comparable<Studente>, Serializable{
+    
+    private static final long serialVersionUID = 1L;
 
     private String nome;
     private String cognome;
@@ -35,10 +36,10 @@ public class Studente implements Comparable<Studente> {
      * @post Lo studente è creato con i dati forniti.
      */
     public Studente(String nome, String cognome, String matricola, String email) {
-        this.nome = nome;
-        this.cognome = cognome;
-        this.matricola = matricola;
-        this.email = email;
+        setNome(nome);
+        setCognome(cognome);
+        setMatricola(matricola);
+        setEmail(email);
     }
 
     // ----------- Getter & Setter -----------
@@ -70,7 +71,10 @@ public class Studente implements Comparable<Studente> {
      * @post L'attributo 'nome' dello studente è aggiornato.
      */
     public void setNome(String nome) {
-        this.nome = nome;
+         if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Il nome non può essere null o vuoto.");
+        }
+        this.nome = nome.trim();
     }
 
     /**
@@ -81,7 +85,10 @@ public class Studente implements Comparable<Studente> {
      * @post L'attributo 'cognome' dello studente è aggiornato.
      */
     public void setCognome(String cognome) {
-        this.cognome = cognome;
+        if (cognome == null || cognome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Il cognome non può essere null o vuoto.");
+        }
+        this.cognome = cognome.trim();
     }
 
     /**
@@ -92,7 +99,10 @@ public class Studente implements Comparable<Studente> {
      * @post L'attributo 'matricola' dello studente è aggiornato.
      */
     public void setMatricola(String matricola) {
-        this.matricola = matricola;
+        if (matricola == null || matricola.trim().isEmpty()) {
+            throw new IllegalArgumentException("La matricola non può essere null o vuota.");
+        }
+        this.matricola = matricola.trim();
     }
 
     /**
@@ -104,7 +114,38 @@ public class Studente implements Comparable<Studente> {
      * @post L'attributo 'email' dello studente è aggiornato.
      */
     public void setEmail(String email) {
-        this.email = email;
+        if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("L'email non può essere null o vuota.");
+        }
+        String e = email.trim();
+        if (!isValidEmailSimple(e)) {
+            throw new IllegalArgumentException("Formato email non valido (controllo semplice).");
+        }
+        this.email = e;
+    }
+    
+    private boolean isValidEmailSimple(String email) {
+        if (email.contains(" ")) {
+            return false;
+        }
+        int atIndex = email.indexOf('@');
+        if (atIndex <= 0) { // niente '@' o nulla prima di '@'
+            return false;
+        }
+        // non deve esserci un altro '@' (opzionale: se si vuole permettere più '@' cambiare qui)
+        if (email.indexOf('@', atIndex + 1) != -1) {
+            return false;
+        }
+        // deve esserci almeno un '.' dopo la '@'
+        int dotAfterAt = email.indexOf('.', atIndex + 1);
+        if (dotAfterAt == -1) {
+            return false;
+        }
+        // assicurarsi che ci sia almeno un carattere dopo l'ultimo punto
+        if (dotAfterAt >= email.length() - 1) {
+            return false;
+        }
+        return true;
     }
 
     // ----------- Metodi di confronto e utilità -----------
@@ -147,13 +188,19 @@ public class Studente implements Comparable<Studente> {
      */
     @Override
     public int compareTo(Studente altro) {
-        // prima confronto per cognome
-        int confrontoCognome = this.cognome.compareToIgnoreCase(altro.cognome);
-        if (confrontoCognome != 0) {
-            return confrontoCognome;
+        if (altro == null) {
+            throw new NullPointerException("Lo studente da confrontare non può essere null.");
         }
-        // se cognomi uguali → confronto nomi
-        return this.nome.compareToIgnoreCase(altro.nome);
+        String c1 = this.cognome == null ? "" : this.cognome;
+        String c2 = altro.cognome == null ? "" : altro.cognome;
+        // prima confronto per cognome
+        int confrontoCognome = c1.compareToIgnoreCase(c2);
+        if (confrontoCognome != 0) return confrontoCognome;
+
+        String n1 = this.nome == null ? "" : this.nome;
+        String n2 = altro.nome == null ? "" : altro.nome;
+
+        return n1.compareToIgnoreCase(n2);
     }
 
     /**
@@ -163,7 +210,7 @@ public class Studente implements Comparable<Studente> {
      */
     @Override
     public String toString() {
-        return cognome + " " + nome + "-" + matricola;
+        return cognome + " " + nome + " - " + matricola;
     }
 
 }

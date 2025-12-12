@@ -19,8 +19,7 @@ import javafx.scene.control.Label;
  */
 public class Ricercastudente3Controller implements Initializable {
 
-    @FXML
-    private Button bottoneConfermaRicercaStudente;
+
     @FXML
     private Button bottoneModificaStudente;
     @FXML
@@ -29,6 +28,8 @@ public class Ricercastudente3Controller implements Initializable {
     private Label ricercastudente2;
     @FXML
     private Label StudenteSelezionato;
+    @FXML
+    private Button homeRimozioneStudente; 
 
     /**
      * Initializes the controller class.

@@ -19,5 +19,6 @@
       <TextField fx:id="AnnoPubModifica" layoutX="350.0" layoutY="250.0" onDragDetected="#salvaannopub" prefHeight="29.0" prefWidth="178.0" />
       <TextField fx:id="NumCopieModifica" layoutX="350.0" layoutY="300.0" onDragDetected="#salvanumcopiemodificato" prefHeight="29.0" prefWidth="178.0" />
       <Button fx:id="confermalibrimodifica" layoutX="450.0" layoutY="346.0" mnemonicParsing="false" text="Conferma" />
+      <Button fx:id="homeModificaLibro" layoutX="32.0" layoutY="35.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

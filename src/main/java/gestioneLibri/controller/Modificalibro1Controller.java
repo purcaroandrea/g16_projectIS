@@ -33,6 +33,8 @@ public class Modificalibro1Controller implements Initializable {
     private Label numcopiemodifica;
     @FXML
     private Button confermalibrimodifica;
+    @FXML
+    private Button homeModificaLibro;
 
     /**
      * Initializes the controller class.

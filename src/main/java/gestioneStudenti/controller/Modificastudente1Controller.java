@@ -32,7 +32,8 @@ public class Modificastudente1Controller implements Initializable {
     private Label matricolaModifica;
     @FXML
     private Label emailModifica;
-
+    @FXML
+    private Button homeModificaStudente;
     /**
      * Initializes the controller class.
      */

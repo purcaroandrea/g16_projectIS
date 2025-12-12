@@ -28,7 +28,7 @@ public class Ricercalibro3Controller implements Initializable {
     @FXML
     private Label LibroSelezionato;
     @FXML
-    private Button bottoneConfermaRicerca;
+    private Button homeRicercaLibro2;
 
     /**
      * Initializes the controller class.

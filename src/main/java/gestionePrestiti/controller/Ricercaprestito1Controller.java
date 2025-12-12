@@ -23,6 +23,12 @@ public class Ricercaprestito1Controller implements Initializable {
     private Label ricercaprestito;
     @FXML
     private Button bottoneRicercaPrestito;
+    @FXML
+    private Label ricercaperISBN;
+    @FXML
+    private Label ricercaperMatCogn;
+    @FXML
+    private Button homeRicercaPrestito;
 
     /**
      * Initializes the controller class.
