@@ -8,6 +8,7 @@ package gestionePrestiti;
 import gestioneLibri.Libro;
 import gestioneStudenti.Studente;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +64,46 @@ public class ArchivioPrestiti {
      * @see UC-11, IF-11
      */
     public Prestito registraPrestito(Studente studente, Libro libro, LocalDate dataPrestito, LocalDate dataPrevistaRestituzione) {
-        return null; // da implementare
+        
+        if (studente == null) {
+            throw new IllegalArgumentException("Lo studente non può essere null.");
+        }
+        if (libro == null) {
+            throw new IllegalArgumentException("Il libro non può essere null.");
+        }
+        if (dataPrestito == null || dataPrevistaRestituzione == null) {
+            throw new IllegalArgumentException("Le date non possono essere null.");
+        }
+        
+        if (!libro.haCopie()) {
+            throw new IllegalStateException("Il libro non ha copie disponibili.");
+        }
+        
+        String matricola = studente.getMatricola();
+        if (matricola == null || matricola.trim().isEmpty()) {
+            throw new IllegalArgumentException("Matricola studente non valida.");
+        }
+        
+        List<Prestito> lista = prestitiPerStudente.get(matricola);
+        if (lista == null) {
+            lista = new ArrayList<>();
+            prestitiPerStudente.put(matricola, lista);
+        }
+        
+        if (contaPrestitiAttivi(studente) >= 3) { 
+            throw new IllegalArgumentException("Lo studente " + studente.getMatricola() + 
+                                               " ha raggiunto il limite massimo di prestiti attivi.");
+        }
+        
+        Prestito nuovoPrestito = new Prestito(studente, libro, dataPrestito, dataPrevistaRestituzione);
+        
+        libro.decrementaCopie();
+        
+        lista.add(nuovoPrestito);
+        
+        prestitiPerStudente.put(matricola, lista); 
+
+        return nuovoPrestito;
     }
 
     /**
@@ -77,7 +117,24 @@ public class ArchivioPrestiti {
      * @see UC-14, IF-14
      */
     public void registraRestituzione(Prestito prestito) {
-        // da implementare
+        if (prestito == null) {
+            throw new IllegalArgumentException("Il prestito non può essere nullo.");
+        }
+        
+        String matricola = prestito.getStudente().getMatricola();
+        List<Prestito> lista = prestitiPerStudente.get(matricola);
+        
+        if (lista == null || !lista.contains(prestito)) {
+            throw new IllegalStateException("Il prestito non risulta registrato.");
+        }
+
+        if (!prestito.isAttivo()) {
+            throw new IllegalStateException("Il prestito è già stato restituito.");
+        }
+
+        prestito.setRestituito(true);
+        prestito.getLibro().incrementaCopie();
+        lista.remove(prestito);
     }
 
     /**
@@ -89,7 +146,18 @@ public class ArchivioPrestiti {
      * @see UC-12, IF-12
      */
     public List<Prestito> getPrestitiPerData() {
-        return null; // da implementare
+        List<Prestito> attivi = new ArrayList<>();
+
+        for (List<Prestito> lista : prestitiPerStudente.values()) {
+            for (Prestito p : lista) {
+                if (p.isAttivo()) {
+                    attivi.add(p);
+                }
+            }
+        }
+
+        attivi.sort((p1, p2) -> p1.getDataRestituzione().compareTo(p2.getDataRestituzione()));
+        return attivi;
     }
 
     /**
@@ -100,7 +168,20 @@ public class ArchivioPrestiti {
      * @post Lo stato dell'archivio non viene modificato.
      */
     public int contaPrestitiAttivi(Studente studente) {
-        return 0; // da implementare
+        if (studente == null) {
+            throw new IllegalArgumentException("Lo studente non può essere null.");
+        }
+
+        List<Prestito> lista = prestitiPerStudente.get(studente.getMatricola());
+        if (lista == null) return 0;
+
+        int count = 0;
+        for (Prestito p : lista) {
+            if (p.isAttivo()) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -114,7 +195,36 @@ public class ArchivioPrestiti {
      * @see UC-13, IF-13
      */
     public List<Prestito> cercaPrestitiAttivi(String cognomeOMatricola, String titoloLibro) {
-        return null; // da implementare
+        if (cognomeOMatricola == null || cognomeOMatricola.trim().isEmpty()) {
+            throw new IllegalArgumentException("Il cognome o la matricola non possono essere null.");
+        }
+        if (titoloLibro == null || titoloLibro.trim().isEmpty()) {
+            throw new IllegalArgumentException("Il titolo del libro non può essere null.");
+        }
+
+        String targetStud = cognomeOMatricola.trim().toLowerCase();
+        String targetTitolo = titoloLibro.trim().toLowerCase();
+
+        List<Prestito> risultati = new ArrayList<>();
+
+        for (List<Prestito> lista : prestitiPerStudente.values()) {
+            for (Prestito p : lista) {
+                if (!p.isAttivo()) continue;
+
+                boolean matchStud =
+                        p.getStudente().getCognome().toLowerCase().contains(targetStud)
+                        || p.getStudente().getMatricola().equalsIgnoreCase(targetStud);
+
+                boolean matchLibro =
+                        p.getLibro().getTitolo().toLowerCase().contains(targetTitolo);
+
+                if (matchStud && matchLibro) {
+                    risultati.add(p);
+                }
+            }
+        }
+
+        return risultati;
     }
 
     /**
@@ -129,7 +239,14 @@ public class ArchivioPrestiti {
      * aggiunto o rimosso dall'archivio a seguito della chiamata.
      */
     public List<Prestito> getPrestitiPerStudente(Studente studente) {
-        return null;
+         if (studente == null) {
+            throw new IllegalArgumentException("Lo studente non può essere null.");
+        }
+
+        List<Prestito> lista = prestitiPerStudente.get(studente.getMatricola());
+        if (lista == null) return new ArrayList<>();
+
+        return new ArrayList<>(lista);
     }
 
     /**
@@ -144,6 +261,12 @@ public class ArchivioPrestiti {
      * esterne potrebbero influenzare l’archivio.
      */
     public List<Prestito> getTutti() {
-        return null;
+        List<Prestito> tutti = new ArrayList<>();
+
+        for (List<Prestito> lista : prestitiPerStudente.values()) {
+            tutti.addAll(lista);
+        }
+
+        return tutti;
     }
 }

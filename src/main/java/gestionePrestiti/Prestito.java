@@ -8,6 +8,9 @@ package gestionePrestiti;
 import gestioneLibri.Libro;
 import gestioneStudenti.Studente;
 import java.time.LocalDate;
+import java.io.Serializable;
+
+
 
 /**
  * @file Prestito.java
@@ -19,8 +22,9 @@ import java.time.LocalDate;
  * @author g16_member
  * @date Dicembre 7, 2025
  */
-public class Prestito {
-
+public class Prestito implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
     private Studente studente;
     private Libro libro;
     private LocalDate dataPrestito;
@@ -80,6 +84,9 @@ public class Prestito {
      * @param[in] studente Il nuovo studente da associare.
      */
     public void setStudente(Studente studente) {
+        if (studente == null) {
+            throw new IllegalArgumentException("Lo studente non può essere null.");
+        }
         this.studente = studente;
     }
 
@@ -88,6 +95,9 @@ public class Prestito {
      * @param[in] libro Il nuovo libro da associare.
      */
     public void setLibro(Libro libro) {
+        if (libro == null) {
+            throw new IllegalArgumentException("Il libro non può essere null.");
+        }
         this.libro = libro;
     }
 
@@ -96,6 +106,9 @@ public class Prestito {
      * @param[in] dataPrestito La nuova data di prestito.
      */
     public void setDataPrestito(LocalDate dataPrestito) {
+        if (dataPrestito == null) {
+            throw new IllegalArgumentException("La data del prestito non può essere null.");
+        }
         this.dataPrestito = dataPrestito;
     }
 
@@ -104,6 +117,12 @@ public class Prestito {
      * @param[in] dataRestituzione La nuova data di restituzione.
      */
     public void setDataRestituzione(LocalDate dataRestituzione) {
+        if (dataRestituzione == null) {
+            throw new IllegalArgumentException("La data di restituzione non può essere null.");
+        }
+        if (this.dataPrestito != null && dataRestituzione.isBefore(this.dataPrestito)) {
+            throw new IllegalArgumentException("La data di restituzione non può precedere la data del prestito.");
+        }
         this.dataRestituzione = dataRestituzione;
     }
 
@@ -124,7 +143,7 @@ public class Prestito {
      * @see IF-11, UC-11
      */
     public boolean isAttivo() {
-        return false; // da implementare
+        return !restituito;
     }
 
     /**
@@ -135,7 +154,10 @@ public class Prestito {
      * @post Lo stato dell'oggetto non viene modificato.
      */
     public boolean isScaduto(LocalDate oggi) {
-        return false; // da implementare
+        if (oggi == null) {
+            throw new IllegalArgumentException("La data di riferimento non può essere null.");
+        }
+        return !restituito && dataRestituzione.isBefore(oggi);
     }
 
     /**
@@ -148,6 +170,31 @@ public class Prestito {
      * @post Lo stato dell'oggetto non viene modificato.
      */
     public boolean isInScadenza(LocalDate oggi, int sogliaGiorni) {
-        return false; // da implementare
+        if (oggi == null) {
+            throw new IllegalArgumentException("La data di riferimento non può essere null.");
+        }
+        if (sogliaGiorni < 0) {
+            throw new IllegalArgumentException("La soglia di giorni non può essere negativa.");
+        }
+
+        if (restituito) {
+            return false;
+        }
+
+        LocalDate limite = oggi.plusDays(sogliaGiorni);
+        return (!dataRestituzione.isBefore(oggi)) && (!dataRestituzione.isAfter(limite));
+    }
+    
+    /**
+     * @brief Restituisce una rappresentazione testuale del prestito.
+     *
+     * @return String descrizione leggibile del prestito
+     */
+    @Override
+    public String toString() {
+        return "Prestito di \"" + libro.getTitolo() + "\" a " +
+               studente.getCognome() + " " + studente.getNome() +
+               " dal " + dataPrestito + " al " + dataRestituzione +
+               (restituito ? " [RESTITUITO]" : " [ATTIVO]");
     }
 }
