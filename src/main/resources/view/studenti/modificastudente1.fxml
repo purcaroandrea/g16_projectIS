@@ -12,7 +12,7 @@
       <TextField fx:id="ModificaMatricola" layoutX="330.0" layoutY="210.0" />
       <TextField fx:id="ModificaEmail" layoutX="330.0" layoutY="260.0" />
       <Button fx:id="ConfermaModificaStudente" layoutX="436.0" layoutY="318.0" mnemonicParsing="false" onAction="#salvaModificaStudente" text="Conferma" />
-      <Label fx:id="modificastudente" layoutX="128.0" layoutY="23.0" text="Modifica Studente" />
+      <Label fx:id="modificastudente" layoutX="140.0" layoutY="45.0" prefHeight="45.0" prefWidth="321.0" text="Modifica Studente" style="-fx-font-family: Georgia, 'Times New Roman', Serif; -fx-font-weight: bold; -fx-text-fill: #bb8c8e; -fx-font-size: 30px;" />
       <Label fx:id="nomeModifica" layoutX="100.0" layoutY="110.0" text="Nome:" />
       <Label fx:id="cognomeModifica" layoutX="100.0" layoutY="160.0" text="Cognome:" />
       <Label fx:id="matricolaModifica" layoutX="100.0" layoutY="210.0" text="Matricola:" />

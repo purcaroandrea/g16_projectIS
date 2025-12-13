@@ -31,7 +31,6 @@
     -fx-background-color: #0671b9; 
 }
 
-
 .button:hover {
     -fx-opacity: 0.9; 
     -fx-scale-x: 1.05; 

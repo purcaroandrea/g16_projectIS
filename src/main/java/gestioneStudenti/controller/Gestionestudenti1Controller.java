@@ -51,13 +51,14 @@ public class Gestionestudenti1Controller implements Initializable {
 
     
     private void caricaInterfaccia(String percorsoFXML) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(percorsoFXML));
-            Stage stage = (Stage) NuovoStudente.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace(); 
-        }
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource(percorsoFXML));
+        Stage stage = (Stage) NuovoStudente.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+    }
+
 }
