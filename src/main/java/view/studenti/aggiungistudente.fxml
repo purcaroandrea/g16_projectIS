@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="568.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20studenti/aggiungistudente1.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.studenti.AggiungistudenteController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="376.0" prefWidth="568.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20studenti/aggiungistudente1.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestioneStudenti.controller.AggiungistudenteController">
    <children>
       <Button fx:id="bottoneConfermaStudente" layoutX="454.0" layoutY="322.0" mnemonicParsing="false" onAction="#confermastudenti" prefHeight="37.0" prefWidth="99.0" style="-fx-padding: 10 px 25 px;" text="Conferma" />
       <Label fx:id="labelaggiuntastudente" layoutX="140.0" layoutY="28.0" prefHeight="45.0" prefWidth="321.0" style="-fx-font-family: Georgia; -fx-font-family: Times New Roman; -fx-font-family: Serif; -fx-font-weight: bold; -fx-text-fill: #bb8c8e; -fx-font-size: 40px;" text="Aggiungi studente">
@@ -15,10 +15,10 @@
             <Font name="Calibri" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="testoCognome" layoutX="190.0" layoutY="166.0" onDragDetected="#salvacognome" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: #bb8c8e; -fx-border-color: #0671b9;" />
-      <TextField fx:id="testoNome" layoutX="190.0" layoutY="115.0" onDragDetected="#salvanome" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: #bb8c8e; -fx-border-color: #0671b9;" />
-      <TextField fx:id="testoMatricola" layoutX="190.0" layoutY="224.0" onDragDetected="#salvamatricola" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: #bb8c8e; -fx-border-color: #0671b9;" />
-      <TextField fx:id="testoEmail" layoutX="190.0" layoutY="277.0" onDragDetected="#salvaemail" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: #bb8c8e; -fx-border-color: #0671b9;" />
+      <TextField fx:id="testoCognome" layoutX="190.0" layoutY="166.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: #bb8c8e; -fx-border-color: #0671b9;" />
+      <TextField fx:id="testoNome" layoutX="190.0" layoutY="115.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: #bb8c8e; -fx-border-color: #0671b9;" />
+      <TextField fx:id="testoMatricola" layoutX="190.0" layoutY="224.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: #bb8c8e; -fx-border-color: #0671b9;" />
+      <TextField fx:id="testoEmail" layoutX="190.0" layoutY="277.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: #bb8c8e; -fx-border-color: #0671b9;" />
       <AnchorPane layoutX="-7.0" layoutY="308.0" prefHeight="64.0" prefWidth="147.0" style="-fx-background-image: url(&quot;https://img.freepik.com/vettori-premium/diversi-gruppi-di-studenti-in-piedi-insieme-isolati-su-uno-sfondo-bianco_1339080-1909.jpg?semt=ais_hybrid&amp;w=740&amp;q=80&quot;); -fx-background-size: 150px; -fx-background-repeat: no-repeat;" />
       <Label fx:id="labelnome" layoutX="68.0" layoutY="107.0" prefHeight="45.0" prefWidth="89.0" style="-fx-font-family: Georgia; -fx-font-family: Times New Roman; -fx-font-family: Serif; -fx-font-weight: bold; -fx-text-fill: #0671b9; -fx-font-size: 20px;" text="Nome:">
          <font>
@@ -40,6 +40,6 @@
             <Font name="Calibri" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="homeAggiungiStudente" layoutX="31.0" layoutY="28.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Button fx:id="homeAggiungiStudente" layoutX="31.0" layoutY="28.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

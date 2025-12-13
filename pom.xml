@@ -26,7 +26,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>it.unisa.diem.is.G16_BibliotecaUniversitaria.App</mainClass>
+                    <mainClass>biblioteca.Main</mainClass>
                 </configuration>
                 <executions>
                     <execution>

@@ -1,46 +1,100 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestioneStudenti.controller;
 
+import gestioneStudenti.Studente;
+import gestioneStudenti.ArchivioStudenti;
+import gestionePrestiti.ArchivioPrestiti;
+import gestionePrestiti.Prestito;
+
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+import javafx.beans.property.SimpleStringProperty;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
-/**
- * FXML Controller class
- *
- * @author laura
- */
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+import persistence.GestoreStatoBiblioteca;
+import persistence.StatoBiblioteca;
+
 public class Registrostudenti1Controller implements Initializable {
 
-    @FXML
-    private TableColumn<?, ?> colonnaNome;
-    @FXML
-    private TableColumn<?, ?> colonnaCognome;
-    @FXML
-    private TableColumn<?, ?> colonnaMatricola;
-    @FXML
-    private TableColumn<?, ?> colonnaEmail;
-    @FXML
-    private TableColumn<?, ?> colonnaLibriPrestito;
-    @FXML
-    private Label registrostudenti;
-    @FXML
-    private Button homeRegistroStudenti;
+    @FXML private TableView<Studente> tabellaStudenti;
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML private TableColumn<Studente, String> colonnaNome;
+    @FXML private TableColumn<Studente, String> colonnaCognome;
+    @FXML private TableColumn<Studente, String> colonnaMatricola;
+    @FXML private TableColumn<Studente, String> colonnaEmail;
+    @FXML private TableColumn<Studente, String> colonnaLibriPrestito;
+
+    @FXML private Label registrostudenti;
+    @FXML private Button homeRegistroStudenti;
+
+    private ArchivioStudenti archivioStudenti;
+    private ArchivioPrestiti archivioPrestiti;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
+        StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
+        archivioStudenti = stato.getArchivioStudenti();
+        archivioPrestiti = stato.getArchivioPrestiti();
+
+        // ✅ Colonne dirette
+        colonnaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colonnaCognome.setCellValueFactory(new PropertyValueFactory<>("cognome"));
+        colonnaMatricola.setCellValueFactory(new PropertyValueFactory<>("matricola"));
+        colonnaEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        // ✅ Colonna dinamica: libri presi in prestito
+        colonnaLibriPrestito.setCellValueFactory(cellData -> {
+            Studente s = cellData.getValue();
+
+            List<Prestito> prestiti = archivioPrestiti.getPrestitiPerStudente(s);
+
+            String titoli = prestiti.isEmpty()
+                    ? "Nessuno"
+                    : prestiti.stream()
+                              .map(p -> p.getLibro().getTitolo())
+                              .collect(Collectors.joining(", "));
+
+            return new SimpleStringProperty(titoli);
+        });
+
+        // ✅ Carico i dati nella tabella
+        ObservableList<Studente> studenti =
+                FXCollections.observableArrayList(archivioStudenti.getTutti());
+
+        tabellaStudenti.setItems(studenti);
+    }
+
+    @FXML
+    private void tornaAllaHome(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/view/bibliotecainterfaccia1.fxml")
+            );
+            Stage stage = (Stage) homeRegistroStudenti.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

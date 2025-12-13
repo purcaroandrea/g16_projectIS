@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20studenti/registrostudenti.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.studenti.Registrostudenti1Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20studenti/registrostudenti.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestioneStudenti.controller.Registrostudenti1Controller">
    <children>
       <TableView layoutX="10.0" layoutY="120.0" prefHeight="265.0" prefWidth="577.0">
         <columns>
@@ -18,6 +18,6 @@
         </columns>
       </TableView>
       <Label fx:id="registrostudenti" layoutX="140.0" layoutY="45.0" text="Registro Studenti" />
-      <Button fx:id="homeRegistroStudenti" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Button fx:id="homeRegistroStudenti" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

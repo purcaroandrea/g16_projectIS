@@ -1,89 +1,74 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestioneStudenti.controller;
 
 import gestioneStudenti.Studente;
 import gestioneStudenti.ArchivioStudenti;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author laura
- */
+import javafx.stage.Stage;
+
+import persistence.GestoreStatoBiblioteca;
+import persistence.StatoBiblioteca;
+
 public class AggiungistudenteController implements Initializable {
 
-    @FXML
-    private Button bottoneConfermaStudente;
-    @FXML
-    private Label labelaggiuntastudente;
-    @FXML
-    private Label labelnome;
-    @FXML
-    private Label labelcognome;
-    @FXML
-    private Label labelmatricola;
-    @FXML
-    private Label labelemail;
-    @FXML
-    private Button homeAggiungiStudente;
-    
-    // campi del form
-    @FXML
-    private TextField testoNome;
-    @FXML
-    private TextField testoCognome;
-    @FXML
-    private TextField testoMatricola;
-    @FXML
-    private TextField testoEmail;
-    
+    @FXML private Button bottoneConfermaStudente;
+    @FXML private Button homeAggiungiStudente;
+
+    @FXML private TextField testoNome;
+    @FXML private TextField testoCognome;
+    @FXML private TextField testoMatricola;
+    @FXML private TextField testoEmail;
+
     @FXML private Label messageLabel;
 
     private ArchivioStudenti archivio;
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (messageLabel != null) messageLabel.setText("");
-        if (testoNome != null) testoNome.setPromptText("Nome");
-        if (testoCognome != null) testoCognome.setPromptText("Cognome");
-        if (testoMatricola != null) testoMatricola.setPromptText("Matricola");
-        if (testoEmail != null) testoEmail.setPromptText("Email");
-    }    
+        StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
+        this.archivio = stato.getArchivioStudenti();
 
-    public void setArchivio(ArchivioStudenti archivio) {
-        this.archivio = archivio;
+        messageLabel.setText("");
+
+        // ✅ Binding: disattiva il bottone se almeno un campo è vuoto
+        bottoneConfermaStudente.disableProperty().bind(
+            testoNome.textProperty().isEmpty()
+            .or(testoCognome.textProperty().isEmpty())
+            .or(testoMatricola.textProperty().isEmpty())
+            .or(testoEmail.textProperty().isEmpty())
+        );
     }
-    
+
     @FXML
     private void confermastudenti(ActionEvent event) {
         messageLabel.setText("");
+
+        String nome = testoNome.getText().trim();
+        String cognome = testoCognome.getText().trim();
+        String matricola = testoMatricola.getText().trim();
+        String email = testoEmail.getText().trim();
+
         try {
-            String nome = testoNome.getText();
-            String cognome = testoCognome.getText();
-            String matricola = testoMatricola.getText();
-            String email = testoEmail.getText();
-
             Studente s = new Studente(nome, cognome, matricola, email);
-
-            if (archivio != null) {
-                archivio.aggiungiStudente(s);
-            }
+            archivio.aggiungiStudente(s);
+            GestoreStatoBiblioteca.getInstance().salva();
 
             messageLabel.setStyle("-fx-text-fill: green;");
-            messageLabel.setText("Studente creato: " + s.toString());
+            messageLabel.setText("Studente aggiunto: " + s.getNome() + " " + s.getCognome());
 
             testoNome.clear();
             testoCognome.clear();
@@ -92,12 +77,23 @@ public class AggiungistudenteController implements Initializable {
 
         } catch (IllegalArgumentException ex) {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Errore: " + ex.getMessage());
-        } catch (Exception ex) {
+            messageLabel.setText(ex.getMessage());
+        } catch (IOException ioEx) {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Errore imprevisto.");
-            ex.printStackTrace();
+            messageLabel.setText("Errore nel salvataggio dei dati.");
+            ioEx.printStackTrace();
         }
     }
+
+    @FXML
+    private void tornaAllaHome(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/bibliotecainterfaccia1.fxml"));
+            Stage stage = (Stage) homeAggiungiStudente.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }
     }
-    
+}
