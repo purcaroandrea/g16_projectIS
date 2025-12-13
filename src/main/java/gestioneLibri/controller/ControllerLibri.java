@@ -15,7 +15,7 @@ import javafx.scene.control.Button;
 /**
  * FXML Controller class
  *
- * @author danaiannaccone
+ * @author g16_members
  */
 public class ControllerLibri implements Initializable {
 

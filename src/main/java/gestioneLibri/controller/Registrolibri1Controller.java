@@ -17,7 +17,7 @@ import javafx.scene.control.TableView;
 /**
  * FXML Controller class
  *
- * @author laura
+ * @author g16_members
  */
 public class Registrolibri1Controller implements Initializable {
 
@@ -41,9 +41,43 @@ public class Registrolibri1Controller implements Initializable {
     /**
      * Initializes the controller class.
      */
+    public void setArchivio(ArchivioLibri archivio) {
+        this.archivioCorrente = archivio;
+        caricaDatiArchivio();
+    }
+    
+    private void caricaDatiArchivio() {
+        if (archivioCorrente == null) {
+            System.err.println("Errore: ArchivioLibri non è stato iniettato correttamente.");
+            return;
+        }
+        colonnaTitolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
+        colonnaAutore.setCellValueFactory(new PropertyValueFactory<>("autore"));
+        colonnaISBN.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        colonnaAnnoPub.setCellValueFactory(new PropertyValueFactory<>("annoPubblicazione"));
+        colonnaNumCopie.setCellValueFactory(new PropertyValueFactory<>("copieDisponibili"));
+        
+        ObservableList<Libro> data = FXCollections.observableArrayList(
+                archivioCorrente.getLibriOrdinatiPerTitolo() // Usiamo la lista ordinata per un output pulito
+        );
+        
+        tviem.setItems(data);
+    }
+    
+    @FXML
+    private void tornaAllaHome(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/bibliotecainterfaccia1.fxml"));
+            Stage stage = (Stage) homeRegistroLibri.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }
+    }
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
 }
