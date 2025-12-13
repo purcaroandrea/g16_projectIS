@@ -6,20 +6,27 @@
 package gestionePrestiti.controller;
 
 import java.net.URL;
+import java.io.IOException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.event.ActionEvent;
+import gestionePrestiti.Prestito;
+
 
 /**
  * FXML Controller class
  *
- * @author laura
+ * @author g16_member
  */
 public class Registroprestiti1Controller implements Initializable {
 
+    @FXML
+    private TableView<Prestito> tabellaPrestiti;
     @FXML
     private TableColumn<?, ?> colonnaISBN;
     @FXML
@@ -36,7 +43,20 @@ public class Registroprestiti1Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        colonnaISBN.setCellValueFactory(
+            p -> new SimpleStringProperty(p.getValue().getLibro().getIsbn())
+        );
+        colonnaMatricola.setCellValueFactory(
+            p -> new SimpleStringProperty(p.getValue().getStudente().getMatricola())
+        );
+        colonnaDataPrestito.setCellValueFactory(
+            p -> new SimpleObjectProperty<>(p.getValue().getDataPrestito())
+        );
     }    
+    
+    @FXML
+   private void tornaAllaHome(ActionEvent event) throws IOException {
+        Main.setRoot("bibliotecainterfaccia1");
+    }
     
 }

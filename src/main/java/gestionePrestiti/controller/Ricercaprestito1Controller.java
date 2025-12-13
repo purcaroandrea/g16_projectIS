@@ -8,21 +8,28 @@ package gestionePrestiti.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import java.io.IOException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.event.ActionEvent;
 
 /**
  * FXML Controller class
  *
- * @author laura
+ * @author g16_member
  */
 public class Ricercaprestito1Controller implements Initializable {
 
     @FXML
     private Label ricercaprestito;
     @FXML
+    private TextField barraRicercaPrestitoISBN;
+    @FXML
     private Button bottoneRicercaPrestito;
+    @FXML
+    private TextField barraRicercaPrestitoMatCogn;
     @FXML
     private Label ricercaperISBN;
     @FXML
@@ -35,7 +42,21 @@ public class Ricercaprestito1Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        barraRicercaPrestitoISBN.clear();
+        barraRicercaPrestitoMatCogn.clear();
     }    
+    
+    @FXML
+    private void eseguiRicerca(ActionEvent event) {
+       System.out.println(
+            barraRicercaPrestitoISBN.getText() + " " +
+            barraRicercaPrestitoMatCogn.getText()
+        );
+}
+    
+    @FXML
+    private void tornaAllaHome(ActionEvent event) throws IOException {
+        Main.setRoot("bibliotecainterfaccia1");
+    }
     
 }

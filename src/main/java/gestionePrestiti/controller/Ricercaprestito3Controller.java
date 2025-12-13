@@ -8,14 +8,17 @@ package gestionePrestiti.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import java.io.IOException;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.event.ActionEvent;
+
 
 /**
  * FXML Controller class
  *
- * @author laura
+ * @author g16_member
  */
 public class Ricercaprestito3Controller implements Initializable {
 
@@ -33,7 +36,17 @@ public class Ricercaprestito3Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        PrestitoSelezionato.setText("Nessun prestito selezionato");
     }    
+    
+    @FXML
+    private void chiudiPrestito(ActionEvent event) {
+       System.out.println("Chiusura del prestito selezionato");
+    }
+    
+    @FXML
+     private void tornaAllaHome(ActionEvent event) throws IOException {
+       Main.setRoot("bibliotecainterfaccia1");
+    }
     
 }

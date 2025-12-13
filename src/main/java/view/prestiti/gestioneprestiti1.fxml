@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20prestito/gestioneprestiti.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.prestiti.Gestioneprestiti1Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20prestito/gestioneprestiti.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionePrestiti.controller.Gestioneprestiti1Controller">
    <children>
       <Label fx:id="labelgestioneprestito" layoutX="109.0" layoutY="93.0" text="Gestione Prestiti " />
       <HBox layoutX="14.0" layoutY="191.0" prefHeight="225.0" prefWidth="608.0" spacing="50.0">
@@ -15,6 +15,6 @@
             <Button fx:id="RicercaPrestito" mnemonicParsing="false" onAction="#ricercaprestito" text="Ricerca Prestito" />
          </children>
       </HBox>
-      <Button fx:id="homeGestionePrestiti" layoutX="23.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Button fx:id="homeGestionePrestiti" layoutX="23.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" onAction="#tornaAllaHome" />
    </children>
 </Pane>

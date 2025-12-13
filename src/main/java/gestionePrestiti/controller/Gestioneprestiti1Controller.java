@@ -12,11 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import java.io.IOException;
 
 /**
  * FXML Controller class
  *
- * @author laura
+ * @author g16_member
  */
 public class Gestioneprestiti1Controller implements Initializable {
 
@@ -35,19 +36,27 @@ public class Gestioneprestiti1Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        labelgestioneprestito.setText("Gestione Prestiti");
     }    
 
     @FXML
-    private void aggiungenuovoprestito(ActionEvent event) {
+    private void aggiungenuovoprestito(ActionEvent event) throws IOException {
+        Main.setRoot("aggiungiprestito1");
     }
 
     @FXML
-    private void visualizzaregistroprestiti(ActionEvent event) {
+    private void visualizzaregistroprestiti(ActionEvent event) throws IOException {
+        Main.setRoot("registroprestiti1");
     }
 
     @FXML
-    private void ricercaprestito(ActionEvent event) {
+    private void ricercaprestito(ActionEvent event) throws IOException {
+        Main.setRoot("ricercaprestito1");
     }
     
+    @FXML
+    private void tornaAllaHome(ActionEvent event) throws IOException {
+        Main.setRoot("bibliotecainterfaccia1");
+    }
 }
+
