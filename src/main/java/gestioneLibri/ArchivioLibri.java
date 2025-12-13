@@ -5,6 +5,7 @@
  */
 package gestioneLibri;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.NoSuchElementException;
  *
  * @see Libro
  */
-public class ArchivioLibri {
+public class ArchivioLibri implements Serializable{
 
     /**
      * @brief La lista di oggetti Libro mantenuta nell'archivio. Questa lista

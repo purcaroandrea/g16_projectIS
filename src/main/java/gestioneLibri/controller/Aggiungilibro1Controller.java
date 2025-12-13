@@ -64,29 +64,26 @@ public class Aggiungilibro1Controller implements Initializable {
 
     @FXML
     private void confermaLibro(ActionEvent event) {
+
         String titolo = testoTitolo.getText().trim();
         String autore = testoAutore.getText().trim();
         String isbn = testoISBN.getText().trim();
-        String annoStr = testoAnnoPub.getText().trim();
-        String copieStr = testoNumCopie.getText().trim();
 
         try {
-            if (archivio.cercaPerIsbn(isbn) != null) {
-                mostraErrore("ISBN già presente in archivio.");
-                return;
-            }
-
-            int anno = Integer.parseInt(annoStr);
-            int copie = Integer.parseInt(copieStr);
-
-            if (copie <= 0) {
-                mostraErrore("Il numero di copie deve essere maggiore di 0.");
-                return;
-            }
+            int anno = Integer.parseInt(testoAnnoPub.getText().trim());
+            int copie = Integer.parseInt(testoNumCopie.getText().trim());
 
             Libro nuovo = new Libro(titolo, autore, anno, isbn, copie);
+
+            
             archivio.aggiungiLibro(nuovo);
-            GestoreStatoBiblioteca.getInstance().salva();
+
+            try {
+                GestoreStatoBiblioteca.getInstance().salva();
+            } catch (IOException io) {
+                mostraErrore("Libro aggiunto, ma errore nel salvataggio su file.");
+                return;
+            }
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Libro aggiunto");
@@ -102,8 +99,8 @@ public class Aggiungilibro1Controller implements Initializable {
 
         } catch (NumberFormatException e) {
             mostraErrore("Anno e copie devono essere numeri interi.");
-        } catch (Exception ex) {
-            mostraErrore("Errore: " + ex.getMessage());
+        } catch (IllegalArgumentException e) {
+            mostraErrore(e.getMessage());
         }
     }
 

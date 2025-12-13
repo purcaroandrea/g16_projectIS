@@ -7,6 +7,7 @@ package gestionePrestiti;
 
 import gestioneLibri.Libro;
 import gestioneStudenti.Studente;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ import java.util.Map;
  *
  * @see Prestito
  */
-public class ArchivioPrestiti {
+public class ArchivioPrestiti implements Serializable{
 
     /**
      * @brief Mappa che associa a ciascuno studente la lista dei suoi prestiti

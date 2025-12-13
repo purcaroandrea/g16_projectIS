@@ -5,6 +5,7 @@
  */
 package gestioneStudenti;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
  *
  * @see Studente
  */
-public class ArchivioStudenti {
+public class ArchivioStudenti implements Serializable {
 
     // @brief Lista degli studenti presenti nell’archivio.
     private List<Studente> studenti;

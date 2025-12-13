@@ -5,6 +5,8 @@
  */
 package gestioneLibri;
 
+import java.io.Serializable;
+
 /**
  * @file Libro.java
  * @brief Rappresenta un singolo oggetto Libro all'interno della biblioteca.
@@ -24,7 +26,7 @@ package gestioneLibri;
  * @brief L'anno di pubblicazione del libro (valore numerico).
  * @brief Il numero di copie attualmente disponibili per il prestito.
  */
-public class Libro implements Comparable<Libro> {
+public class Libro implements Comparable<Libro>, Serializable {
 
     private String titolo;
     private String autore;
