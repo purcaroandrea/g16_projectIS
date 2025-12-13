@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20libri/modificalibro.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestioneLibri.controller.Modificalibro1Controller">
@@ -13,12 +13,12 @@
       <Label fx:id="ISBNmodifica" layoutX="100.0" layoutY="200.0" text="ISBN:" />
       <Label fx:id="annodipubmodifica" layoutX="100.0" layoutY="250.0" text="Anno di pubblicazione:" />
       <Label fx:id="numcopiemodifica" layoutX="100.0" layoutY="300.0" text="Numero di copie:" />
-      <TextField fx:id="TitoloModifica" layoutX="350.0" layoutY="100.0" onDragDetected="#salvatitolo" prefHeight="29.0" prefWidth="178.0" />
-      <TextField fx:id="AutoreModifica" layoutX="350.0" layoutY="150.0" onDragDetected="#salvaautore" prefHeight="29.0" prefWidth="178.0" />
-      <TextField fx:id="ISBNModifica" layoutX="350.0" layoutY="200.0" onDragDetected="#salvaISBN" prefHeight="29.0" prefWidth="178.0" />
-      <TextField fx:id="AnnoPubModifica" layoutX="350.0" layoutY="250.0" onDragDetected="#salvaannopub" prefHeight="29.0" prefWidth="178.0" />
-      <TextField fx:id="NumCopieModifica" layoutX="350.0" layoutY="300.0" onDragDetected="#salvanumcopiemodificato" prefHeight="29.0" prefWidth="178.0" />
-      <Button fx:id="confermalibrimodifica" layoutX="450.0" layoutY="346.0" mnemonicParsing="false" text="Conferma" />
-      <Button fx:id="homeModificaLibro" layoutX="32.0" layoutY="35.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <TextField fx:id="TitoloModifica" layoutX="350.0" layoutY="100.0" prefHeight="29.0" prefWidth="178.0" />
+      <TextField fx:id="AutoreModifica" layoutX="350.0" layoutY="150.0" prefHeight="29.0" prefWidth="178.0" />
+      <TextField fx:id="ISBNModifica" layoutX="350.0" layoutY="200.0" prefHeight="29.0" prefWidth="178.0" />
+      <TextField fx:id="AnnoPubModifica" layoutX="350.0" layoutY="250.0" prefHeight="29.0" prefWidth="178.0" />
+      <TextField fx:id="NumCopieModifica" layoutX="350.0" layoutY="300.0" prefHeight="29.0" prefWidth="178.0" />
+      <Button fx:id="confermalibrimodifica" layoutX="450.0" layoutY="346.0" mnemonicParsing="false" onAction="#salvaModificaLibro" text="Conferma" />
+      <Button fx:id="homeModificaLibro" layoutX="32.0" layoutY="35.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

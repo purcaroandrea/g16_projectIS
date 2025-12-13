@@ -1,52 +1,55 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package biblioteca.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author laura
- */
 public class Bibliotecainterfaccia1Controller implements Initializable {
 
-    @FXML
-    private Label labelbiblioteca;
-    @FXML
-    private Button Libri;
-    @FXML
-    private Button Studenti;
-    @FXML
-    private Button Prestiti;
+    @FXML private Label labelbiblioteca;
+    @FXML private Button Libri;
+    @FXML private Button Studenti;
+    @FXML private Button Prestiti;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
-    @FXML
-    private void visualizzalibri(ActionEvent event) {
+        labelbiblioteca.setText("Biblioteca Universitaria");
     }
 
     @FXML
-    private void visualizzastudenti(ActionEvent event) {
+    private void gestioneLibri(ActionEvent event) {
+        caricaInterfaccia("/view/libri/gestionelibri1.fxml");
     }
 
     @FXML
-    private void visualizzaprestiti(ActionEvent event) {
+    private void gestioneStudenti(ActionEvent event) {
+        caricaInterfaccia("/view/studenti/gestionestudenti1.fxml");
     }
-    
+
+    @FXML
+    private void gestionePrestiti(ActionEvent event) {
+        caricaInterfaccia("/view/prestiti/gestioneprestiti1.fxml");
+    }
+
+    private void caricaInterfaccia(String percorsoFXML) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(percorsoFXML));
+            Stage stage = (Stage) Libri.getScene().getWindow(); // qualsiasi bottone va bene
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Nessun alert, solo log
+        }
+    }
 }

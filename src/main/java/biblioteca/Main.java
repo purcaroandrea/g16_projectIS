@@ -17,22 +17,25 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("/view/bibliotecainterfaccia1"), 640, 480);
+        stage.setTitle("Biblioteca Universitaria");
         stage.setScene(scene);
         stage.show();
+
+        // Debug: stampa il percorso del file FXML
+        System.out.println(Main.class.getResource("/view/bibliotecainterfaccia1.fxml"));
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    public static void setRoot(String fxmlPath) throws IOException {
+        scene.setRoot(loadFXML("/view/" + fxmlPath));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml + ".fxml"));
+    private static Parent loadFXML(String fxmlPath) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlPath + ".fxml"));
         return fxmlLoader.load();
     }
 
     public static void main(String[] args) {
         launch();
     }
-
 }

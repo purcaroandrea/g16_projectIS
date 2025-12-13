@@ -1,107 +1,118 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestioneLibri.controller;
 
 import gestioneLibri.Libro;
 import gestioneLibri.ArchivioLibri;
+import persistence.GestoreStatoBiblioteca;
+import persistence.StatoBiblioteca;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
-import persistence.GestoreStatoBiblioteca;
-import persistence.StatoBiblioteca;
-
-/**
- * FXML Controller class
- *
- * @author g16_member
- */
 public class Ricercalibro3Controller implements Initializable {
 
-    @FXML
-    private Button bottoneModificaLibro;
-    @FXML
-    private Button bottoneRimuoviLibro;
-    @FXML
-    private Label ricercalibro2;
-    @FXML
-    private Label LibroSelezionato;
-    @FXML
-    private Button homeRicercaLibro2;
-    
+    @FXML private Label ricercalibro2;
+    @FXML private ListView<Libro> listaLibri;
+    @FXML private Button bottoneModificaLibro;
+    @FXML private Button bottoneRimuoviLibro;
+    @FXML private Button homeRicercaLibro2;
+
     private ArchivioLibri archivio;
     private Libro libroCorrente;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
-        this.archivio = stato.getArchivioLibri();
-        
+        archivio = stato.getArchivioLibri();
+
         ricercalibro2.setText("Ricerca Libro");
-        LibroSelezionato.setText("Nessun libro selezionato");
-        
-        bottoneModificaLibro.setOnAction(this::modificaLibro);
-        bottoneRimuoviLibro.setOnAction(this::rimuoviLibro);
-        homeRicercaLibro2.setOnAction(this::tornaAllaHome);
-    }    
-    
+        bottoneModificaLibro.setDisable(true);
+        bottoneRimuoviLibro.setDisable(true);
+
+        listaLibri.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            libroCorrente = newVal;
+            bottoneModificaLibro.setDisable(newVal == null);
+            bottoneRimuoviLibro.setDisable(newVal == null);
+        });
+    }
+
+    public void setLibri(List<Libro> risultati) {
+        ObservableList<Libro> dati = FXCollections.observableArrayList(risultati);
+        listaLibri.setItems(dati);
+    }
+
     @FXML
     private void modificaLibro(ActionEvent event) {
-        String libro = LibroSelezionato.getText();
-        if (libro == null) {
+        if (libroCorrente == null) {
             ricercalibro2.setStyle("-fx-text-fill: red;");
             ricercalibro2.setText("Seleziona un libro da modificare!");
             return;
         }
-        
-        ricercalibro2.setStyle("-fx-text-fill: green;");
-        ricercalibro2.setText("Modifica libro: " + libroCorrente.getTitolo());
+
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/view/libri/modificalibro1.fxml")
+            );
+            Parent root = loader.load();
+
+            Modificalibro1Controller controller = loader.getController();
+            controller.setLibro(libroCorrente);
+
+            Stage stage = (Stage) bottoneModificaLibro.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            ricercalibro2.setStyle("-fx-text-fill: red;");
+            ricercalibro2.setText("Errore nel caricamento della schermata di modifica.");
+            e.printStackTrace();
+        }
     }
-    
+
     @FXML
-    private void rimuoviLibro() {
-        String libro = LibroSelezionato.getText();
-        if (libro == null) {
+    private void rimuoviLibro(ActionEvent event) {
+        if (libroCorrente == null) {
             ricercalibro2.setStyle("-fx-text-fill: red;");
             ricercalibro2.setText("Seleziona un libro da rimuovere!");
             return;
         }
+
         try {
             archivio.rimuoviLibro(libroCorrente);
             GestoreStatoBiblioteca.getInstance().salva();
 
-            ricercalibro2.setStyle("-fx-text-fill: green;");
-            ricercalibro2.setText("Libro rimosso: " + libroCorrente.getTitolo());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Libro rimosso");
+            alert.setHeaderText(null);
+            alert.setContentText("Il libro è stato rimosso con successo.");
+            alert.showAndWait();
 
-            LibroSelezionato.setText("Nessun libro selezionato");
+            listaLibri.getItems().remove(libroCorrente);
             libroCorrente = null;
+            bottoneModificaLibro.setDisable(true);
+            bottoneRimuoviLibro.setDisable(true);
 
-        } catch (IOException ioEx) {
+        } catch (Exception ex) {
             ricercalibro2.setStyle("-fx-text-fill: red;");
-            ricercalibro2.setText("Errore nel salvataggio dei dati.");
-            ioEx.printStackTrace();
+            ricercalibro2.setText("Errore: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
-    
+
     @FXML
     private void tornaAllaHome(ActionEvent event) {
         try {
@@ -113,5 +124,4 @@ public class Ricercalibro3Controller implements Initializable {
             e.printStackTrace();
         }
     }
-    
 }

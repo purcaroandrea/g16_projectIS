@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestioneLibri.controller;
 
 import gestioneLibri.Libro;
@@ -10,6 +5,8 @@ import gestioneLibri.ArchivioLibri;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -28,71 +25,80 @@ import javafx.stage.Stage;
 import persistence.GestoreStatoBiblioteca;
 import persistence.StatoBiblioteca;
 
-/**
- * FXML Controller class
- *
- * @author g16_member
- */
 public class Ricercalibro1Controller implements Initializable {
 
-    @FXML
-    private Label ricercalibro;
-    @FXML
-    private Button bottoneRicercaLibro;
-    @FXML
-    private Button homeRicercaLibro;
-    @FXML
-    private TextField barraRicercaLibro;
-    
+    @FXML private Label ricercalibro;
+    @FXML private Button bottoneRicercaLibro;
+    @FXML private Button homeRicercaLibro;
+    @FXML private TextField barraRicercaLibro;
+
     private ArchivioLibri archivio;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
         this.archivio = stato.getArchivioLibri();
-        
+
         ricercalibro.setText("Ricerca Libro");
-        
-        if (barraRicercaLibro != null) barraRicercaLibro.setPromptText("Inserire titolo, autore o ISBN");
-        
+        barraRicercaLibro.setPromptText("Inserire titolo, autore o ISBN");
+
         bottoneRicercaLibro.disableProperty().bind(
             barraRicercaLibro.textProperty().isEmpty()
         );
     }
 
     @FXML
-    private void ricercaLibro(ActionEvent event) {
-        try{
-            ricercalibro.setText("");
-            
-            String Libro = barraRicercaLibro.getText().trim();
-            
-            if (Libro.isEmpty()) {
+    private void confermaRicerca(ActionEvent event) {
+        ricercalibro.setStyle("-fx-text-fill: black;");
+        String input = barraRicercaLibro.getText().trim();
+
+        if (input.isEmpty()) {
+            ricercalibro.setStyle("-fx-text-fill: red;");
+            ricercalibro.setText("Inserire titolo, autore o ISBN!");
+            return;
+        }
+
+        try {
+            List<Libro> risultati = new ArrayList<>();
+
+            // Ricerca per ISBN
+            Libro trovato = archivio.cercaPerIsbn(input);
+            if (trovato != null) {
+                risultati.add(trovato);
+            }
+
+            // Se non trovato per ISBN → cerca per titolo
+            if (risultati.isEmpty()) {
+                risultati.addAll(archivio.cercaPerTitolo(input));
+            }
+
+            // Se ancora vuoto → cerca per autore
+            if (risultati.isEmpty()) {
+                risultati.addAll(archivio.cercaPerAutore(input));
+            }
+
+            if (risultati.isEmpty()) {
                 ricercalibro.setStyle("-fx-text-fill: red;");
-                ricercalibro.setText("Inserire titolo o codice!");
+                ricercalibro.setText("Nessun libro trovato con '" + input + "'");
                 return;
             }
 
-            Libro trovato = archivio.cercaPerTitoloOIsbn(Libro);
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/view/libri/ricercalibro3.fxml")
+            );
+            Parent root = loader.load();
 
-            if (trovato != null) {
-                ricercalibro.setStyle("-fx-text-fill: green;");
-                ricercalibro.setText("Libro trovato: " + trovato.getTitolo() + " (" + trovato.getCodice() + ")");
-            } else {
-                ricercalibro.setStyle("-fx-text-fill: red;");
-                ricercalibro.setText("Nessun libro trovato con '" + Libro + "'");
-            }
+            Ricercalibro3Controller controller = loader.getController();
+            controller.setLibri(risultati);
 
-        } catch (IllegalArgumentException ex) {
+            Stage stage = (Stage) bottoneRicercaLibro.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception ex) {
             ricercalibro.setStyle("-fx-text-fill: red;");
             ricercalibro.setText("Errore: " + ex.getMessage());
-        } catch (Exception e) {
-            ricercalibro.setStyle("-fx-text-fill: red;");
-            ricercalibro.setText("Errore durante la ricerca.");
-            e.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
@@ -107,5 +113,4 @@ public class Ricercalibro1Controller implements Initializable {
             e.printStackTrace();
         }
     }
-    
 }

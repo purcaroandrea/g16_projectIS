@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestioneStudenti.controller;
 
 import gestioneStudenti.Studente;
@@ -10,6 +5,7 @@ import gestioneStudenti.ArchivioStudenti;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -28,79 +24,92 @@ import javafx.stage.Stage;
 import persistence.GestoreStatoBiblioteca;
 import persistence.StatoBiblioteca;
 
-/**
- * FXML Controller class
- *
- * @author g16_member
- */
 public class Ricercastudente1Controller implements Initializable {
 
-    @FXML
-    private Label ricercastudente;
-    @FXML
-    private Button bottoneRicercaStudente;
-    @FXML 
-    private Button homeRicercaStudente;
-    @FXML
-    private TextField barraRicercaStudente;
-    
+    @FXML private Label ricercastudente;
+    @FXML private TextField barraRicercaStudente;
+    @FXML private Button bottoneRicercaStudente;
+    @FXML private Button homeRicercaStudente;
+
     private ArchivioStudenti archivio;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
         this.archivio = stato.getArchivioStudenti();
-    
+
         ricercastudente.setText("Ricerca Studente");
-        
-        if (barraRicercaStudente != null) barraRicercaStudente.setPromptText("Inserire cognome o matricola");
-        
+        barraRicercaStudente.setPromptText("Inserire cognome o matricola");
+
+        // ✅ Il bottone si abilita solo se c’è testo
         bottoneRicercaStudente.disableProperty().bind(
-            barraRicercaStudente.textProperty().isEmpty()
+                barraRicercaStudente.textProperty().isEmpty()
         );
-    
     }
 
     @FXML
-    private void ricercaStudente(ActionEvent event) {
+    private void confermaRicerca(ActionEvent event) {
+
+        ricercastudente.setStyle("-fx-text-fill: black;");
+        String input = barraRicercaStudente.getText().trim();
+
+        if (input.isEmpty()) {
+            ricercastudente.setStyle("-fx-text-fill: red;");
+            ricercastudente.setText("Inserire cognome o matricola!");
+            return;
+        }
+
         try {
-            ricercastudente.setText("");
+            //Ricerca per matricola
+            Studente trovato = archivio.cercaPerMatricola(input);
 
-            String Studente = barraRicercaStudente.getText().trim();
+            //Se non trovato → ricerca per cognome
+            if (trovato == null) {
+                List<Studente> lista = archivio.cercaPerCognome(input);
+                if (!lista.isEmpty()) {
+                    trovato = lista.get(0);
+                }
+            }
 
-            if (Studente.isEmpty()) {
+            //Nessun risultato
+            if (trovato == null) {
                 ricercastudente.setStyle("-fx-text-fill: red;");
-                ricercastudente.setText("Inserire cognome o matricola!");
+                ricercastudente.setText("Nessuno studente trovato con '" + input + "'");
                 return;
             }
-        
-            Studente trovato = archivio.cercaPerCognomeOMatricola(Studente);
 
-            if (trovato != null) {
-                ricercastudente.setStyle("-fx-text-fill: green;");
-                ricercastudente.setText("Studente trovato: " + trovato.getNome() + " " + trovato.getCognome());
-            } else {
-                ricercastudente.setStyle("-fx-text-fill: red;");
-                ricercastudente.setText("Nessuno studente trovato con '" + Studente + "'");
-            }
+            // Cambio schermata
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/view/studenti/ricercastudente3.fxml")
+            );
 
-        } catch (IllegalArgumentException ex) {
+            Parent root = loader.load();
+
+            // Recupero controller della schermata successiva
+            Ricercastudente3Controller controller = loader.getController();
+
+            //Passo direttamente l’oggetto Studente
+            controller.setStudente(trovato);
+
+            //Cambio scena
+            Stage stage = (Stage) bottoneRicercaStudente.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception ex) {
             ricercastudente.setStyle("-fx-text-fill: red;");
             ricercastudente.setText("Errore: " + ex.getMessage());
-        } catch (Exception e) {
-            ricercastudente.setStyle("-fx-text-fill: red;");
-            ricercastudente.setText("Si è verificato un errore durante la ricerca.");
-            e.printStackTrace(); 
+            ex.printStackTrace();
         }
     }
 
-    @FXML    
+    @FXML
     private void tornaAllaHome(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/bibliotecainterfaccia1.fxml"));
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/view/bibliotecainterfaccia1.fxml")
+            );
             Stage stage = (Stage) homeRicercaStudente.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -108,5 +117,4 @@ public class Ricercastudente1Controller implements Initializable {
             e.printStackTrace();
         }
     }
-    
 }

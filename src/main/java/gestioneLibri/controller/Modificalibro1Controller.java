@@ -1,165 +1,111 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestioneLibri.controller;
 
+import gestioneLibri.Libro;
+import gestioneLibri.ArchivioLibri;
+import persistence.GestoreStatoBiblioteca;
+import persistence.StatoBiblioteca;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.binding.Bindings;
+
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
-/**
- * FXML Controller class
- *
- * @author g16_members
- */
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+
 public class Modificalibro1Controller implements Initializable {
 
-    @FXML
-    private Label labelmodificalibro;
-    @FXML
-    private Label titolomodifica;
-    @FXML
-    private Label autoremodifica;
-    @FXML
-    private Label ISBNmodifica;
-    @FXML
-    private Label annodipubmodifica;
-    @FXML
-    private Label numcopiemodifica;
-    @FXML
-    private Button confermalibrimodifica;
-    @FXML
-    private Button homeModificaLibro;
+    @FXML private Label labelmodificalibro;
+    @FXML private TextField TitoloModifica;
+    @FXML private TextField AutoreModifica;
+    @FXML private TextField ISBNModifica;
+    @FXML private TextField AnnoPubModifica;
+    @FXML private TextField NumCopieModifica;
 
-     public void setArchivio(ArchivioLibri archivio) {
-        this.archivioCorrente = archivio;
-    }
-    public void setLibro(Libro libro) {
-        this.libroDaModificare = libro;
-        popolaCampi(libro);
-    }
-    
-    private void popolaCampi(Libro libro) {
-        if (libro != null) {
-            testoTitoloModifica.setText(libro.getTitolo());
-            testoAutoreModifica.setText(libro.getAutore());
-            testoISBNModifica.setText(libro.getIsbn());
-            testoAnnoPubModifica.setText(String.valueOf(libro.getAnnoPubblicazione()));
-            testoNumCopieModifica.setText(String.valueOf(libro.getCopieDisponibili()));
-            
-            testoISBNModifica.setEditable(false); 
-        }
-    }
-    
-    /**
-     * Initializes the controller class.
-     */
+    @FXML private Button confermalibrimodifica;
+    @FXML private Button homeModificaLibro;
+
+    private ArchivioLibri archivio;
+    private Libro libroOriginale;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         BooleanBinding isAnyFieldEmpty = Bindings.createBooleanBinding(() -> {
-        return testoTitolo.getText().trim().isEmpty() ||
-               testoAutore.getText().trim().isEmpty() ||
-               testoISBN.getText().trim().isEmpty() ||
-               testoAnnoPub.getText().trim().isEmpty() ||
-               testoNumCopie.getText().trim().isEmpty();
-    }, 
-    testoTitolo.textProperty(),
-    testoAutore.textProperty(),
-    testoISBN.textProperty(),
-    testoAnnoPub.textProperty(),
-    testoNumCopie.textProperty()
-    );
-    }    
-    
-     @FXML
-    private void confermalibrimodifica(ActionEvent event) {
-        
-        if (testoTitoloModifica.getText().trim().isEmpty() || testoAutoreModifica.getText().trim().isEmpty() || 
-            testoAnnoPubModifica.getText().trim().isEmpty() || testoNumCopieModifica.getText().trim().isEmpty()) {
-            
-            mostraAlert(AlertType.ERROR, "Errore di Input", 
-                       "Compilazione Obbligatoria", 
-                       "Devi compilare tutti i campi per poter modificare il libro.");
-            return;
-        }
+        StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
+        archivio = stato.getArchivioLibri();
 
+        ISBNModifica.setEditable(false);
+        confermalibrimodifica.setDisable(true);
+    }
+
+    public void setLibro(Libro libro) {
+        this.libroOriginale = libro;
+
+        TitoloModifica.setText(libro.getTitolo());
+        AutoreModifica.setText(libro.getAutore());
+        ISBNModifica.setText(libro.getIsbn());
+        AnnoPubModifica.setText(String.valueOf(libro.getAnnoPubblicazione()));
+        NumCopieModifica.setText(String.valueOf(libro.getCopieDisponibili()));
+
+        BooleanBinding nessunaModifica =
+            TitoloModifica.textProperty().isEqualTo(libro.getTitolo())
+            .and(AutoreModifica.textProperty().isEqualTo(libro.getAutore()))
+            .and(AnnoPubModifica.textProperty().isEqualTo(String.valueOf(libro.getAnnoPubblicazione())))
+            .and(NumCopieModifica.textProperty().isEqualTo(String.valueOf(libro.getCopieDisponibili())));
+
+        confermalibrimodifica.disableProperty().bind(nessunaModifica);
+    }
+
+    @FXML
+    private void salvaModificaLibro(ActionEvent event) {
         try {
-            if (libroDaModificare == null || archivioCorrente == null) {
-                throw new IllegalStateException("Riferimento all'archivio o al libro mancante.");
-            }
-            
-            String nuovoTitolo = testoTitoloModifica.getText().trim();
-            String nuovoAutore = testoAutoreModifica.getText().trim();
-            int nuovoAnno = Integer.parseInt(testoAnnoPubModifica.getText().trim());
-            int nuoveCopie = Integer.parseInt(testoNumCopieModifica.getText().trim());
+            String nuovoTitolo = TitoloModifica.getText().trim();
+            String nuovoAutore = AutoreModifica.getText().trim();
+            int nuovoAnno = Integer.parseInt(AnnoPubModifica.getText().trim());
+            int nuoveCopie = Integer.parseInt(NumCopieModifica.getText().trim());
 
-             Libro libroModificato = new Libro(
-                nuovoTitolo, 
-                nuovoAutore, 
-                nuovoAnno, 
-                libroDaModificare.getIsbn(), // Manteniamo il vecchio ISBN
+            Libro modificato = new Libro(
+                nuovoTitolo,
+                nuovoAutore,
+                nuovoAnno,
+                libroOriginale.getIsbn(), // non modificabile
                 nuoveCopie
             );
-            
-            archivioCorrente.modificaLibro(libroModificato);
-            
-            mostraAlert(AlertType.INFORMATION, "Successo", 
-                       "Libro Modificato", 
-                       "Il libro è stato aggiornato correttamente nell'archivio.");
-            
-            goToGestioneLibri(event); // Torna alla pagina di Gestione Libri
+
+            archivio.modificaLibro(modificato);
+            GestoreStatoBiblioteca.getInstance().salva();
+
+            labelmodificalibro.setStyle("-fx-text-fill: green;");
+            labelmodificalibro.setText("Modifica salvata con successo.");
 
         } catch (NumberFormatException e) {
-            mostraAlert(AlertType.ERROR, "Errore di Formato", 
-                       "Input Numerico Non Valido", 
-                       "Anno di pubblicazione e Numero di copie devono essere numeri interi validi.");
-        } catch (IllegalArgumentException e) {
-            // Cattura la validazione logica (es. anno non valido) dai setter di Libro
-            mostraAlert(AlertType.ERROR, "Errore di Validazione", 
-                       "Dati Non Validi", 
-                       "Si è verificato un errore: " + e.getMessage());
-        } catch (NoSuchElementException e) {
-            mostraAlert(AlertType.ERROR, "Errore Archivio", 
-                       "Libro non Trovato", 
-                       "Il libro non esiste più nell'archivio per la modifica.");
-        } catch (IOException e) {
-            mostraAlert(AlertType.ERROR, "Errore I/O", 
-                       "Errore di Navigazione", 
-                       "Impossibile caricare la vista successiva.");
-        } catch (IllegalStateException e) {
-             mostraAlert(AlertType.ERROR, "Errore Interno", 
-                       "Riferimenti Mancanti", 
-                       "Assicurarsi che l'archivio e il libro siano stati iniettati.");
+            labelmodificalibro.setStyle("-fx-text-fill: red;");
+            labelmodificalibro.setText("Anno e copie devono essere numeri interi.");
+        } catch (IllegalArgumentException | IllegalStateException ex) {
+            labelmodificalibro.setStyle("-fx-text-fill: red;");
+            labelmodificalibro.setText(ex.getMessage());
+        } catch (IOException ioEx) {
+            labelmodificalibro.setStyle("-fx-text-fill: red;");
+            labelmodificalibro.setText("Errore nel salvataggio dei dati.");
+            ioEx.printStackTrace();
         }
     }
-    private void goToGestioneLibri(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view.libri/gestionelibri1.fxml"));
-        Parent parent = loader.load();
-        
-        // PASSA L'ARCHIVIO AL CONTROLLER SUCCESSIVO
-        Gestionelibri1Controller controller = loader.getController();
-        controller.setArchivio(this.archivioCorrente);
 
-        Scene scene = new Scene(parent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.setTitle("Gestione Biblioteca - Gestione Libri");
-        window.show();
+    @FXML
+    private void tornaAllaHome(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/bibliotecainterfaccia1.fxml"));
+            Stage stage = (Stage) homeModificaLibro.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    private void mostraAlert(AlertType type, String title, String header, String content) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-    
-    
 }

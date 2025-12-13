@@ -6,17 +6,18 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20prestito/registroprestiti.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionePrestiti.controller.Registroprestiti1Controller">
    <children>
-      <TableView fx:id="tabellaPrestiti" layoutX="70.0" layoutY="120.0" prefHeight="270.0" prefWidth="445.0">
+      <TableView fx:id="tabellaPrestiti" layoutX="10.0" layoutY="116.0" prefHeight="270.0" prefWidth="580.0">
         <columns>
-          <TableColumn fx:id="colonnaISBN" prefWidth="156.79998779296875" text="ISBN" />
-          <TableColumn fx:id="colonnaMatricola" prefWidth="163.20001220703125" text="Matricola" />
-            <TableColumn fx:id="colonnaDataPrestito" prefWidth="123.20001220703125" text="Data del prestito" />
+          <TableColumn fx:id="colonnaStudente" prefWidth="116.0" text="Studente" />
+          <TableColumn fx:id="colonnaLibro" prefWidth="116.0" text="Libro" />
+            <TableColumn fx:id="colonnaDataPrestito" prefWidth="116.0" text="Data prestito" />
+            <TableColumn fx:id="colonnaDataRestituzione" minWidth="0.0" prefWidth="116.0" text="Data restituzione" />
+            <TableColumn fx:id="colonnaStatoPrestito" prefWidth="116.0" text="Stato del prestito " />
         </columns>
       </TableView>
       <Label fx:id="registroprestiti" layoutX="140.0" layoutY="45.0" text="Registro Prestiti" />
-      <Button fx:id="homeRegistroPrestito" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" onAction="#tornaAllaHome" />
+      <Button fx:id="homeRegistroPrestito" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestioneStudenti.controller;
 
 import gestioneStudenti.Studente;
@@ -10,7 +5,12 @@ import gestioneStudenti.ArchivioStudenti;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,98 +19,136 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import persistence.GestoreStatoBiblioteca;
 import persistence.StatoBiblioteca;
 
-/**
- * FXML Controller class
- *
- * @author g16_member
- */
 public class Ricercastudente3Controller implements Initializable {
 
+    @FXML private Label ricercastudente2;
+    @FXML private Button homeRimozioneStudente;
 
-    @FXML
-    private Button bottoneModificaStudente;
-    @FXML
-    private Button bottoneRimuoviStudente;
-    @FXML
-    private Label ricercastudente2;
-    @FXML
-    private Label StudenteSelezionato;
-    @FXML
-    private Button homeRimozioneStudente; 
-    
+    @FXML private ListView<Studente> listaStudenti;
+
+    @FXML private Button bottoneModificaStudente;
+    @FXML private Button bottoneRimuoviStudente;
+
     private ArchivioStudenti archivio;
     private Studente studenteCorrente;
 
-    /**
-     * Initializes the controller class.
-     */
+    private List<Studente> risultatiRicerca;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
         this.archivio = stato.getArchivioStudenti();
-        
+
         ricercastudente2.setText("Ricerca Studente");
-        StudenteSelezionato.setText("Nessuno studente selezionato");
-        bottoneModificaStudente.setOnAction(this::modificaStudente);
-        bottoneRimuoviStudente.setOnAction(this::rimuoviStudente);
-        homeRimozioneStudente.setOnAction(this::tornaAllaHome);
+
+        // ✅ Bottoni disabilitati finché non selezioni uno studente
+        bottoneModificaStudente.setDisable(true);
+        bottoneRimuoviStudente.setDisable(true);
+
+        // ✅ Listener sulla selezione della ListView
+        listaStudenti.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            studenteCorrente = newVal;
+
+            if (newVal != null) {
+                bottoneModificaStudente.setDisable(false);
+                bottoneRimuoviStudente.setDisable(false);
+            } else {
+                bottoneModificaStudente.setDisable(true);
+                bottoneRimuoviStudente.setDisable(true);
+            }
+        });
+    }
+
+    // ✅ Chiamato da Ricercastudente1Controller per passare 1 studente
+   public void setStudente(Studente s) {
+        risultatiRicerca = Arrays.asList(s);
+        aggiornaLista();
+    }
+
+    // ✅ Chiamato da Ricercastudente1Controller per passare più studenti
+    public void setStudenti(List<Studente> lista) {
+        risultatiRicerca = lista;
+        aggiornaLista();
+    }
+
+    private void aggiornaLista() {
+        ObservableList<Studente> dati = FXCollections.observableArrayList(risultatiRicerca);
+        listaStudenti.setItems(dati);
     }
 
     @FXML
     private void modificaStudente(ActionEvent event) {
-        String studente = StudenteSelezionato.getText();
-        if (studente == null) {
-            ricercastudente2.setStyle("-fx-text-fill: red;");
-            ricercastudente2.setText("Seleziona uno studente da modificare!");
-            return;
+        if (studenteCorrente == null) return;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/view/studenti/modificastudente1.fxml")
+            );
+
+            Parent root = loader.load();
+
+            Modificastudente1Controller controller = loader.getController();
+            controller.setStudenteDaModificare(studenteCorrente);
+
+            Stage stage = (Stage) bottoneModificaStudente.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            // Nessun messaggio a schermo, solo log
+            e.printStackTrace();
         }
-        ricercastudente2.setStyle("-fx-text-fill: green;");
-        ricercastudente2.setText("Modifica studente: " + studenteCorrente.getNome() + " " + studenteCorrente.getCognome());
     }
-    
+
     @FXML
     private void rimuoviStudente(ActionEvent event) {
-        String studente = StudenteSelezionato.getText();
-        if (studente == null) {
-            ricercastudente2.setStyle("-fx-text-fill: red;");
-            ricercastudente2.setText("Seleziona uno studente da rimuovere!");
-            return;
-        }
+        if (studenteCorrente == null) return;
+
         try {
             archivio.rimuoviStudente(studenteCorrente);
             GestoreStatoBiblioteca.getInstance().salva();
 
-            ricercastudente2.setStyle("-fx-text-fill: green;");
-            ricercastudente2.setText("Studente rimosso: " + studenteCorrente.getNome() + " " + studenteCorrente.getCognome());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Rimozione completata");
+            alert.setHeaderText(null);
+            alert.setContentText("Studente rimosso con successo.");
+            alert.showAndWait();
 
-            StudenteSelezionato.setText("Nessuno studente selezionato");
+            risultatiRicerca.remove(studenteCorrente);
+            aggiornaLista();
+
             studenteCorrente = null;
+            bottoneModificaStudente.setDisable(true);
+            bottoneRimuoviStudente.setDisable(true);
 
         } catch (IOException ioEx) {
-            ricercastudente2.setStyle("-fx-text-fill: red;");
-            ricercastudente2.setText("Errore nel salvataggio dei dati.");
+            // Nessun messaggio a schermo
             ioEx.printStackTrace();
         }
     }
-    
+
     @FXML
     private void tornaAllaHome(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/bibliotecainterfaccia1.fxml"));
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/view/bibliotecainterfaccia1.fxml")
+            );
             Stage stage = (Stage) homeRimozioneStudente.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
+            // Nessun messaggio a schermo
             e.printStackTrace();
         }
     }
-    
 }

@@ -1,137 +1,119 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestionePrestiti.controller;
 
-import gestioneLibri.ArchivioLibri;
 import gestioneLibri.Libro;
-import gestionePrestiti.ArchivioPrestiti;
-import gestioneStudenti.ArchivioStudenti;
 import gestioneStudenti.Studente;
-import persistence.ArchivioRepository;
+import gestionePrestiti.Prestito;
+import gestionePrestiti.ArchivioPrestiti;
+import persistence.GestoreStatoBiblioteca;
 import persistence.StatoBiblioteca;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
-
-
-/**
- * FXML Controller class
- *
- * @author g16_member
- */
 public class Aggiungiprestito1Controller implements Initializable {
 
-    @FXML
-    private Label labelaggiungiprestito;
-    @FXML
-    private Label labelISBNprestito;
-    @FXML
-    private Label labelmatricolaprestito;
-    @FXML
-    private Label labeldataprestito;
-    @FXML
-    private TextField testoISBNprestito;
-    @FXML
-    private TextField testoDataPrestito;
-    @FXML
-    private TextField testoMatricolaPrestito;
-    @FXML
-    private Button bottoneConfermaPrestito;
-    @FXML
-    private Button homeAggiungiPrestito;
+    @FXML private Label labelaggiungiprestito;
+    @FXML private Label labelISBNprestito;
+    @FXML private Label labelmatricolaprestito;
+    @FXML private Label labeldataprestito;
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML private TextField testoISBNprestito;
+    @FXML private TextField testoMatricolaPrestito;
+    @FXML private TextField testoDataPrestito;
+
+    @FXML private Button bottoneConfermaPrestito;
+    @FXML private Button homeAggiungiPrestito;
+
+    private ArchivioPrestiti archivioPrestiti;
+    private ListView<Libro> catalogoLibri;
+    private ListView<Studente> elencoStudenti;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       testoISBNprestito.clear();
-        testoMatricolaPrestito.clear();
-        testoDataPrestito.clear();
-    }
+        StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
+        archivioPrestiti = stato.getArchivioPrestiti();
 
-    @FXML
-    private void confermaprestito(ActionEvent event) {
-        String isbn = testoISBNprestito.getText();
-    String matricola = testoMatricolaPrestito.getText();
-    String data = testoDataPrestito.getText();
-
-    // Placeholder corretto: la logica reale sarà nel modello
-    System.out.println("Prestito richiesto: ISBN=" + isbn +
-                       ", Matricola=" + matricola +
-                       ", Data=" + data);
-    }
-    
-    
-    @FXML
-    private void salvaISBNprestito(MouseEvent event) {
-       String isbn = testoISBNprestito.getText().trim();
-
-    if (isbn.isEmpty()) {
-        mostraErrore("ISBN non valido", "Inserire un ISBN.");
-        return;
-    }
-
-    if (archivioLibri.cercaPerIsbn(isbn) == null) {
-        mostraErrore("Libro non trovato", "Nessun libro con questo ISBN.");
-    }
-    }
-
-    @FXML
-    private void salvadataprestito(MouseEvent event) {
-      String data = testoDataPrestito.getText().trim();
-
-    try {
-        LocalDate.parse(data);
-    } catch (Exception e) {
-        mostraErrore(
-            "Data non valida",
-            "Inserire la data nel formato YYYY-MM-DD."
+        // ✅ Bottone conferma abilitato solo se tutti i campi sono pieni
+        bottoneConfermaPrestito.disableProperty().bind(
+            Bindings.createBooleanBinding(() ->
+                testoISBNprestito.getText().trim().isEmpty() ||
+                testoMatricolaPrestito.getText().trim().isEmpty() ||
+                testoDataPrestito.getText().trim().isEmpty(),
+                testoISBNprestito.textProperty(),
+                testoMatricolaPrestito.textProperty(),
+                testoDataPrestito.textProperty()
+            )
         );
     }
-    }
 
     @FXML
-    private void salvamatricolaprestito(MouseEvent event) {
+    private void confermaPrestito(ActionEvent event) {
+        String isbn = testoISBNprestito.getText().trim();
         String matricola = testoMatricolaPrestito.getText().trim();
+        String dataStr = testoDataPrestito.getText().trim();
 
-    if (matricola.isEmpty()) {
-        mostraErrore("Matricola non valida", "Inserire una matricola.");
-        return;
-    }
+        StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
+        Libro libro = stato.getArchivioLibri().cercaPerIsbn(isbn);
+        Studente studente = stato.getArchivioStudenti().cercaPerMatricola(matricola);
 
-    if (archivioStudenti.cercaPerMatricola(matricola) == null) {
-        mostraErrore(
-            "Studente non trovato",
-            "Nessuno studente con questa matricola."
-        );
+        if (libro == null) {
+            mostraErrore("ISBN non valido: nessun libro trovato.");
+            return;
+        }
+
+        if (studente == null) {
+            mostraErrore("Matricola non valida: nessuno studente trovato.");
+            return;
+        }
+
+        LocalDate dataPrestito;
+        try {
+            dataPrestito = LocalDate.parse(dataStr);
+        } catch (DateTimeParseException e) {
+            mostraErrore("Data non valida. Usa il formato YYYY-MM-DD.");
+            return;
+        }
+
+        LocalDate dataRestituzione = dataPrestito.plusDays(30); // restituzione prevista tra 30 giorni
+
+        try {
+            Prestito nuovo = archivioPrestiti.registraPrestito(studente, libro, dataPrestito, dataRestituzione);
+            GestoreStatoBiblioteca.getInstance().salva();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Prestito registrato");
+            alert.setHeaderText(null);
+            alert.setContentText("Prestito registrato con successo.");
+            alert.showAndWait();
+
+            testoISBNprestito.clear();
+            testoMatricolaPrestito.clear();
+            testoDataPrestito.clear();
+
+        } catch (Exception ex) {
+            mostraErrore("Errore: " + ex.getMessage());
+        }
     }
-    } 
     
     @FXML
     private void tornaAllaHome(ActionEvent event) {
-       try {
+        try {
             Parent root = FXMLLoader.load(
-                getClass().getResource("/view/bibliotecainterfaccia1.fxml")
+                    getClass().getResource("/view/bibliotecainterfaccia1.fxml")
             );
             Stage stage = (Stage) homeAggiungiPrestito.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -140,5 +122,12 @@ public class Aggiungiprestito1Controller implements Initializable {
             e.printStackTrace();
         }
     }
-      
+
+    private void mostraErrore(String messaggio) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Errore");
+        alert.setHeaderText(null);
+        alert.setContentText(messaggio);
+        alert.showAndWait();
+    }
 }

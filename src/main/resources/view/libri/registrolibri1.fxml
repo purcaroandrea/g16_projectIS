@@ -18,6 +18,6 @@
         </columns>
       </TableView>
       <Label fx:id="registrolibri" layoutX="160.0" layoutY="45.0" text="Registro Libri" />
-      <Button fx:id="homeRegistroLibri" layoutX="32.0" layoutY="35.0" mnemonicParsing="false" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Button fx:id="homeRegistroLibri" layoutX="32.0" layoutY="35.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

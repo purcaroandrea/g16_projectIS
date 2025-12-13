@@ -1,62 +1,97 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestionePrestiti.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
+import gestionePrestiti.Prestito;
+import gestionePrestiti.ArchivioPrestiti;
+import persistence.GestoreStatoBiblioteca;
+import persistence.StatoBiblioteca;
+
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
-/**
- * FXML Controller class
- *
- * @author g16_member
- */
 public class Ricercaprestito1Controller implements Initializable {
 
-    @FXML
-    private Label ricercaprestito;
-    @FXML
-    private TextField barraRicercaPrestitoISBN;
-    @FXML
-    private Button bottoneRicercaPrestito;
-    @FXML
-    private TextField barraRicercaPrestitoMatCogn;
-    @FXML
-    private Label ricercaperISBN;
-    @FXML
-    private Label ricercaperMatCogn;
-    @FXML
-    private Button homeRicercaPrestito;
+    @FXML private Label ricercaprestito;
+    @FXML private Label labelLibro;
+    @FXML private Label labelStudente;
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML private TextField barraRicercaPrestitoISBN;
+    @FXML private TextField barraRicercaPrestitoMatCogn;
+
+    @FXML private Button bottoneRicercaPrestito;
+    @FXML private Button homeRicercaPrestito;
+
+    private ArchivioPrestiti archivio;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         barraRicercaPrestitoISBN.clear();
         barraRicercaPrestitoMatCogn.clear();
-    }    
-    
+
+        StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
+        archivio = stato.getArchivioPrestiti();
+
+        ricercaprestito.setText("Ricerca Prestito");
+    }
+
     @FXML
     private void eseguiRicerca(ActionEvent event) {
-       System.out.println(
-            barraRicercaPrestitoISBN.getText() + " " +
-            barraRicercaPrestitoMatCogn.getText()
-        );
-}
-    
+        String inputLibro = barraRicercaPrestitoISBN.getText().trim();
+        String inputStudente = barraRicercaPrestitoMatCogn.getText().trim();
+
+        if (inputLibro.isEmpty() || inputStudente.isEmpty()) {
+            ricercaprestito.setStyle("-fx-text-fill: red;");
+            ricercaprestito.setText("Inserisci entrambi i campi.");
+            return;
+        }
+
+        try {
+            List<Prestito> risultati = archivio.cercaPrestitiAttivi(inputStudente, inputLibro);
+
+            if (risultati.isEmpty()) {
+                ricercaprestito.setStyle("-fx-text-fill: red;");
+                ricercaprestito.setText("Nessun prestito trovato.");
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/view/prestiti/ricercaprestito3.fxml")
+            );
+            Parent root = loader.load();
+
+            Ricercaprestito3Controller controller = loader.getController();
+            controller.setPrestiti(risultati);
+
+            Stage stage = (Stage) bottoneRicercaPrestito.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception ex) {
+            ricercaprestito.setStyle("-fx-text-fill: red;");
+            ricercaprestito.setText("Errore: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
     @FXML
     private void tornaAllaHome(ActionEvent event) throws IOException {
-        Main.setRoot("bibliotecainterfaccia1");
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getResource("/view/bibliotecainterfaccia1.fxml")
+        );
+        Parent root = loader.load();
+        Stage stage = (Stage) homeRicercaPrestito.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
-    
 }

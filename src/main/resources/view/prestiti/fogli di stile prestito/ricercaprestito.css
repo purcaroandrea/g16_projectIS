@@ -5,7 +5,7 @@
     -fx-font-weight: bold;
   
 }
-#ricercaperISBN{
+#labelLibro{
     -fx-text-fill: #bb8c8e; 
     -fx-font-size: 15px;
    -fx-font-family: "Georgia", "Times New Roman", serif;
@@ -13,7 +13,7 @@
   
 }
 
-#ricercaperMatCogn{
+#labelStudente{
     -fx-text-fill: #bb8c8e; 
     -fx-font-size: 15px;
    -fx-font-family: "Georgia", "Times New Roman", serif;
