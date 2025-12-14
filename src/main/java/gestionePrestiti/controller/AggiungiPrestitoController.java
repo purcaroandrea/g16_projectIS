@@ -56,7 +56,7 @@ public class AggiungiPrestitoController implements Initializable {
                 testoISBNprestito.getText().trim().isEmpty() ||
                 testoMatricolaPrestito.getText().trim().isEmpty() ||
                 testoDataPrestito.getText().trim().isEmpty() || 
-                testoDataRestituzione.getText().trim().isEmpty() ||,
+                testoDataRestituzione.getText().trim().isEmpty(),
                 testoISBNprestito.textProperty(),
                 testoMatricolaPrestito.textProperty(),
                 testoDataPrestito.textProperty(),
