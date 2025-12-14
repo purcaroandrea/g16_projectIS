@@ -35,6 +35,14 @@
   
 }
 
+#labeldatarestituzione{
+    -fx-text-fill: #2ECC71; 
+    -fx-font-size: 20px;
+   -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-font-weight: bold;
+  
+}
+
 
 
 
@@ -50,6 +58,11 @@
     -fx-border-color:#2ECC71;
 }
 #testoDataPrestito
+{
+    -fx-background-color: #bb8c8e;
+    -fx-border-color:#2ECC71;
+}
+#testoDataRestituzione
 {
     -fx-background-color: #bb8c8e;
     -fx-border-color:#2ECC71;

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli_di_stile_libri/gestionelibri.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestioneLibri.controller.GestioneLibriController">
+   <children>
+      <Label fx:id="labelgestionelibri" layoutX="139.0" layoutY="91.0" prefHeight="46.0" prefWidth="300.0" text="Gestione Libri">
+         <font>
+            <Font name="Calibri" size="12.0" />
+         </font>
+      </Label>
+      <HBox layoutX="4.0" layoutY="191.0" prefHeight="200.0" prefWidth="591.0" spacing="70.0">
+         <children>
+            <Button fx:id="NuovoLibro" mnemonicParsing="false" onAction="#nuovoLibro" prefHeight="42.0" prefWidth="171.0" style="-fx-font-weight: bold;" text="Nuovo Libro" />
+            <Button fx:id="RegistroLibri" mnemonicParsing="false" onAction="#registroLibri" prefHeight="42.0" prefWidth="174.0" style="-fx-font-weight: bold;" text="Registro Libri" />
+            <Button fx:id="RicercaLibro" mnemonicParsing="false" onAction="#ricercaLibro" prefHeight="42.0" prefWidth="178.0" style="-fx-font-weight: bold;" text="Ricerca Libro" />
+         </children>
+      </HBox>
+      <Button fx:id="homeGestioneLibri" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+   </children>
+</Pane>
