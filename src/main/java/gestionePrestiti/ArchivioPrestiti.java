@@ -64,7 +64,7 @@ public class ArchivioPrestiti implements Serializable{
      * vengono aggiornate.
      * @see UC-11, IF-11
      */
-    public Prestito registraPrestito(Studente studente, Libro libro, LocalDate dataPrestito, LocalDate dataPrevistaRestituzione) {
+    public Prestito registraPrestito(Studente studente, Libro libro, LocalDate dataPrevistaRestituzione) {
         
         if (studente == null) {
             throw new IllegalArgumentException("Lo studente non può essere null.");
@@ -72,7 +72,7 @@ public class ArchivioPrestiti implements Serializable{
         if (libro == null) {
             throw new IllegalArgumentException("Il libro non può essere null.");
         }
-        if (dataPrestito == null || dataPrevistaRestituzione == null) {
+        if (dataPrevistaRestituzione == null) {
             throw new IllegalArgumentException("Le date non possono essere null.");
         }
         
@@ -96,7 +96,7 @@ public class ArchivioPrestiti implements Serializable{
                                                " ha raggiunto il limite massimo di prestiti attivi.");
         }
         
-        Prestito nuovoPrestito = new Prestito(studente, libro, dataPrestito, dataPrevistaRestituzione);
+        Prestito nuovoPrestito = new Prestito(studente, libro, LocalDate.now(), dataPrevistaRestituzione);
         
         libro.decrementaCopie();
         
@@ -135,7 +135,6 @@ public class ArchivioPrestiti implements Serializable{
 
         prestito.setRestituito(true);
         prestito.getLibro().incrementaCopie();
-        lista.remove(prestito);
     }
 
     /**
@@ -216,8 +215,8 @@ public class ArchivioPrestiti implements Serializable{
                         p.getStudente().getCognome().toLowerCase().contains(targetStud)
                         || p.getStudente().getMatricola().equalsIgnoreCase(targetStud);
 
-                boolean matchLibro =
-                        p.getLibro().getTitolo().toLowerCase().contains(targetTitolo);
+                boolean matchLibro = p.getLibro().getTitolo().toLowerCase().contains(targetTitolo)
+                        || p.getLibro().getIsbn().equalsIgnoreCase(targetTitolo);
 
                 if (matchStud && matchLibro) {
                     risultati.add(p);

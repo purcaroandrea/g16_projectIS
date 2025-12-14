@@ -20,5 +20,6 @@
       <TextField fx:id="NumCopieModifica" layoutX="350.0" layoutY="300.0" prefHeight="29.0" prefWidth="178.0" />
       <Button fx:id="confermalibrimodifica" layoutX="450.0" layoutY="346.0" mnemonicParsing="false" onAction="#salvaModificaLibro" text="Conferma" />
       <Button fx:id="homeModificaLibro" layoutX="32.0" layoutY="35.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Label fx:id="labelEsito" layoutX="100.0" layoutY="338.0" prefHeight="17.0" prefWidth="238.0" style="-fx-font-size: 14px;" visible="false" />
    </children>
 </Pane>

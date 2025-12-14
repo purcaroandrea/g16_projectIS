@@ -71,8 +71,8 @@ public class SelezionaPrestitoController implements Initializable {
             alert.setContentText("Il prestito è stato chiuso con successo.");
             alert.showAndWait();
 
-            risultatiRicerca.remove(prestitoCorrente);
-            aggiornaLista();
+             // ✅ aggiorno SOLO la vista
+            listaPrestiti.refresh();
 
             prestitoCorrente = null;
             bottoneChiudiPrestito.setDisable(true);

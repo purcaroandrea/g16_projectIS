@@ -191,10 +191,16 @@ public class Prestito implements Serializable{
      * @return String descrizione leggibile del prestito
      */
     @Override
-    public String toString() {
-        return "Prestito di \"" + libro.getTitolo() + "\" a " +
-               studente.getCognome() + " " + studente.getNome() +
-               " dal " + dataPrestito + " al " + dataRestituzione +
-               (restituito ? " [RESTITUITO]" : " [ATTIVO]");
-    }
+public String toString() {
+    return String.format(
+        "%s | %s %s | %s → %s | %s",
+        libro.getTitolo(),
+        studente.getCognome(),
+        studente.getNome(),
+        dataPrestito,
+        dataRestituzione,
+        restituito ? "CHIUSO" : "ATTIVO"
+    );
+}
+
 }

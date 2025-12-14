@@ -31,12 +31,13 @@ public class AggiungiPrestitoController implements Initializable {
     @FXML private Label labelmatricolaprestito;
     @FXML private Label labeldataprestito;
     @FXML private Label labeldatarestituzione;
+    
+    @FXML private Label dataPrestito;
+    @FXML private Label dataRestituzione;
 
     @FXML private TextField testoISBNprestito;
     @FXML private TextField testoMatricolaPrestito;
-    @FXML private TextField testoDataPrestito;
-    @FXML private TextField testoDataRestituzione;
-
+    
     @FXML private Button bottoneConfermaPrestito;
     @FXML private Button homeAggiungiPrestito;
     
@@ -44,33 +45,36 @@ public class AggiungiPrestitoController implements Initializable {
     private ArchivioPrestiti archivioPrestiti;
     private ListView<Libro> catalogoLibri;
     private ListView<Studente> elencoStudenti;
+    
 
-    @Override
+   @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
         archivioPrestiti = stato.getArchivioPrestiti();
 
-        // ✅ Bottone conferma abilitato solo se tutti i campi sono pieni
+        // 📅 Date automatiche
+        LocalDate oggi = LocalDate.now();
+        LocalDate restituzione = oggi.plusDays(30);
+
+        dataPrestito.setText(oggi.toString());
+        dataRestituzione.setText(restituzione.toString());
+
+        // ✅ Bottone abilitato solo se ISBN e matricola sono inseriti
         bottoneConfermaPrestito.disableProperty().bind(
-            Bindings.createBooleanBinding(() ->
-                testoISBNprestito.getText().trim().isEmpty() ||
-                testoMatricolaPrestito.getText().trim().isEmpty() ||
-                testoDataPrestito.getText().trim().isEmpty() || 
-                testoDataRestituzione.getText().trim().isEmpty(),
+            Bindings.createBooleanBinding(
+                () -> testoISBNprestito.getText().trim().isEmpty()
+                   || testoMatricolaPrestito.getText().trim().isEmpty(),
                 testoISBNprestito.textProperty(),
-                testoMatricolaPrestito.textProperty(),
-                testoDataPrestito.textProperty(),
-                testoDataRestituzione.textProperty()
+                testoMatricolaPrestito.textProperty()
             )
         );
     }
-
-    @FXML
+@FXML
     private void confermaPrestito(ActionEvent event) {
+
         String isbn = testoISBNprestito.getText().trim();
         String matricola = testoMatricolaPrestito.getText().trim();
-        String dataStr = testoDataPrestito.getText().trim();
-        String dataRest = testoDataRestituzione.getText().trim();
 
         StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
         Libro libro = stato.getArchivioLibri().cercaPerIsbn(isbn);
@@ -86,35 +90,37 @@ public class AggiungiPrestitoController implements Initializable {
             return;
         }
 
-        LocalDate dataPrestito;
-        try {
-            dataPrestito = LocalDate.parse(dataStr);
-        } catch (DateTimeParseException e) {
-            mostraErrore("Data non valida. Usa il formato YYYY-MM-DD.");
-            return;
-        }
-
-        LocalDate dataRestituzione = dataPrestito.plusDays(30); // restituzione prevista tra 30 giorni
+        // 📅 Data restituzione coerente con quanto mostrato
+        LocalDate dataRest = LocalDate.parse(dataRestituzione.getText());
 
         try {
-            Prestito nuovo = archivioPrestiti.registraPrestito(studente, libro, dataPrestito, dataRestituzione);
+            Prestito nuovo = archivioPrestiti.registraPrestito(
+                    studente,
+                    libro,
+                    dataRest
+            );
+
             GestoreStatoBiblioteca.getInstance().salva();
-
+    
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Prestito registrato");
             alert.setHeaderText(null);
             alert.setContentText("Prestito registrato con successo.");
             alert.showAndWait();
 
+            // Reset campi
             testoISBNprestito.clear();
             testoMatricolaPrestito.clear();
-            testoDataPrestito.clear();
+
+            // Ricalcolo date (nel caso cambi giorno)
+            LocalDate oggi = LocalDate.now();
+            dataPrestito.setText(oggi.toString());
+            dataRestituzione.setText(oggi.plusDays(30).toString());
 
         } catch (Exception ex) {
             mostraErrore("Errore: " + ex.getMessage());
         }
     }
-    
     @FXML
     private void tornaAllaHome(ActionEvent event) {
         try {

@@ -9,7 +9,7 @@
    <children>
       <Label fx:id="ricercaprestito2" layoutX="119.0" layoutY="58.0" text="Chiusura Prestito" />
       <Button fx:id="bottoneChiudiPrestito" layoutX="229.0" layoutY="292.0" mnemonicParsing="false" onAction="#chiudiPrestito" text="Chiudi Prestito" />
-      <Button fx:id="homeChiusuraPrestito" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
-      <ListView fx:id="risultatiRicerca" layoutX="82.0" layoutY="111.0" prefHeight="154.0" prefWidth="436.0" />
+      <Button fx:id="bottoneHomePrestito3" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <ListView fx:id="listaPrestiti" layoutX="82.0" layoutY="111.0" prefHeight="154.0" prefWidth="436.0" />
    </children>
 </Pane>

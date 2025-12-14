@@ -81,7 +81,20 @@
     -fx-background-color:#2ECC71;
 }
 
+#dataPrestito,
+#dataRestituzione {
+    -fx-background-color: #bb8c8e;   
+    -fx-border-color: #2ECC71;       
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
 
+    -fx-font-size: 16px;             
+    -fx-font-family: "Georgia", "Times New Roman", serif;
+    -fx-text-fill: black;
+
+    -fx-alignment: center;         
+    -fx-padding: 4px 6px;
+}
 
 
 .button:hover {
@@ -95,3 +108,4 @@
     -fx-translate-y: 1px;
     -fx-effect: none; 
 }
+

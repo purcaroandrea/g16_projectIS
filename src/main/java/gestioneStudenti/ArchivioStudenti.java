@@ -5,10 +5,13 @@
  */
 package gestioneStudenti;
 
+import gestionePrestiti.ArchivioPrestiti;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import persistence.GestoreStatoBiblioteca;
+import persistence.StatoBiblioteca;
 
 /**
  * @file ArchivioStudenti.java
@@ -106,6 +109,14 @@ public class ArchivioStudenti implements Serializable {
         String mat = studente.getMatricola();
         if (mat == null || mat.trim().isEmpty()){
             throw new IllegalArgumentException("La matricola dello studente da rimuovere non può essere vuota.");
+        }
+        StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
+        ArchivioPrestiti archivioPrestiti = stato.getArchivioPrestiti();
+
+        if (archivioPrestiti.contaPrestitiAttivi(studente) > 0) {
+            throw new IllegalStateException(
+                "Impossibile rimuovere lo studente: ha prestiti attivi."
+            );
         }
         boolean rimosso = studenti.removeIf(s ->
                 s.getMatricola() != null && s.getMatricola().equalsIgnoreCase(mat)

@@ -12,12 +12,12 @@
       <Label fx:id="labelmatricolaprestito" layoutX="68.0" layoutY="160.0" text="Matricola:" />
       <Label fx:id="labeldataprestito" layoutX="68.0" layoutY="210.0" text="Data del prestito:" />
       <Button fx:id="bottoneConfermaPrestito" layoutX="449.0" layoutY="315.0" mnemonicParsing="false" onAction="#confermaPrestito" text="Conferma" />
-      <TextField fx:id="testoISBNprestito" layoutX="270.0" layoutY="110.0" prefHeight="29.0" prefWidth="226.0" />
-      <TextField fx:id="testoDataPrestito" layoutX="270.0" layoutY="210.0" prefHeight="29.0" prefWidth="226.0" />
+      <TextField fx:id="testoISBNprestito" layoutX="282.0" layoutY="110.0" prefHeight="29.0" prefWidth="226.0" />
       <Pane layoutY="315.0" prefHeight="100.0" prefWidth="151.0" style="-fx-background-image: url('/biblioteca/img/iconaLibro.jpeg'); -fx-background-repeat: no-repeat; -fx-background-size: 150px;" />
-      <TextField fx:id="testoMatricolaPrestito" layoutX="270.0" layoutY="160.0" prefHeight="29.0" prefWidth="226.0" />
-      <Button fx:id="homeAggiungiPrestito" layoutX="32.0" layoutY="35.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
-      <Label fx:id="labeldatarestituzione" layoutX="68.0" layoutY="260.0" text="Data del prestito:" />
-      <TextField fx:id="testoDataRestituzione" layoutX="270.0" layoutY="260.0" prefHeight="29.0" prefWidth="226.0" />
+      <TextField fx:id="testoMatricolaPrestito" layoutX="282.0" layoutY="160.0" prefHeight="29.0" prefWidth="226.0" />
+      <Button fx:id="homeAggiungiPrestito" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Label fx:id="labeldatarestituzione" layoutX="68.0" layoutY="260.0" text="Data di restituzione:" />
+      <Label fx:id="dataPrestito" layoutX="283.0" layoutY="209.0" prefHeight="29.0" prefWidth="226.0" />
+      <Label fx:id="dataRestituzione" layoutX="284.0" layoutY="259.0" prefHeight="29.0" prefWidth="226.0" />
    </children>
 </Pane>

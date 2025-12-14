@@ -131,6 +131,12 @@ public class SelezionaStudenteController implements Initializable {
             bottoneModificaStudente.setDisable(true);
             bottoneRimuoviStudente.setDisable(true);
 
+        } catch (IllegalStateException ex) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Operazione non consentita");
+            alert.setHeaderText(null);
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         } catch (IOException ioEx) {
             // Nessun messaggio a schermo
             ioEx.printStackTrace();

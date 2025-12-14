@@ -65,7 +65,7 @@ public class SelezionaLibroController implements Initializable {
 
         try {
             FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/view/libri/modificalibro1.fxml")
+                getClass().getResource("/view/libri/ModificaLibro.fxml")
             );
             Parent root = loader.load();
 
@@ -106,6 +106,12 @@ public class SelezionaLibroController implements Initializable {
             bottoneModificaLibro.setDisable(true);
             bottoneRimuoviLibro.setDisable(true);
 
+        }  catch (IllegalStateException ex) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Operazione non consentita");
+            alert.setHeaderText(null);
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         } catch (Exception ex) {
             ricercalibro2.setStyle("-fx-text-fill: red;");
             ricercalibro2.setText("Errore: " + ex.getMessage());

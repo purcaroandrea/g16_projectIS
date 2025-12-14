@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 import persistence.GestoreStatoBiblioteca;
 import persistence.StatoBiblioteca;
 
-public class AggiungistudenteController implements Initializable {
+public class AggiungiStudenteController implements Initializable {
 
     @FXML private Button bottoneConfermaStudente;
     @FXML private Button homeAggiungiStudente;

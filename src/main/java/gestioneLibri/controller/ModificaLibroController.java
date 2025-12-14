@@ -28,6 +28,8 @@ public class ModificaLibroController implements Initializable {
     @FXML private TextField ISBNModifica;
     @FXML private TextField AnnoPubModifica;
     @FXML private TextField NumCopieModifica;
+    @FXML private Label labelEsito;
+
 
     @FXML private Button confermalibrimodifica;
     @FXML private Button homeModificaLibro;
@@ -81,18 +83,22 @@ public class ModificaLibroController implements Initializable {
             archivio.modificaLibro(modificato);
             GestoreStatoBiblioteca.getInstance().salva();
 
-            labelmodificalibro.setStyle("-fx-text-fill: green;");
-            labelmodificalibro.setText("Modifica salvata con successo.");
+            labelEsito.setVisible(true);
+            labelEsito.setStyle("-fx-text-fill: green;");
+            labelEsito.setText("Modifica salvata con successo.");
 
         } catch (NumberFormatException e) {
-            labelmodificalibro.setStyle("-fx-text-fill: red;");
-            labelmodificalibro.setText("Anno e copie devono essere numeri interi.");
+            labelEsito.setVisible(true);
+            labelEsito.setStyle("-fx-text-fill: red;");
+            labelEsito.setText("Anno e copie devono essere numeri interi.");
         } catch (IllegalArgumentException | IllegalStateException ex) {
-            labelmodificalibro.setStyle("-fx-text-fill: red;");
-            labelmodificalibro.setText(ex.getMessage());
+            labelEsito.setVisible(true);
+            labelEsito.setStyle("-fx-text-fill: red;");
+            labelEsito.setText(ex.getMessage());
         } catch (IOException ioEx) {
-            labelmodificalibro.setStyle("-fx-text-fill: red;");
-            labelmodificalibro.setText("Errore nel salvataggio dei dati.");
+            labelEsito.setVisible(true);
+            labelEsito.setStyle("-fx-text-fill: red;");
+            labelEsito.setText("Errore nel salvataggio dei dati.");
             ioEx.printStackTrace();
         }
     }

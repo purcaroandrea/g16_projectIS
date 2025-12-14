@@ -82,10 +82,15 @@ public class RegistroPrestitiController implements Initializable {
             return new SimpleStringProperty(pr.isAttivo() ? "Attivo" : "Chiuso");
         });
 
-        // ✅ Carico i prestiti attivi ORDINATI per data (già fatto dal modello)
-        List<Prestito> attiviOrdinati = archivio.getPrestitiPerData();
+        List<Prestito> tutti = archivio.getTutti();
+        // ✅ ORDINO per data di prestito
+        tutti.sort((p1, p2) ->
+                p1.getDataPrestito().compareTo(p2.getDataPrestito())
+        );
 
-        ObservableList<Prestito> dati = FXCollections.observableArrayList(attiviOrdinati);
+        ObservableList<Prestito> dati =
+                FXCollections.observableArrayList(tutti);
+
         tabellaPrestiti.setItems(dati);
 
         // ✅ Evidenziazione righe in ritardo

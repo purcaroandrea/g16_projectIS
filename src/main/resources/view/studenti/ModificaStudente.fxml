@@ -5,18 +5,19 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli%20di%20stile%20studenti/modificastudente.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestioneStudenti.controller.ModificaStudenteController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli_di_stile_studenti/modificastudente.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestioneStudenti.controller.ModificaStudenteController">
    <children>
       <TextField fx:id="ModificaNome" layoutX="330.0" layoutY="110.0" />
       <TextField fx:id="ModificaCognome" layoutX="330.0" layoutY="160.0" />
       <TextField fx:id="ModificaMatricola" layoutX="330.0" layoutY="210.0" />
       <TextField fx:id="ModificaEmail" layoutX="330.0" layoutY="260.0" />
       <Button fx:id="ConfermaModificaStudente" layoutX="436.0" layoutY="318.0" mnemonicParsing="false" onAction="#salvaModificaStudente" text="Conferma" />
-      <Label fx:id="modificastudente" layoutX="140.0" layoutY="45.0" prefHeight="45.0" prefWidth="321.0" text="Modifica Studente" style="-fx-font-family: Georgia, 'Times New Roman', Serif; -fx-font-weight: bold; -fx-text-fill: #bb8c8e; -fx-font-size: 30px;" />
+      <Label fx:id="modificastudente" layoutX="140.0" layoutY="45.0" prefHeight="45.0" prefWidth="321.0" style="-fx-font-family: Georgia, 'Times New Roman', Serif; -fx-font-weight: bold; -fx-text-fill: #bb8c8e; -fx-font-size: 30px;" text="Modifica Studente" />
       <Label fx:id="nomeModifica" layoutX="100.0" layoutY="110.0" text="Nome:" />
       <Label fx:id="cognomeModifica" layoutX="100.0" layoutY="160.0" text="Cognome:" />
       <Label fx:id="matricolaModifica" layoutX="100.0" layoutY="210.0" text="Matricola:" />
       <Label fx:id="emailModifica" layoutX="100.0" layoutY="260.0" text="Email:" />
       <Button fx:id="homeModificaStudente" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Label fx:id="labelEsito" layoutX="100.0" layoutY="319.0" prefHeight="17.0" prefWidth="223.0" style="-fx-font-size: 14px;" visible="false" />
    </children>
 </Pane>

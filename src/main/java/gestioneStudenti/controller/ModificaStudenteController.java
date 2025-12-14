@@ -34,6 +34,8 @@ public class ModificaStudenteController implements Initializable {
     @FXML private TextField ModificaEmail;
 
     @FXML private Label modificastudente;
+    @FXML private Label labelEsito;
+
 
     private ArchivioStudenti archivio;
     private Studente studenteOriginale;
@@ -83,15 +85,18 @@ public class ModificaStudenteController implements Initializable {
 
             GestoreStatoBiblioteca.getInstance().salva();
 
-            modificastudente.setStyle("-fx-text-fill: green;");
-            modificastudente.setText("Modifica salvata con successo.");
+            labelEsito.setVisible(true);
+            labelEsito.setStyle("-fx-text-fill: green;");
+            labelEsito.setText("Modifica salvata con successo.");
 
         } catch (IllegalArgumentException | IllegalStateException ex) {
-            modificastudente.setStyle("-fx-text-fill: red;");
-            modificastudente.setText(ex.getMessage());
+            labelEsito.setVisible(true);
+            labelEsito.setStyle("-fx-text-fill: red;");
+            labelEsito.setText(ex.getMessage());
         } catch (IOException ioEx) {
-            modificastudente.setStyle("-fx-text-fill: red;");
-            modificastudente.setText("Errore nel salvataggio dei dati.");
+            labelEsito.setVisible(true);
+            labelEsito.setStyle("-fx-text-fill: red;");
+            labelEsito.setText("Errore nel salvataggio dei dati.");
             ioEx.printStackTrace();
         }
     }
