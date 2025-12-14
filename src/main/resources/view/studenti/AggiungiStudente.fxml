@@ -20,7 +20,7 @@
       <TextField fx:id="testoMatricola" layoutX="190.0" layoutY="224.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: #bb8c8e; -fx-border-color: #0671b9;" />
       <TextField fx:id="testoEmail" layoutX="190.0" layoutY="277.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: #bb8c8e; -fx-border-color: #0671b9;" />
       <Label fx:id="messageLabel" layoutX="190.0" layoutY="310.0" prefWidth="264.0" style="-fx-text-fill: red; -fx-font-size: 14px;" text="" />
-      <AnchorPane layoutX="-7.0" layoutY="308.0" prefHeight="64.0" prefWidth="147.0" style="-fx-background-image: url(&quot;https://img.freepik.com/vettori-premium/diversi-gruppi-di-studenti-in-piedi-insieme-isolati-su-uno-sfondo-bianco_1339080-1909.jpg?semt=ais_hybrid&amp;w=740&amp;q=80&quot;); -fx-background-size: 150px; -fx-background-repeat: no-repeat;" />
+      <AnchorPane layoutX="-7.0" layoutY="308.0" prefHeight="64.0" prefWidth="147.0" style="-fx-background-image: url('/biblioteca/img/iconaStudenti.jpg'); -fx-background-size: 150px; -fx-background-repeat: no-repeat;" />
       <Label fx:id="labelnome" layoutX="68.0" layoutY="107.0" prefHeight="45.0" prefWidth="89.0" style="-fx-font-family: Georgia; -fx-font-family: Times New Roman; -fx-font-family: Serif; -fx-font-weight: bold; -fx-text-fill: #0671b9; -fx-font-size: 20px;" text="Nome:">
          <font>
             <Font name="Calibri" size="12.0" />

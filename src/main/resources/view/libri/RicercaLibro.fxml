@@ -9,7 +9,7 @@
    <children>
       <TextField fx:id="barraRicercaLibro" layoutX="149.0" layoutY="130.0" prefHeight="27.0" prefWidth="357.0" />
       <Label fx:id="ricercalibro" layoutX="160.0" layoutY="55.0" text="Ricerca Libro" />
-      <Pane layoutX="100.0" layoutY="124.0" prefHeight="39.0" prefWidth="35.0" style="-fx-background-image: url(&quot;https://static.vecteezy.com/ti/vettori-gratis/p1/21722315-illustrazione-del-disegno-dell-icona-di-vettore-della-lente-di-ingrandimento-vettoriale.jpg&quot;); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 25px;" />
+      <Pane layoutX="100.0" layoutY="124.0" prefHeight="39.0" prefWidth="35.0" style="-fx-background-image: url('/biblioteca/img/iconaRicerca.jpg'); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 25px;" />
       <Button fx:id="bottoneRicercaLibro" layoutX="433.0" layoutY="222.0" mnemonicParsing="false" onAction="#confermaRicerca" text="Conferma" />
       <Button fx:id="homeRicercaLibro" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>

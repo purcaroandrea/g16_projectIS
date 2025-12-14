@@ -14,7 +14,7 @@
       <Button fx:id="bottoneConfermaPrestito" layoutX="449.0" layoutY="315.0" mnemonicParsing="false" onAction="#confermaPrestito" text="Conferma" />
       <TextField fx:id="testoISBNprestito" layoutX="270.0" layoutY="110.0" prefHeight="29.0" prefWidth="226.0" />
       <TextField fx:id="testoDataPrestito" layoutX="270.0" layoutY="210.0" prefHeight="29.0" prefWidth="226.0" />
-      <Pane layoutY="315.0" prefHeight="100.0" prefWidth="151.0" style="-fx-background-image: url(&quot;https://thumbs.dreamstime.com/b/su-uno-sfondo-bianco-una-pila-di-libri-cartone-animato-o-stile-fumetto-ha-un-libro-rosso-appoggiato-contro-esso-che-trasmette-374868825.jpg&quot;); -fx-background-repeat: no-repeat; -fx-background-size: 150px;" />
+      <Pane layoutY="315.0" prefHeight="100.0" prefWidth="151.0" style="-fx-background-image: url('/biblioteca/img/iconaLibro.jpeg'); -fx-background-repeat: no-repeat; -fx-background-size: 150px;" />
       <TextField fx:id="testoMatricolaPrestito" layoutX="270.0" layoutY="160.0" prefHeight="29.0" prefWidth="226.0" />
       <Button fx:id="homeAggiungiPrestito" layoutX="32.0" layoutY="35.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
       <Label fx:id="labeldatarestituzione" layoutX="68.0" layoutY="260.0" text="Data del prestito:" />
