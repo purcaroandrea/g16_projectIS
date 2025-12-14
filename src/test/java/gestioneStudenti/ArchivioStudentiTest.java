@@ -23,12 +23,11 @@ public class ArchivioStudentiTest {
     private Studente s1, s2, s3;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp(){
         archivio = new ArchivioStudenti();
-
-        s1 = new Studente("A100", "Mario", "Rossi", "mario.r@mail.it");
-        s2 = new Studente("B200", "Giulia", "Bianchi", "giulia.b@mail.it");
-        s3 = new Studente("C300", "Luca", "Verdi", "luca.v@mail.it");
+        s1 = new Studente("Mario", "Rossi", "A100", "mario.r@mail.it");
+        s2 = new Studente("Giulia", "Bianchi", "B200", "giulia.b@mail.it");
+        s3 = new Studente("Luca", "Verdi", "C300", "luca.v@mail.it");
 
         archivio.aggiungiStudente(s1);
         archivio.aggiungiStudente(s2);
@@ -36,7 +35,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testAggiungiStudenteSuccesso() {
-        Studente s4 = new Studente("D400", "Anna", "Neri", "anna@mail.it");
+        Studente s4 = new Studente("Anna", "Neri", "D400", "anna@mail.it");
         archivio.aggiungiStudente(s4);
         assertEquals(3, archivio.getTutti().size(), "L'archivio dovrebbe contenere 3 studenti.");
         assertNotNull(archivio.cercaPerMatricola("D400"), "Lo studente D400 dovrebbe essere trovato.");
@@ -44,7 +43,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testAggiungiStudenteMatricolaDuplicata() {
-        Studente sDuplicato = new Studente("A100", "Nome", "Cognome", "mail@mail.it");
+        Studente sDuplicato = new Studente("Nome", "Cognome", "A100", "mail@mail.it");
         assertThrows(IllegalArgumentException.class, () -> {
             archivio.aggiungiStudente(sDuplicato);
         }, "Dovrebbe lanciare IllegalArgumentException per matricola duplicata.");
@@ -52,18 +51,17 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testModificaStudenteSuccesso() {
-        Studente s1Modificato = new Studente("A100", "Marco", "Gialli", "marco.g@mail.it");
+        Studente s1Modificato = new Studente("Marco", "Gialli", "A100", "marco.g@mail.it");
         archivio.modificaStudente(s1Modificato);
-
-        Studente trovato = archivio.cercaPerMatricola("A100");
+        Studente trovato = archivio.cercaPerMatricola("A100"); 
         assertEquals("Marco", trovato.getNome(), "Il nome dovrebbe essere stato modificato.");
         assertEquals("Gialli", trovato.getCognome(), "Il cognome dovrebbe essere stato modificato.");
-        assertEquals("marco.g@mail.it", trovato.getEmail(), "L'email dovrebbe essere stata modificata.");
+        assertEquals("marco.g@mail.it", trovato.getEmail(), "L'email dovrebbe essere stata modificata.");   
     }
 
     @Test
     public void testModificaStudenteNonTrovato() {
-        Studente sNonEsistente = new Studente("Z999", "Nome", "Cognome", "mail@mail.it");
+        Studente sNonEsistente = new Studente("Nome", "Cognome", "Z999", "mail@mail.it");
         assertThrows(IllegalStateException.class, () -> {
             archivio.modificaStudente(sNonEsistente);
         }, "Dovrebbe lanciare IllegalStateException se lo studente da modificare non è trovato.");
@@ -78,7 +76,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testRimuoviStudenteNonTrovato() {
-        Studente sNonEsistente = new Studente("Z999", "Nome", "Cognome", "mail@mail.it");
+        Studente sNonEsistente = new Studente("Nome", "Cognome", "Z999", "mail@mail.it");
         assertThrows(IllegalStateException.class, () -> {
             archivio.rimuoviStudente(sNonEsistente);
         }, "Dovrebbe lanciare IllegalStateException se lo studente da rimuovere non è trovato.");
@@ -93,10 +91,9 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testCercaPerCognomeParziale() {
-        Studente sParziale = new Studente("D400", "Paolo", "Marossi", "p.m@mail.it");
+        Studente sParziale = new Studente("Paolo", "Marossi", "D400", "p.m@mail.it");
         archivio.aggiungiStudente(sParziale);
-
-        List<Studente> risultati = archivio.cercaPerCognome("rossi");
+        List<Studente> risultati = archivio.cercaPerCognome("rossi"); // Ricerca case-insensitive che include parziale
         assertEquals(2, risultati.size(), "Dovrebbe trovare 2 studenti ('Rossi' e 'Marossi').");
     }
 
