@@ -35,7 +35,6 @@ public class ArchivioPrestitiTest {
         Prestito p = archivio.registraPrestito(
                 studente,
                 libro,
-                LocalDate.now(),
                 LocalDate.now().plusDays(10)
         );
 
@@ -49,15 +48,14 @@ void testLimiteTrePrestiti() {
     libro.setCopieDisponibili(4);
 
     // Primo, secondo e terzo prestito: ok
-    archivio.registraPrestito(studente, libro, LocalDate.now(), LocalDate.now().plusDays(5));
-    archivio.registraPrestito(studente, libro, LocalDate.now(), LocalDate.now().plusDays(6));
-    archivio.registraPrestito(studente, libro, LocalDate.now(), LocalDate.now().plusDays(7));
+    archivio.registraPrestito(studente, libro, LocalDate.now().plusDays(5));
+    archivio.registraPrestito(studente, libro, LocalDate.now().plusDays(6));
+    archivio.registraPrestito(studente, libro, LocalDate.now().plusDays(7));
     
     assertThrows(IllegalArgumentException.class, () ->
         archivio.registraPrestito(
             studente,
             libro,
-            LocalDate.now(),
             LocalDate.now().plusDays(8)
         )
     );
@@ -69,7 +67,6 @@ void testLimiteTrePrestiti() {
         Prestito p = archivio.registraPrestito(
                 studente,
                 libro,
-                LocalDate.now(),
                 LocalDate.now().plusDays(7)
         );
 
@@ -83,9 +80,9 @@ void testLimiteTrePrestiti() {
     @Test
     void testGetPrestitiPerDataOrdinati() {
         archivio.registraPrestito(studente, libro,
-                LocalDate.now(), LocalDate.now().plusDays(10));
+                LocalDate.now().plusDays(10));
         archivio.registraPrestito(studente, libro,
-                LocalDate.now(), LocalDate.now().plusDays(5));
+                LocalDate.now().plusDays(5));
 
         List<Prestito> lista = archivio.getPrestitiPerData();
 
@@ -99,7 +96,6 @@ void testLimiteTrePrestiti() {
         archivio.registraPrestito(
                 studente,
                 libro,
-                LocalDate.now(),
                 LocalDate.now().plusDays(10)
         );
 
