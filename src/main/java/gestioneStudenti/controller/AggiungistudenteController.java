@@ -88,7 +88,7 @@ public class AggiungistudenteController implements Initializable {
     @FXML
     private void tornaAllaHome(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/bibliotecainterfaccia1.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/BibliotecaInterfaccia.fxml"));
             Stage stage = (Stage) homeAggiungiStudente.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
