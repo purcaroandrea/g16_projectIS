@@ -9,5 +9,6 @@ var classgestione_prestiti_1_1_prestito =
     [ "setDataRestituzione", "classgestione_prestiti_1_1_prestito.html#a14c208292a880fe21f9c154d4c96a8f9", null ],
     [ "setLibro", "classgestione_prestiti_1_1_prestito.html#ad2b5d75fd2b2415131fe3b551e300dbb", null ],
     [ "setRestituito", "classgestione_prestiti_1_1_prestito.html#a74b14afeb1e62900e4a11cfec8b318c9", null ],
-    [ "setStudente", "classgestione_prestiti_1_1_prestito.html#a0a51bd3cd2515aee2a446073ae03b509", null ]
+    [ "setStudente", "classgestione_prestiti_1_1_prestito.html#a0a51bd3cd2515aee2a446073ae03b509", null ],
+    [ "toString", "classgestione_prestiti_1_1_prestito.html#a392d69c033bc482bbfbf7e7bfd87c685", null ]
 ];

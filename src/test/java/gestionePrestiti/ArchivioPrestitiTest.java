@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestionePrestiti;
 
 import gestioneLibri.Libro;
@@ -13,10 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- *
- * @author g16_member
- */
 public class ArchivioPrestitiTest {
     
     private ArchivioPrestiti archivio;
@@ -25,6 +16,7 @@ public class ArchivioPrestitiTest {
 
     @BeforeEach
     void setUp() {
+        
         archivio = new ArchivioPrestiti();
         studente = new Studente("Mario", "Rossi", "S123", "mario.rossi@uni.it");
         libro = new Libro("Algoritmi", "Barisano", 2020, "ISBN123", 3);
@@ -32,6 +24,7 @@ public class ArchivioPrestitiTest {
 
     @Test
     void testRegistraPrestitoSuccesso() {
+        
         Prestito p = archivio.registraPrestito(
                 studente,
                 libro,
@@ -44,26 +37,27 @@ public class ArchivioPrestitiTest {
     }
 
     @Test
-void testLimiteTrePrestiti() {
-    libro.setCopieDisponibili(4);
+    void testLimiteTrePrestiti() {
+        
+        libro.setCopieDisponibili(4);
 
-    // Primo, secondo e terzo prestito: ok
-    archivio.registraPrestito(studente, libro, LocalDate.now().plusDays(5));
-    archivio.registraPrestito(studente, libro, LocalDate.now().plusDays(6));
-    archivio.registraPrestito(studente, libro, LocalDate.now().plusDays(7));
+         archivio.registraPrestito(studente, libro, LocalDate.now().plusDays(5));
+         archivio.registraPrestito(studente, libro, LocalDate.now().plusDays(6));
+         archivio.registraPrestito(studente, libro, LocalDate.now().plusDays(7));
     
-    assertThrows(IllegalArgumentException.class, () ->
+        assertThrows(IllegalArgumentException.class, () ->
         archivio.registraPrestito(
             studente,
             libro,
             LocalDate.now().plusDays(8)
         )
     );
-}
+    }
 
 
     @Test
     void testRegistraRestituzione() {
+        
         Prestito p = archivio.registraPrestito(
                 studente,
                 libro,
@@ -79,6 +73,7 @@ void testLimiteTrePrestiti() {
 
     @Test
     void testGetPrestitiPerDataOrdinati() {
+        
         archivio.registraPrestito(studente, libro,
                 LocalDate.now().plusDays(10));
         archivio.registraPrestito(studente, libro,
@@ -93,6 +88,7 @@ void testLimiteTrePrestiti() {
 
     @Test
     void testCercaPrestitiAttivi() {
+        
         archivio.registraPrestito(
                 studente,
                 libro,

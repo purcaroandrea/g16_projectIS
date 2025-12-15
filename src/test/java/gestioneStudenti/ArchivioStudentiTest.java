@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gestioneStudenti;
 
 import java.util.ArrayList;
@@ -12,11 +7,6 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 
-
-/**
- *
- * @author g16_members
- */
 public class ArchivioStudentiTest {
     
     private ArchivioStudenti archivio;
@@ -24,6 +14,7 @@ public class ArchivioStudentiTest {
 
     @BeforeEach
     public void setUp(){
+        
         archivio = new ArchivioStudenti();
         s1 = new Studente("Mario", "Rossi", "A100", "mario.r@mail.it");
         s2 = new Studente("Giulia", "Bianchi", "B200", "giulia.b@mail.it");
@@ -35,6 +26,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testAggiungiStudenteSuccesso() {
+        
         Studente s4 = new Studente("Anna", "Neri", "D400", "anna@mail.it");
         archivio.aggiungiStudente(s4);
         assertEquals(3, archivio.getTutti().size(), "L'archivio dovrebbe contenere 3 studenti.");
@@ -43,6 +35,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testAggiungiStudenteMatricolaDuplicata() {
+        
         Studente sDuplicato = new Studente("Nome", "Cognome", "A100", "mail@mail.it");
         assertThrows(IllegalArgumentException.class, () -> {
             archivio.aggiungiStudente(sDuplicato);
@@ -51,6 +44,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testModificaStudenteSuccesso() {
+        
         Studente s1Modificato = new Studente("Marco", "Gialli", "A100", "marco.g@mail.it");
         archivio.modificaStudente(s1Modificato);
         Studente trovato = archivio.cercaPerMatricola("A100"); 
@@ -61,6 +55,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testModificaStudenteNonTrovato() {
+        
         Studente sNonEsistente = new Studente("Nome", "Cognome", "Z999", "mail@mail.it");
         assertThrows(IllegalStateException.class, () -> {
             archivio.modificaStudente(sNonEsistente);
@@ -69,6 +64,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testRimuoviStudenteSuccesso() {
+        
         archivio.rimuoviStudente(s2);
         assertEquals(1, archivio.getTutti().size(), "L'archivio dovrebbe contenere 1 studente dopo la rimozione.");
         assertNull(archivio.cercaPerMatricola("B200"), "Lo studente B200 non dovrebbe essere più trovato.");
@@ -76,6 +72,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testRimuoviStudenteNonTrovato() {
+        
         Studente sNonEsistente = new Studente("Nome", "Cognome", "Z999", "mail@mail.it");
         assertThrows(IllegalStateException.class, () -> {
             archivio.rimuoviStudente(sNonEsistente);
@@ -84,6 +81,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testCercaPerCognomeTrovato() {
+        
         List<Studente> risultati = archivio.cercaPerCognome("Rossi");
         assertEquals(1, risultati.size(), "Dovrebbe trovare 1 studente con cognome 'Rossi'.");
         assertEquals("A100", risultati.get(0).getMatricola());
@@ -91,6 +89,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testCercaPerCognomeParziale() {
+        
         Studente sParziale = new Studente("Paolo", "Marossi", "D400", "p.m@mail.it");
         archivio.aggiungiStudente(sParziale);
         List<Studente> risultati = archivio.cercaPerCognome("rossi"); // Ricerca case-insensitive che include parziale
@@ -99,12 +98,14 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testCercaPerCognomeNonTrovato() {
+        
         List<Studente> risultati = archivio.cercaPerCognome("Gialli");
         assertTrue(risultati.isEmpty(), "Non dovrebbe trovare nessuno studente con cognome 'Gialli'.");
     }
 
     @Test
     public void testCercaPerMatricolaTrovato() {
+        
         Studente trovato = archivio.cercaPerMatricola("A100");
         assertNotNull(trovato, "Lo studente A100 dovrebbe essere trovato.");
         assertEquals("Mario", trovato.getNome());
@@ -112,12 +113,14 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testCercaPerMatricolaNonTrovata() {
+        
         Studente trovato = archivio.cercaPerMatricola("Z999");
         assertNull(trovato, "Lo studente Z999 non dovrebbe essere trovato.");
     }
 
     @Test
     public void testGetTutti() {
+        
         List<Studente> tutti = archivio.getTutti();
         assertEquals(2, tutti.size());
         tutti.clear();
@@ -126,6 +129,7 @@ public class ArchivioStudentiTest {
 
     @Test
     public void testGetStudentiOrdinati() {
+        
         archivio.aggiungiStudente(s3); // s1 (Rossi), s2 (Bianchi), s3 (Verdi)
         List<Studente> ordinati = archivio.getStudentiOrdinati();
         assertEquals(3, ordinati.size());

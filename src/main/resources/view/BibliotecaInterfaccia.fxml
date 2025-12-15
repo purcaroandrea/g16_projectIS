@@ -6,32 +6,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="             -fx-background-size: cover;             -fx-background-image: url('/biblioteca/img/sfondoHome.jpg');             -fx-background-repeat: no-repeat;             -fx-background-position: center center;         " styleClass="label" stylesheets="@gestionebiblioteca/gestionebiblioteca.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.controller.BibliotecaInterfacciaController">
 
-    <children>
+                      <children>
 
-        <Label fx:id="labelbiblioteca" layoutX="37.0" layoutY="14.0" prefWidth="275.0" text="Biblioteca Universitaria" wrapText="true">
+                                                                          <Label fx:id="labelbiblioteca" layoutX="37.0" layoutY="14.0" prefWidth="275.0" text="Biblioteca Universitaria" wrapText="true">
 
-            <font>
+                                                                              <font>
                 <Font name="Calibri" size="15.0" />
             </font>
 
-        </Label>
+                                                                          </Label>
 
-        <VBox layoutX="65.0" layoutY="142.0" prefHeight="236.0" prefWidth="179.0" spacing="40.0">
+                                                              <VBox layoutX="65.0" layoutY="142.0" prefHeight="236.0" prefWidth="179.0" spacing="40.0">
 
-            <children>
+                                                                  <children>
 
-                <Button fx:id="Libri" mnemonicParsing="false" onAction="#gestioneLibri" prefHeight="47.0" prefWidth="126.0" text="Libri" />
+                                                                      <Button fx:id="Libri" mnemonicParsing="false" onAction="#gestioneLibri" prefHeight="47.0" prefWidth="126.0" text="Libri" />
 
-                <Button fx:id="Studenti" lineSpacing="20.0" mnemonicParsing="false" onAction="#gestioneStudenti" text="Studenti" />
+                                                                      <Button fx:id="Studenti" lineSpacing="20.0" mnemonicParsing="false" onAction="#gestioneStudenti" text="Studenti" />
 
-                <Button fx:id="Prestiti" lineSpacing="20.0" mnemonicParsing="false" onAction="#gestionePrestiti" prefHeight="44.0" prefWidth="128.0" text="Prestiti" />
+                                                                      <Button fx:id="Prestiti" lineSpacing="20.0" mnemonicParsing="false" onAction="#gestionePrestiti" prefHeight="44.0" prefWidth="128.0" text="Prestiti" />
 
-            </children>
+                                                                  </children>
 
-        </VBox>
+                                                              </VBox>
 
-    </children>
+                      </children>
 
-</Pane>
+                  </Pane>

@@ -23,7 +23,7 @@ import java.util.NoSuchElementException;
  *
  * @see Libro
  */
-public class ArchivioLibri implements Serializable{
+public class ArchivioLibri implements Serializable {
 
     /**
      * @brief La lista di oggetti Libro mantenuta nell'archivio. Questa lista
@@ -53,13 +53,13 @@ public class ArchivioLibri implements Serializable{
      * presente nella lista.
      */
     public void aggiungiLibro(Libro libro) {
-        if(libro== null){
-        throw new IllegalArgumentException("Il libro da aggiungere non può essere null.");
-        //return;
+        if (libro == null) {
+            throw new IllegalArgumentException("Il libro da aggiungere non può essere null.");
+            //return;
         }
-        if(cercaPerIsbn(libro.getIsbn())!= null){
-        throw new IllegalArgumentException("Esiste già un libro con ISBN: " + libro.getIsbn());
-        //return;
+        if (cercaPerIsbn(libro.getIsbn()) != null) {
+            throw new IllegalArgumentException("Esiste già un libro con ISBN: " + libro.getIsbn());
+            //return;
         }
         this.libri.add(libro);
     }
@@ -73,9 +73,9 @@ public class ArchivioLibri implements Serializable{
      * nuovi dati.
      */
     public void modificaLibro(Libro libroModificato) {
-        if(libroModificato == null){
-         throw new IllegalArgumentException("L'oggetto Libro modificato non può essere null.");
-           
+        if (libroModificato == null) {
+            throw new IllegalArgumentException("L'oggetto Libro modificato non può essere null.");
+
         }
         int indice = -1;
         for (int i = 0; i < libri.size(); i++) {
@@ -86,16 +86,17 @@ public class ArchivioLibri implements Serializable{
         }
         if (indice != -1) {
             Libro libroOriginale = libri.get(indice);
-            
+
             libroOriginale.setTitolo(libroModificato.getTitolo());
             libroOriginale.setAutore(libroModificato.getAutore());
             libroOriginale.setAnnoPubblicazione(libroModificato.getAnnoPubblicazione());
             libroOriginale.setCopieDisponibili(libroModificato.getCopieDisponibili());
-            
+
         } else {
             throw new NoSuchElementException("Modifica fallita: Libro con ISBN " + libroModificato.getIsbn() + " non trovato nell'archivio.");
         }
     }
+
     /**
      * @brief Rimuove un oggetto Libro dall'archivio.
      *
@@ -106,22 +107,21 @@ public class ArchivioLibri implements Serializable{
      */
     public void rimuoviLibro(Libro libro) {
         if (libro == null) {
-           throw new IllegalArgumentException("Il libro da rimuovere non può essere null.");
+            throw new IllegalArgumentException("Il libro da rimuovere non può essere null.");
         }
         String isbn = libro.getIsbn();
         if (isbn == null || isbn.trim().isEmpty()) {
             throw new IllegalArgumentException("L'ISBN del libro da rimuovere non può essere null o vuoto.");
         }
 
-        boolean rimosso = libri.removeIf(l -> 
-            l.getIsbn() != null && l.getIsbn().equalsIgnoreCase(isbn)
+        boolean rimosso = libri.removeIf(l
+                -> l.getIsbn() != null && l.getIsbn().equalsIgnoreCase(isbn)
         );
 
         if (!rimosso) {
             throw new NoSuchElementException("Rimozione fallita: nessun libro con ISBN " + isbn + " trovato nell'archivio.");
-            }
-            }
-    
+        }
+    }
 
     /**
      * @brief Cerca un Libro nell'archivio tramite codice ISBN.
@@ -134,19 +134,20 @@ public class ArchivioLibri implements Serializable{
      * @post Lo stato dell'archivio non viene modificato.
      */
     public Libro cercaPerIsbn(String isbn) {
-       if (isbn == null || isbn.trim().isEmpty()) {
-       throw new IllegalArgumentException("L'ISBN per la ricerca non può essere null o vuoto.");
-       }
-       String isbnRicerca = isbn.trim();
-       
-       for (Libro libro : libri) {
+        if (isbn == null || isbn.trim().isEmpty()) {
+            throw new IllegalArgumentException("L'ISBN per la ricerca non può essere null o vuoto.");
+        }
+        String isbnRicerca = isbn.trim();
+
+        for (Libro libro : libri) {
             if (libro.getIsbn() != null && libro.getIsbn().equalsIgnoreCase(isbnRicerca)) {
-                return libro; 
+                return libro;
             }
         }
 
         return null;
     }
+
     /**
      * @brief Cerca Libri nell'archivio che abbiano il titolo specificato dalla
      * stringa passata come parametro.
@@ -159,23 +160,22 @@ public class ArchivioLibri implements Serializable{
      * @post Lo stato dell'archivio non viene modificato.
      */
     public List<Libro> cercaPerTitolo(String titolo) {
-        
+
         if (titolo == null || titolo.trim().isEmpty()) {
             throw new IllegalArgumentException("Il titolo per la ricerca non può essere null o vuoto.");
             //return risultati; 
         }
-            List<Libro> risultati = new ArrayList<>();
-            String titoloRicerca = titolo.trim().toLowerCase();
+        List<Libro> risultati = new ArrayList<>();
+        String titoloRicerca = titolo.trim().toLowerCase();
 
         for (Libro libro : libri) {
             String titoloLibro = libro.getTitolo();
             if (titoloLibro != null && titoloLibro.toLowerCase().contains(titoloRicerca)) {
-            risultati.add(libro);
+                risultati.add(libro);
             }
         }
         return risultati;
-        }
-    
+    }
 
     /**
      * @brief Cerca Libri nell'archivio che abbiano l'autore specificato dalla
@@ -189,18 +189,18 @@ public class ArchivioLibri implements Serializable{
      * @post Lo stato dell'archivio non viene modificato.
      */
     public List<Libro> cercaPerAutore(String autore) {
-   
-    if (autore == null || autore.trim().isEmpty()) {
-        throw new IllegalArgumentException("L'autore per la ricerca non può essere null o vuoto.");    
-        //return risultati; 
+
+        if (autore == null || autore.trim().isEmpty()) {
+            throw new IllegalArgumentException("L'autore per la ricerca non può essere null o vuoto.");
+            //return risultati; 
         }
-    List<Libro> risultati = new ArrayList<>();
-    String autoreRicerca = autore.trim().toLowerCase();
+        List<Libro> risultati = new ArrayList<>();
+        String autoreRicerca = autore.trim().toLowerCase();
 
         for (Libro libro : libri) {
             String autoreLibro = libro.getAutore();
             if (autoreLibro != null && autoreLibro.toLowerCase().contains(autoreRicerca)) {
-            risultati.add(libro);
+                risultati.add(libro);
             }
         }
 
@@ -216,9 +216,9 @@ public class ArchivioLibri implements Serializable{
      * copia ordinata.
      */
     public List<Libro> getLibriOrdinatiPerTitolo() {
-    List<Libro> copiaLibri = new ArrayList<>(this.libri);
-    Collections.sort(copiaLibri); // usa compareTo() di Libro
-        
+        List<Libro> copiaLibri = new ArrayList<>(this.libri);
+        Collections.sort(copiaLibri); // usa compareTo() di Libro
+
         return copiaLibri;
     }
 
@@ -232,7 +232,7 @@ public class ArchivioLibri implements Serializable{
      * @post Lo stato dell’archivio non viene modificato.
      */
     public List<Libro> getTutti() {
-    return new ArrayList<>(this.libri);
+        return new ArrayList<>(this.libri);
     }
 
 }

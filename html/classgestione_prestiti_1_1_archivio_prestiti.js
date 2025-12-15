@@ -6,6 +6,6 @@ var classgestione_prestiti_1_1_archivio_prestiti =
     [ "getPrestitiPerData", "classgestione_prestiti_1_1_archivio_prestiti.html#a51c53824b9c8ee194e02e620297848da", null ],
     [ "getPrestitiPerStudente", "classgestione_prestiti_1_1_archivio_prestiti.html#adb41825470980d1359fc72b95977cdbe", null ],
     [ "getTutti", "classgestione_prestiti_1_1_archivio_prestiti.html#a9dbcbc1c6186b04b82791a83976049a5", null ],
-    [ "registraPrestito", "classgestione_prestiti_1_1_archivio_prestiti.html#a8fc86f5e0450d79864116f86dc54cde1", null ],
+    [ "registraPrestito", "classgestione_prestiti_1_1_archivio_prestiti.html#a8cbe9c7303cb36c113a1eff8723087a8", null ],
     [ "registraRestituzione", "classgestione_prestiti_1_1_archivio_prestiti.html#a5fe4964e2a5b76bf681486a63cce9c6b", null ]
 ];

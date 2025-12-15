@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class BibliotecaInterfacciaController implements Initializable {
@@ -21,6 +22,9 @@ public class BibliotecaInterfacciaController implements Initializable {
     @FXML private Button Libri;
     @FXML private Button Studenti;
     @FXML private Button Prestiti;
+    
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -52,4 +56,7 @@ public class BibliotecaInterfacciaController implements Initializable {
             e.printStackTrace(); // Nessun alert, solo log
         }
     }
+    
+  
+   
 }
