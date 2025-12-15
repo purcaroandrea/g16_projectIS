@@ -15,9 +15,9 @@
       </Label>
       <HBox layoutX="4.0" layoutY="191.0" prefHeight="200.0" prefWidth="591.0" spacing="70.0">
          <children>
-            <Button fx:id="NuovoLibro" mnemonicParsing="false" onAction="#nuovoLibro" prefHeight="42.0" prefWidth="171.0" style="-fx-font-weight: bold;" text="Nuovo Libro" />
-            <Button fx:id="RegistroLibri" mnemonicParsing="false" onAction="#registroLibri" prefHeight="42.0" prefWidth="174.0" style="-fx-font-weight: bold;" text="Registro Libri" />
-            <Button fx:id="RicercaLibro" mnemonicParsing="false" onAction="#ricercaLibro" prefHeight="42.0" prefWidth="178.0" style="-fx-font-weight: bold;" text="Ricerca Libro" />
+            <Button fx:id="NuovoLibro" mnemonicParsing="false" onAction="#nuovoLibro" prefHeight="46.0" prefWidth="206.0" style="-fx-font-weight: bold;" text="Nuovo Libro" />
+            <Button fx:id="RegistroLibri" mnemonicParsing="false" onAction="#registroLibri" prefHeight="46.0" prefWidth="206.0" style="-fx-font-weight: bold;" text="Registro Libri" />
+            <Button fx:id="RicercaLibro" mnemonicParsing="false" onAction="#ricercaLibro" prefHeight="46.0" prefWidth="206.0" style="-fx-font-weight: bold;" text="Ricerca Libro" />
          </children>
       </HBox>
       <Button fx:id="homeGestioneLibri" layoutX="16.0" layoutY="15.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />

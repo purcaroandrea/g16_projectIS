@@ -8,11 +8,11 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli_di_stile_prestito/gestioneprestiti.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionePrestiti.controller.GestionePrestitiController">
    <children>
       <Label fx:id="labelgestioneprestito" layoutX="109.0" layoutY="93.0" text="Gestione Prestiti " />
-      <HBox layoutX="14.0" layoutY="191.0" prefHeight="225.0" prefWidth="608.0" spacing="50.0">
+      <HBox layoutX="4.0" layoutY="191.0" prefHeight="225.0" prefWidth="593.0" spacing="32.0">
          <children>
-            <Button fx:id="NuovoPrestito" mnemonicParsing="false" onAction="#nuovoPrestito" text="Nuovo Prestito" />
-            <Button fx:id="RegistroPrestiti" mnemonicParsing="false" onAction="#registroPrestiti" text="Registro Prestiti" />
-            <Button fx:id="RicercaPrestito" mnemonicParsing="false" onAction="#ricercaPrestito" text="Ricerca Prestito" />
+            <Button fx:id="NuovoPrestito" mnemonicParsing="false" onAction="#nuovoPrestito" prefHeight="46.0" prefWidth="206.0" text="Nuovo Prestito" />
+            <Button fx:id="RegistroPrestiti" mnemonicParsing="false" onAction="#registroPrestiti" prefHeight="46.0" prefWidth="206.0" text="Registro Prestiti" />
+            <Button fx:id="RicercaPrestito" mnemonicParsing="false" onAction="#ricercaPrestito" prefHeight="46.0" prefWidth="206.0" text="Ricerca Prestito" />
          </children>
       </HBox>
       <Button fx:id="homeGestionePrestiti" layoutX="16.0" layoutY="15.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
