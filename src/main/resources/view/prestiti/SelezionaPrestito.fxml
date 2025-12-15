@@ -7,9 +7,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli_di_stile_prestito/ricercaprestito2.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionePrestiti.controller.SelezionaPrestitoController">
    <children>
-      <Label fx:id="ricercaprestito2" layoutX="119.0" layoutY="58.0" text="Chiusura Prestito" />
+      <Label fx:id="ricercaprestito2" layoutX="118.0" layoutY="59.0" text="Chiusura Prestito" />
       <Button fx:id="bottoneChiudiPrestito" layoutX="229.0" layoutY="292.0" mnemonicParsing="false" onAction="#chiudiPrestito" text="Chiudi Prestito" />
-      <Button fx:id="bottoneHomePrestito3" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
-      <ListView fx:id="listaPrestiti" layoutX="82.0" layoutY="111.0" prefHeight="154.0" prefWidth="436.0" />
+      <Button fx:id="bottoneHomePrestito3" layoutX="16.0" layoutY="15.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <ListView fx:id="listaPrestiti" layoutX="41.0" layoutY="123.0" prefHeight="154.0" prefWidth="519.0" />
    </children>
 </Pane>

@@ -19,6 +19,6 @@
       </TableView>
       <Label fx:id="registrostudenti" layoutX="140.0" layoutY="45.0" prefHeight="45.0" prefWidth="321.0" style="-fx-font-family: Georgia, 'Times New Roman', Serif; -fx-font-weight: bold; -fx-text-fill: #bb8c8e; -fx-font-size: 30px;" text="Registro Studenti" />
 
-      <Button fx:id="homeRegistroStudenti" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Button fx:id="homeRegistroStudenti" layoutX="16.0" layoutY="15.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

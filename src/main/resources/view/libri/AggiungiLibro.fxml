@@ -20,6 +20,6 @@
       <TextField fx:id="testoNumCopie" layoutX="310.0" layoutY="290.0" prefHeight="27.0" prefWidth="253.0" />
       <Button fx:id="bottoneConfermaLibri" layoutX="422.0" layoutY="329.0" mnemonicParsing="false" onAction="#confermaLibro" text="Conferma" />
       <Pane layoutX="-1.0" layoutY="314.0" prefHeight="59.0" prefWidth="97.0" style="-fx-background-image: url('/biblioteca/img/iconaLibro.jpeg'); -fx-background-repeat: no-repeat; -fx-background-size: 120px;" />
-      <Button fx:id="homeAggiungiLibro" layoutX="22.0" layoutY="25.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Button fx:id="homeAggiungiLibro" layoutX="16.0" layoutY="15.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

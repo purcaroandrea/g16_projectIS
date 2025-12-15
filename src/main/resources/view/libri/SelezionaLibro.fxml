@@ -15,7 +15,7 @@
          </children>
       </HBox>
       <Label fx:id="ricercalibro2" layoutX="168.0" layoutY="46.0" text="Ricerca Libro" />
-      <Button fx:id="homeRicercaLibro2" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
-      <ListView fx:id="listaLibri" layoutX="96.0" layoutY="103.0" prefHeight="154.0" prefWidth="427.0" />
+      <Button fx:id="homeRicercaLibro2" layoutX="16.0" layoutY="15.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <ListView fx:id="listaLibri" layoutX="40.0" layoutY="103.0" prefHeight="154.0" prefWidth="519.0" />
    </children>
 </Pane>

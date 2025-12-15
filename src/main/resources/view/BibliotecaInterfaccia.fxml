@@ -2,34 +2,36 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-size: cover;                    -fx-background-image: url('/biblioteca/img/sfondoHome.jpg');                    -fx-background-repeat: no-repeat;                    -fx-background-position: center center;" stylesheets="@gestionebiblioteca/gestionebiblioteca.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.controller.BibliotecaInterfacciaController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="             -fx-background-size: cover;             -fx-background-image: url('/biblioteca/img/sfondoHome.jpg');             -fx-background-repeat: no-repeat;             -fx-background-position: center center;         " styleClass="label" stylesheets="@gestionebiblioteca/gestionebiblioteca.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.controller.BibliotecaInterfacciaController">
 
     <children>
 
-        <!-- ✅ TITOLO IN ALTO A SINISTRA -->
-        <Label fx:id="labelbiblioteca" text="Biblioteca&#10;Universitaria" wrapText="true" AnchorPane.leftAnchor="20" AnchorPane.topAnchor="20">
+        <Label fx:id="labelbiblioteca" layoutX="37.0" layoutY="14.0" prefWidth="275.0" text="Biblioteca Universitaria" wrapText="true">
+
             <font>
-                <Font name="Calibri" size="22.0" />
+                <Font name="Calibri" size="15.0" />
             </font>
+
         </Label>
 
-        <!-- ✅ MENU CENTRALE ADATTIVO -->
-        <VBox fillWidth="true" layoutX="36.0" layoutY="123.0" prefHeight="201.0" prefWidth="194.0" spacing="40" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="370.0" AnchorPane.topAnchor="123.0">
+        <VBox layoutX="65.0" layoutY="142.0" prefHeight="236.0" prefWidth="179.0" spacing="40.0">
 
             <children>
-                <Button fx:id="Libri" maxWidth="Infinity" onAction="#gestioneLibri" prefHeight="47" text="Libri" />
 
-                <Button fx:id="Studenti" maxWidth="Infinity" onAction="#gestioneStudenti" prefHeight="47" text="Studenti" />
+                <Button fx:id="Libri" mnemonicParsing="false" onAction="#gestioneLibri" prefHeight="47.0" prefWidth="126.0" text="Libri" />
 
-                <Button fx:id="Prestiti" maxWidth="Infinity" onAction="#gestionePrestiti" prefHeight="47.0" text="Prestiti" />
+                <Button fx:id="Studenti" lineSpacing="20.0" mnemonicParsing="false" onAction="#gestioneStudenti" text="Studenti" />
+
+                <Button fx:id="Prestiti" lineSpacing="20.0" mnemonicParsing="false" onAction="#gestionePrestiti" prefHeight="44.0" prefWidth="128.0" text="Prestiti" />
+
             </children>
 
         </VBox>
 
     </children>
 
-</AnchorPane>
+</Pane>

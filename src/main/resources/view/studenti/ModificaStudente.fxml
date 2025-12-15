@@ -17,7 +17,7 @@
       <Label fx:id="cognomeModifica" layoutX="100.0" layoutY="160.0" text="Cognome:" />
       <Label fx:id="matricolaModifica" layoutX="100.0" layoutY="210.0" text="Matricola:" />
       <Label fx:id="emailModifica" layoutX="100.0" layoutY="260.0" text="Email:" />
-      <Button fx:id="homeModificaStudente" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Button fx:id="homeModificaStudente" layoutX="16.0" layoutY="15.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
       <Label fx:id="labelEsito" layoutX="100.0" layoutY="319.0" prefHeight="17.0" prefWidth="223.0" style="-fx-font-size: 14px;" visible="false" />
    </children>
 </Pane>

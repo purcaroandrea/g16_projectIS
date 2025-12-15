@@ -8,14 +8,14 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli_di_stile_studenti/ricercastudente2.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestioneStudenti.controller.SelezionaStudenteController">
    <children>
-      <HBox layoutX="48.0" layoutY="263.0" prefHeight="100.0" prefWidth="524.0" spacing="160.0">
+      <HBox layoutX="41.0" layoutY="264.0" prefHeight="100.0" prefWidth="519.0" spacing="190.0">
          <children>
             <Button fx:id="bottoneModificaStudente" mnemonicParsing="false" onAction="#modificaStudente" text="Modifica Studente" />
             <Button fx:id="bottoneRimuoviStudente" mnemonicParsing="false" onAction="#rimuoviStudente" text="Rimuovi Studente" />
          </children>
       </HBox>
       <Label fx:id="ricercastudente2" layoutX="125.0" layoutY="48.0" text="Ricerca Studente" />
-      <Button fx:id="homeRimozioneStudente" layoutX="42.0" layoutY="45.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
-      <ListView fx:id="listaStudenti" layoutX="90.0" layoutY="101.0" prefHeight="143.0" prefWidth="421.0" />
+      <Button fx:id="homeRimozioneStudente" layoutX="16.0" layoutY="15.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <ListView fx:id="listaStudenti" layoutX="41.0" layoutY="100.0" prefHeight="154.0" prefWidth="519.0" />
    </children>
 </Pane>

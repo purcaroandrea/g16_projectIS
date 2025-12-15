@@ -20,6 +20,6 @@
             <Button fx:id="RicercaLibro" mnemonicParsing="false" onAction="#ricercaLibro" prefHeight="42.0" prefWidth="178.0" style="-fx-font-weight: bold;" text="Ricerca Libro" />
          </children>
       </HBox>
-      <Button fx:id="homeGestioneLibri" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Button fx:id="homeGestioneLibri" layoutX="16.0" layoutY="15.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
    </children>
 </Pane>

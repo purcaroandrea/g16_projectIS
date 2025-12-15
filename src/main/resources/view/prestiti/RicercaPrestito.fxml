@@ -8,14 +8,15 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: snow;" stylesheets="@fogli_di_stile_prestito/ricercaprestito.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionePrestiti.controller.RicercaPrestitoController">
    <children>
       <Label fx:id="ricercaprestito" layoutX="129.0" layoutY="47.0" text="Ricerca Prestito" />
-      <Pane layoutX="522.0" layoutY="124.0" prefHeight="39.0" prefWidth="35.0" style="-fx-background-image: url('/biblioteca/img/iconaRicerca.jpg'); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 25px;" />
-      <TextField fx:id="barraRicercaPrestitoISBN" layoutX="193.0" layoutY="130.0" prefHeight="25.0" prefWidth="322.0" />
-      <Button fx:id="bottoneRicercaPrestito" layoutX="406.0" layoutY="244.0" mnemonicParsing="false" onAction="#eseguiRicerca" text="Conferma" />
-      <TextField fx:id="barraRicercaPrestitoMatCogn" layoutX="193.0" layoutY="177.0" prefHeight="27.0" prefWidth="322.0" />
-      <Label fx:id="labelLibro" layoutX="45.0" layoutY="125.0" text="Libro:&#10;(Titolo o ISBN)" textAlignment="CENTER" wrapText="true" />
-      <Label fx:id="labelStudente" layoutX="14.0" layoutY="172.0" text="Studente:&#10;(Cognome o Matricola)" textAlignment="CENTER" wrapText="true" />
-      <Pane layoutX="522.0" layoutY="171.0" prefHeight="39.0" prefWidth="35.0" style="-fx-background-image: url('/biblioteca/img/iconaRicerca.jpg'); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 25px;" />
-      <Button fx:id="homeRicercaPrestito" layoutX="35.0" layoutY="32.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
-      <Label fx:id="labelEsito" layoutX="35.0" layoutY="255.0" prefHeight="17.0" prefWidth="178.0" />
+      <Pane layoutX="522.0" layoutY="150.0" prefHeight="39.0" prefWidth="35.0" style="-fx-background-image: url('/biblioteca/img/iconaRicerca.jpg'); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 25px;" />
+      <TextField fx:id="barraRicercaPrestitoISBN" layoutX="193.0" layoutY="156.0" prefHeight="25.0" prefWidth="322.0" />
+      <Button fx:id="bottoneRicercaPrestito" layoutX="406.0" layoutY="270.0" mnemonicParsing="false" onAction="#eseguiRicerca" text="Conferma" />
+      <TextField fx:id="barraRicercaPrestitoMatCogn" layoutX="193.0" layoutY="203.0" prefHeight="27.0" prefWidth="322.0" />
+      <Label fx:id="labelLibro" layoutX="45.0" layoutY="151.0" text="Libro:&#10;(Titolo o ISBN)" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="labelStudente" layoutX="14.0" layoutY="198.0" text="Studente:&#10;(Cognome o Matricola)" textAlignment="CENTER" wrapText="true" />
+      <Pane layoutX="522.0" layoutY="197.0" prefHeight="39.0" prefWidth="35.0" style="-fx-background-image: url('/biblioteca/img/iconaRicerca.jpg'); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 25px;" />
+      <Button fx:id="homeRicercaPrestito" layoutX="16.0" layoutY="15.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Label fx:id="labelEsito" layoutX="35.0" layoutY="281.0" prefHeight="17.0" prefWidth="178.0" />
+      <Label layoutX="223.0" layoutY="93.0" prefHeight="17.0" prefWidth="142.0" text="Inserisci entrambi i campi" />
    </children>
 </Pane>
