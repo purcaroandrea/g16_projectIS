@@ -1,5 +1,6 @@
 package gestioneStudenti.controller;
 
+import gestionePrestiti.ArchivioPrestiti;
 import gestioneStudenti.Studente;
 import gestioneStudenti.ArchivioStudenti;
 
@@ -113,6 +114,23 @@ public class SelezionaStudenteController implements Initializable {
     @FXML
     private void rimuoviStudente(ActionEvent event) {
         if (studenteCorrente == null) return;
+        
+         // ✅ Recupero archivio prestiti
+        StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
+        ArchivioPrestiti archivioPrestiti = stato.getArchivioPrestiti();
+
+
+        // ✅ Controllo prestiti attivi
+        boolean haPrestitiAttivi = archivioPrestiti.contaPrestitiAttivi(studenteCorrente) > 0;
+
+        if (haPrestitiAttivi) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Operazione non consentita");
+            alert.setHeaderText(null);
+            alert.setContentText("Impossibile rimuovere lo studente: ha prestiti attivi.");
+            alert.showAndWait();
+            return;
+        }
 
         try {
             archivio.rimuoviStudente(studenteCorrente);
@@ -131,15 +149,10 @@ public class SelezionaStudenteController implements Initializable {
             bottoneModificaStudente.setDisable(true);
             bottoneRimuoviStudente.setDisable(true);
 
-        } catch (IllegalStateException ex) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Operazione non consentita");
-            alert.setHeaderText(null);
-            alert.setContentText(ex.getMessage());
-            alert.showAndWait();
-        } catch (IOException ioEx) {
-            // Nessun messaggio a schermo
-            ioEx.printStackTrace();
+        } catch (Exception ex) {
+            ricercastudente2.setStyle("-fx-text-fill: red;");
+            ricercastudente2.setText("Errore: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 

@@ -31,7 +31,8 @@ public class RicercaLibroController implements Initializable {
     @FXML private Button bottoneRicercaLibro;
     @FXML private Button homeRicercaLibro;
     @FXML private TextField barraRicercaLibro;
-
+    
+    @FXML private Label labelEsito;
     private ArchivioLibri archivio;
 
     @Override
@@ -49,12 +50,14 @@ public class RicercaLibroController implements Initializable {
 
     @FXML
     private void confermaRicerca(ActionEvent event) {
-        ricercalibro.setStyle("-fx-text-fill: black;");
         String input = barraRicercaLibro.getText().trim();
+        
+        labelEsito.setText("");
+        labelEsito.setStyle("");
 
         if (input.isEmpty()) {
-            ricercalibro.setStyle("-fx-text-fill: red;");
-            ricercalibro.setText("Inserire titolo, autore o ISBN!");
+            labelEsito.setStyle("-fx-text-fill: red;");
+            labelEsito.setText("Inserire titolo, autore o ISBN!");
             return;
         }
 
@@ -78,8 +81,8 @@ public class RicercaLibroController implements Initializable {
             }
 
             if (risultati.isEmpty()) {
-                ricercalibro.setStyle("-fx-text-fill: red;");
-                ricercalibro.setText("Nessun libro trovato con '" + input + "'");
+                labelEsito.setStyle("-fx-text-fill: red;");
+                labelEsito.setText("Nessun libro trovato con '" + input + "'");
                 return;
             }
 
@@ -96,8 +99,8 @@ public class RicercaLibroController implements Initializable {
             stage.show();
 
         } catch (Exception ex) {
-            ricercalibro.setStyle("-fx-text-fill: red;");
-            ricercalibro.setText("Errore: " + ex.getMessage());
+            labelEsito.setStyle("-fx-text-fill: red;");
+            labelEsito.setText("Errore: " + ex.getMessage());
             ex.printStackTrace();
         }
     }

@@ -5,15 +5,11 @@
  */
 package gestioneLibri;
 
-import gestionePrestiti.ArchivioPrestiti;
-import gestionePrestiti.Prestito;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
-import persistence.GestoreStatoBiblioteca;
-import persistence.StatoBiblioteca;
 
 /**
  * @file ArchivioLibri.java
@@ -112,17 +108,6 @@ public class ArchivioLibri implements Serializable{
         if (libro == null) {
            throw new IllegalArgumentException("Il libro da rimuovere non può essere null.");
         }
-        StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
-        ArchivioPrestiti archivioPrestiti = stato.getArchivioPrestiti();
-
-        for (Prestito p : archivioPrestiti.getTutti()) {
-            if (p.isAttivo() && p.getLibro().equals(libro)) {
-                throw new IllegalStateException(
-                    "Impossibile rimuovere il libro: è coinvolto in un prestito attivo."
-                );
-            }
-        }
-
         String isbn = libro.getIsbn();
         if (isbn == null || isbn.trim().isEmpty()) {
             throw new IllegalArgumentException("L'ISBN del libro da rimuovere non può essere null o vuoto.");

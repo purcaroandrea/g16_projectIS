@@ -16,5 +16,6 @@
       <Label fx:id="labelStudente" layoutX="14.0" layoutY="172.0" text="Studente:&#10;(Cognome o Matricola)" textAlignment="CENTER" wrapText="true" />
       <Pane layoutX="522.0" layoutY="171.0" prefHeight="39.0" prefWidth="35.0" style="-fx-background-image: url('/biblioteca/img/iconaRicerca.jpg'); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 25px;" />
       <Button fx:id="homeRicercaPrestito" layoutX="35.0" layoutY="32.0" mnemonicParsing="false" onAction="#tornaAllaHome" style="-fx-background-color: #bb8c8e; -fx-text-fill: white;" text="Home" />
+      <Label fx:id="labelEsito" layoutX="35.0" layoutY="255.0" prefHeight="17.0" prefWidth="178.0" />
    </children>
 </Pane>

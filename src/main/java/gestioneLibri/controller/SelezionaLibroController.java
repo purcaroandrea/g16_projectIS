@@ -2,6 +2,7 @@ package gestioneLibri.controller;
 
 import gestioneLibri.Libro;
 import gestioneLibri.ArchivioLibri;
+import gestionePrestiti.ArchivioPrestiti;
 import persistence.GestoreStatoBiblioteca;
 import persistence.StatoBiblioteca;
 
@@ -90,6 +91,23 @@ public class SelezionaLibroController implements Initializable {
             ricercalibro2.setText("Seleziona un libro da rimuovere!");
             return;
         }
+        
+        //Recupero dello stato e dell'archivio prestiti
+        StatoBiblioteca stato = GestoreStatoBiblioteca.getInstance().getStato();
+        ArchivioPrestiti archivioPrestiti = stato.getArchivioPrestiti();
+
+        //Controllo se il libro è coinvolto in un prestito attivo
+        boolean haPrestitiAttivi = archivioPrestiti.getTutti().stream()
+                .anyMatch(p -> p.isAttivo() && p.getLibro().equals(libroCorrente));
+
+        if (haPrestitiAttivi) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Operazione non consentita");
+            alert.setHeaderText(null);
+            alert.setContentText("Impossibile rimuovere il libro: è coinvolto in un prestito attivo.");
+            alert.showAndWait();
+            return;
+        }
 
         try {
             archivio.rimuoviLibro(libroCorrente);
@@ -105,13 +123,6 @@ public class SelezionaLibroController implements Initializable {
             libroCorrente = null;
             bottoneModificaLibro.setDisable(true);
             bottoneRimuoviLibro.setDisable(true);
-
-        }  catch (IllegalStateException ex) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Operazione non consentita");
-            alert.setHeaderText(null);
-            alert.setContentText(ex.getMessage());
-            alert.showAndWait();
         } catch (Exception ex) {
             ricercalibro2.setStyle("-fx-text-fill: red;");
             ricercalibro2.setText("Errore: " + ex.getMessage());

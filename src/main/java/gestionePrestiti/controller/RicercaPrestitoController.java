@@ -25,6 +25,7 @@ public class RicercaPrestitoController implements Initializable {
     @FXML private Label ricercaprestito;
     @FXML private Label labelLibro;
     @FXML private Label labelStudente;
+    @FXML private Label labelEsito;
 
     @FXML private TextField barraRicercaPrestitoISBN;
     @FXML private TextField barraRicercaPrestitoMatCogn;
@@ -49,10 +50,13 @@ public class RicercaPrestitoController implements Initializable {
     private void eseguiRicerca(ActionEvent event) {
         String inputLibro = barraRicercaPrestitoISBN.getText().trim();
         String inputStudente = barraRicercaPrestitoMatCogn.getText().trim();
+        
+        labelEsito.setText("");
+        labelEsito.setStyle("");
 
         if (inputLibro.isEmpty() || inputStudente.isEmpty()) {
-            ricercaprestito.setStyle("-fx-text-fill: red;");
-            ricercaprestito.setText("Inserisci entrambi i campi.");
+            labelEsito.setStyle("-fx-text-fill: red;");
+            labelEsito.setText("Inserisci entrambi i campi.");
             return;
         }
 
@@ -60,8 +64,8 @@ public class RicercaPrestitoController implements Initializable {
             List<Prestito> risultati = archivio.cercaPrestitiAttivi(inputStudente, inputLibro);
 
             if (risultati.isEmpty()) {
-                ricercaprestito.setStyle("-fx-text-fill: red;");
-                ricercaprestito.setText("Nessun prestito trovato.");
+                labelEsito.setStyle("-fx-text-fill: red;");
+                labelEsito.setText("Nessun prestito trovato.");
                 return;
             }
 
@@ -78,8 +82,8 @@ public class RicercaPrestitoController implements Initializable {
             stage.show();
 
         } catch (Exception ex) {
-            ricercaprestito.setStyle("-fx-text-fill: red;");
-            ricercaprestito.setText("Errore: " + ex.getMessage());
+            labelEsito.setStyle("-fx-text-fill: red;");
+            labelEsito.setText("Errore: " + ex.getMessage());
             ex.printStackTrace();
         }
     }

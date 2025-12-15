@@ -30,6 +30,8 @@ public class RicercaStudenteController implements Initializable {
     @FXML private TextField barraRicercaStudente;
     @FXML private Button bottoneRicercaStudente;
     @FXML private Button homeRicercaStudente;
+    
+   @FXML private Label labelEsito;
 
     private ArchivioStudenti archivio;
 
@@ -50,13 +52,14 @@ public class RicercaStudenteController implements Initializable {
 
     @FXML
     private void confermaRicerca(ActionEvent event) {
-
-        ricercastudente.setStyle("-fx-text-fill: black;");
         String input = barraRicercaStudente.getText().trim();
+        
+        labelEsito.setText("");
+        labelEsito.setStyle("");
 
         if (input.isEmpty()) {
-            ricercastudente.setStyle("-fx-text-fill: red;");
-            ricercastudente.setText("Inserire cognome o matricola!");
+            labelEsito.setStyle("-fx-text-fill: red;");
+            labelEsito.setText("Inserire cognome o matricola!");
             return;
         }
 
@@ -74,8 +77,8 @@ public class RicercaStudenteController implements Initializable {
 
             //Nessun risultato
             if (trovato == null) {
-                ricercastudente.setStyle("-fx-text-fill: red;");
-                ricercastudente.setText("Nessuno studente trovato con '" + input + "'");
+                labelEsito.setStyle("-fx-text-fill: red;");
+                labelEsito.setText("Nessuno studente trovato con '" + input + "'");
                 return;
             }
 
@@ -98,8 +101,8 @@ public class RicercaStudenteController implements Initializable {
             stage.show();
 
         } catch (Exception ex) {
-            ricercastudente.setStyle("-fx-text-fill: red;");
-            ricercastudente.setText("Errore: " + ex.getMessage());
+            labelEsito.setStyle("-fx-text-fill: red;");
+            labelEsito.setText("Errore: " + ex.getMessage());
             ex.printStackTrace();
         }
     }

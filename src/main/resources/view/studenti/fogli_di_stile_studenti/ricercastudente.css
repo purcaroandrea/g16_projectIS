@@ -24,3 +24,7 @@
     -fx-width:48;
     -fx-background-color:#0671b9;
 }
+
+#labelEsito {
+    -fx-font-size: 14px;
+}
